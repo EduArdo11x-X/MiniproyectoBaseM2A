@@ -5,15 +5,25 @@
  */
 package Ventanas;
 
-/**
- *
- * @author EDU
- */
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import Clases.Pelicula;
+import javax.swing.JOptionPane;
+
 public class Registrar_pelicula extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Registrar_pelicula
-     */
+    
+    String CodPelicula = "";
+    String TituloPelicula = "";
+    String Duracion = "";
+    String Actores = "";
+    String Clasificacion = "";
+    String AñoEstreno = "";
+    String Categoria = "";
+    String Idioma = "";
+    String Direcctores = "";
+    
     public Registrar_pelicula() {
         initComponents();
     }
@@ -161,15 +171,66 @@ public class Registrar_pelicula extends javax.swing.JFrame {
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
 
-        //ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
 
-        //Crear_E(BaseD);
-        //Cerrar_BD(BaseD);
+        Crear_E(BaseD);
+        Cerrar_BD(BaseD);
     }//GEN-LAST:event_jBguardarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        this.dispose();
+        Inicio vsar1 = new Inicio();
+            vsar1.setVisible(true); 
+    }    
+    
+     public void asignarVariables(ObjectContainer basep) {
+        CodPelicula = jTextField2.getText();
+        TituloPelicula = jTextField10.getText();
+        Duracion = jTextField8.getText();
+        Actores = jTextField7.getText();
+        Clasificacion = jComboBox1.getSelectedItem().toString();
+        AñoEstreno = jComboBox3.getSelectedItem().toString();
+        Categoria = jComboBox2.getSelectedItem().toString();
+        Idioma = jTextField12.getText();
+        Direcctores = jTextField9.getText();
+    }
+      
+      public void Crear_E(ObjectContainer basep) {
+        
+        
+
+             Pelicula Enuevo = new Pelicula(CodPelicula, TituloPelicula, Duracion, Actores, Clasificacion, AñoEstreno,Categoria,Idioma,Direcctores);
+
+            if (Comprobar_Peliculas(basep, CodPelicula) == 0) {
+                basep.set(Enuevo);
+                JOptionPane.showMessageDialog(null, "La pelicula se guardo correctamente");
+                LimpiarCampos();
+            } else {
+
+                JOptionPane.showMessageDialog(null, "La pelicula ya existe");
+            }
+
+           jTextField2.setText("");
+
+        
+    }
+      
+       public static int Comprobar_Peliculas(ObjectContainer basep, String CodPelicula) {
+
+        Pelicula Ebuscar = new Pelicula(CodPelicula, null, null, null, null, null, null,null,null);
+
+        ObjectSet result = basep.get(Ebuscar);
+
+        return result.size();
+    }
+       
+       public static void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -200,6 +261,18 @@ public class Registrar_pelicula extends javax.swing.JFrame {
                 new Registrar_pelicula().setVisible(true);
             }
         });
+    }
+    
+    public void LimpiarCampos() {
+        jTextField2.setText("");
+        jTextField10.setText("");
+        jTextField8.setText("");
+        jTextField7.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jTextField12.setText("");
+        jTextField9.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

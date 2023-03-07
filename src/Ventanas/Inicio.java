@@ -11,9 +11,7 @@ package Ventanas;
  */
 public class Inicio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Inicio
-     */
+   public static String direccionBD="C:\\Users\\Lenovo\\Desktop\\Mini Proyecto\\Mini Proyecto\\\\CineInterfaz.yap";
     public Inicio() {
         initComponents();
     }
