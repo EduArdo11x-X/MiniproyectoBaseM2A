@@ -39,14 +39,18 @@ public class Modificar_empleado extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         Buscar = new javax.swing.JButton();
         jBguardar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jSiniciohoras = new javax.swing.JSpinner();
+        jLabel8 = new javax.swing.JLabel();
+        jSiniciominutos = new javax.swing.JSpinner();
+        jSiniciohoras1 = new javax.swing.JSpinner();
+        jLabel9 = new javax.swing.JLabel();
+        jSiniciominutos1 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,17 +87,9 @@ public class Modificar_empleado extends javax.swing.JFrame {
         jLabel4.setText("Hora de entrada");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 165, -1));
-
         jLabel5.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
         jLabel5.setText("Hora de salida");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 137, -1, -1));
-        jPanel4.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 165, -1));
 
         jLabel6.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
         jLabel6.setText("Horas a la semana");
@@ -125,6 +121,26 @@ public class Modificar_empleado extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel7.setText("MODIFICAR");
         jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, -1, 20));
+
+        jSiniciohoras.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        jPanel4.add(jSiniciohoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setText(":");
+        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, -1, -1));
+
+        jSiniciominutos.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+        jPanel4.add(jSiniciominutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, -1, -1));
+
+        jSiniciohoras1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        jPanel4.add(jSiniciohoras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel9.setText(":");
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, -1));
+
+        jSiniciominutos1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+        jPanel4.add(jSiniciominutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -178,10 +194,6 @@ public class Modificar_empleado extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
@@ -244,15 +256,19 @@ public class Modificar_empleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JSpinner jSiniciohoras;
+    private javax.swing.JSpinner jSiniciohoras1;
+    private javax.swing.JSpinner jSiniciominutos;
+    private javax.swing.JSpinner jSiniciominutos1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
