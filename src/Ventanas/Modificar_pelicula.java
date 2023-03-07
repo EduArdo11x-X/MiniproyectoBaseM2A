@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 public class Modificar_pelicula extends javax.swing.JFrame {
 
-     String CodPelicula = "";
+     String Cod_Pelicula = "";
     String TituloPelicula = "";
     String Duracion = "";
     String Actores = "";
@@ -63,6 +63,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         Buscar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -170,6 +171,14 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         });
         jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 30, 30));
 
+        jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -198,6 +207,12 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         buscar(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_BuscarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        Inicio vsar1 = new Inicio();
+            vsar1.setVisible(true); 
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     
     public void buscar(ObjectContainer basep) {//cargardatos
@@ -206,7 +221,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         String IDAux;
         IDAux = jTextField2.getText();
 
-        Pelicula EAux = new Pelicula();
+        Registrar_pelicula EAux = new Registrar_pelicula();
 
         if (jTextField2.getText().isEmpty()) {
 
@@ -214,12 +229,12 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         } else {
 
             if (EAux.Comprobar_Peliculas(basep, IDAux) == 0) {
-
+                
                 JOptionPane.showMessageDialog(null, "La pelicula no existe en la base de datos");
                 LimpiarCamposTexto();
-
+                
             } else {
-
+                
                 Pelicula Ebuscar = new Pelicula(IDAux, null, null, null, null, null, null, null , null);
 
                 ObjectSet result = basep.get(Ebuscar);
@@ -228,8 +243,8 @@ public class Modificar_pelicula extends javax.swing.JFrame {
                     Pelicula miE = new Pelicula();
 
                     miE = (Pelicula) result.get(i);
-
-                   
+                    
+                    
                     jTextField10.setText(miE.getTitulo_pelicula());
                     jTextField8.setText(miE.getDuracion());
                     jTextField7.setText(miE.getActores());
@@ -262,6 +277,16 @@ public class Modificar_pelicula extends javax.swing.JFrame {
 
         }
     }
+    
+    public static int Comprobar_Peliculas(ObjectContainer basep, String CodPelicula) {
+
+        Pelicula Ebuscar = new Pelicula(CodPelicula, null, null, null, null, null, null,null,null);
+
+        ObjectSet result = basep.get(Ebuscar);
+
+        return result.size();
+    }
+       
     
     public void Modificar_Estudiante(ObjectContainer basep) {
 
@@ -357,6 +382,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
     private javax.swing.JButton jBguardar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;

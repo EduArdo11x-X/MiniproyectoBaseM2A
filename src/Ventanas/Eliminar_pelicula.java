@@ -5,10 +5,13 @@
  */
 package Ventanas;
 
-/**
- *
- * @author EDU
- */
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import Clases.Pelicula;
+import javax.swing.JOptionPane;
+
+
 public class Eliminar_pelicula extends javax.swing.JFrame {
 
     /**
@@ -38,6 +41,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
         Tabla = new javax.swing.JTable();
         Buscar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +69,11 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 30));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un campo:", "Ver todos", "ID", "Titulo" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 170, 30));
 
         Tabla.setBackground(new java.awt.Color(247, 247, 247));
@@ -115,6 +124,14 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
         });
         jPanel1.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 30, 30));
 
+        jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,19 +153,142 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
-      //  ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
-        //Buscar_EstudianteID(BaseD);
-        //Cerrar_BD(BaseD);
+      ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Buscar_EstudianteID(BaseD);
+        Cerrar_BD(BaseD);
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
 
-        //ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
-        //Eliminar_Estudiante(BaseD);
-        //Cerrar_BD(BaseD);
-
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Eliminar_Estudiante(BaseD);
+        Cerrar_BD(BaseD);
     }//GEN-LAST:event_EliminarActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+                                                  
+        if (jComboBox1.getSelectedIndex() == 0) {
+            //deshabilitarParametros();
+        } else {
+            if (jComboBox1.getSelectedIndex() == 1) {
+               // deshabilitarParametros();
+            } else {
+                if (jComboBox1.getSelectedIndex() == 2) {
+                   // deshabilitarParametros();
+                } else {
+                    if (jComboBox1.getSelectedIndex() == 3) {
+                       // habilitarParametros();
+                    }
+                }
+            }
+        }
+                         
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        Inicio vsar1 = new Inicio();
+            vsar1.setVisible(true); 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    
+    public void Buscar_EstudianteID(ObjectContainer basep) {
+
+        if (jComboBox1.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Selección invalida");
+//            deshabilitarParametros();
+        } else {
+            if (jComboBox1.getSelectedIndex() == 1) {
+//                deshabilitarParametros();
+                Pelicula Ebuscar = new Pelicula(null, null, null, null, null, null, null , null, null);
+
+                ObjectSet result = basep.get(Ebuscar);
+                MostrarDatos(result);
+            } else {
+                if (jComboBox1.getSelectedIndex() == 2) {
+//                    deshabilitarParametros();
+                    String IDAux = JOptionPane.showInputDialog("Ingrese el ID a consultar");
+
+                    Pelicula Ebuscar = new Pelicula(null, null, null, null, null, null, null , null, null);
+
+                    ObjectSet result = basep.get(Ebuscar);
+                    MostrarDatos(result);
+
+                } else {
+                    if (jComboBox1.getSelectedIndex() == 3) {
+//                        habilitarParametros();
+                       // BuscarParametros(basep);
+
+                    }
+                }
+            }
+        }
+
+        //Borrar la eleccion y ponerla al inicio
+        jComboBox1.setSelectedIndex(0);
+    }
+    public void MostrarDatos(ObjectSet result) {
+        String matrizestudiantes[][] = new String[result.size()][6];
+
+        if (result.size() == 0) {
+            JOptionPane.showMessageDialog(null, "La pelicula no se encuentra en la base de datos");
+        } else {
+            for (int i = 0; i < result.size(); i++) {
+
+                Pelicula miE = new Pelicula();
+
+                miE = (Pelicula) result.get(i);
+                matrizestudiantes[i][0] = miE.getCod_Pelicula();
+                matrizestudiantes[i][1] = miE.getTitulo_pelicula();
+                matrizestudiantes[i][2] = miE.getActores();
+                matrizestudiantes[i][3] = miE.getClasificacion();
+                matrizestudiantes[i][4] = miE.getAnio_estreno();
+                matrizestudiantes[i][5] = miE.getIdioma();
+                matrizestudiantes[i][4] = miE.getDirectores();
+                matrizestudiantes[i][4] = miE.getDuracion();
+
+                Tabla.setModel(new javax.swing.table.DefaultTableModel(matrizestudiantes, new String[]{"ID", "Titulo", "Actores", "Clasificacion", "Año Estreno", "Idioms","Directores","Duracion"}));
+
+            }
+        }
+
+    }
+    
+    public void Eliminar_Estudiante(ObjectContainer basep) {
+
+        Registrar_pelicula Einterfaz = new Registrar_pelicula();//Crear un objeto de la clase Estudiantes para traer el metodo Comprobar_Estudiantes
+
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "ID no valido");
+        } else {
+
+            String IDE = jTextField2.getText();
+            Pelicula Leliminar = new Pelicula(IDE, null, null, null, null, null, null , null, null);
+            ObjectSet result = basep.get(Leliminar);
+
+            if (Einterfaz.Comprobar_Peliculas(basep, IDE) == 0) {
+
+                JOptionPane.showMessageDialog(null, "El estudiante no existe en la base de datos");
+
+            } else {
+                Pelicula Estudianteeliminar = (Pelicula) result.next();
+
+                basep.delete(Estudianteeliminar);
+                JOptionPane.showMessageDialog(null, "El estudiante fue eliminado de la base de datos exitosamente");
+            }
+
+        }
+
+        //Borrar el campo de texto
+        jTextField2.setText("");
+    }
+
+    public void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+            
+            
     /**
      * @param args the command line arguments
      */
@@ -188,6 +328,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
     private javax.swing.JButton Buscar;
     private javax.swing.JButton Eliminar;
     private javax.swing.JTable Tabla;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;

@@ -117,11 +117,5 @@ public class Pelicula {
         return "Pelicula{" + "Cod_Pelicula=" + Cod_Pelicula + ", titulo_pelicula=" + titulo_pelicula + ", Actores=" + Actores + ", Duracion=" + Duracion + ", Categoria=" + Categoria + ", Anio_estreno=" + Anio_estreno + ", Idioma=" + Idioma + ", Clasificacion=" + Clasificacion + ", Directores=" + Directores + '}';
     }
 
-    public int Comprobar_Peliculas(ObjectContainer basep, String IDAux) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    
 
 }

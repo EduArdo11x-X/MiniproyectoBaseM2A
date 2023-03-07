@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
 public class Registrar_pelicula extends javax.swing.JFrame {
 
     
-    String CodPelicula = "";
-    String TituloPelicula = "";
+    String Cod_Pelicula = "";
+    String titulo_pelicula = "";
     String Duracion = "";
     String Actores = "";
     String Clasificacion = "";
-    String AñoEstreno = "";
+    String Anio_estreno = "";
     String Categoria = "";
     String Idioma = "";
     String Direcctores = "";
@@ -60,6 +60,7 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         jBguardar = new javax.swing.JButton();
         jTextField12 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +104,11 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 20));
 
         jTextField2.setText(" ");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 110, -1));
 
         jComboBox1.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
@@ -155,6 +161,14 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         jLabel12.setText("Registro de peliculas");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 10));
 
+        jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,21 +191,26 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jBguardarActionPerformed
 
-    
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
         Inicio vsar1 = new Inicio();
             vsar1.setVisible(true); 
-    }    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    
+    
     
      public void asignarVariables(ObjectContainer basep) {
-        CodPelicula = jTextField2.getText();
-        TituloPelicula = jTextField10.getText();
+        Cod_Pelicula = jTextField2.getText();
+        titulo_pelicula = jTextField10.getText();
         Duracion = jTextField8.getText();
         Actores = jTextField7.getText();
         Clasificacion = jComboBox1.getSelectedItem().toString();
-        AñoEstreno = jComboBox3.getSelectedItem().toString();
+        Anio_estreno = jComboBox3.getSelectedItem().toString();
         Categoria = jComboBox2.getSelectedItem().toString();
         Idioma = jTextField12.getText();
         Direcctores = jTextField9.getText();
@@ -201,9 +220,9 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         
         
 
-             Pelicula Enuevo = new Pelicula(CodPelicula, TituloPelicula, Duracion, Actores, Clasificacion, AñoEstreno,Categoria,Idioma,Direcctores);
+             Pelicula Enuevo = new Pelicula(Cod_Pelicula, titulo_pelicula, Duracion, Actores, Clasificacion, Anio_estreno,Categoria,Idioma,Direcctores);
 
-            if (Comprobar_Peliculas(basep, CodPelicula) == 0) {
+            if (Comprobar_Peliculas(basep, Cod_Pelicula) == 0) {
                 basep.set(Enuevo);
                 JOptionPane.showMessageDialog(null, "La pelicula se guardo correctamente");
                 LimpiarCampos();
@@ -277,6 +296,7 @@ public class Registrar_pelicula extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBguardar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
