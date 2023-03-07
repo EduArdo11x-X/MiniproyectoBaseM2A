@@ -5,18 +5,30 @@
  */
 package Ventanas;
 
-/**
- *
- * @author EDU
- */
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import Clases.Pelicula;
+import javax.swing.JOptionPane;
+
+
 public class Modificar_pelicula extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Modificar_pelicula
-     */
+     String CodPelicula = "";
+    String TituloPelicula = "";
+    String Duracion = "";
+    String Actores = "";
+    String Clasificacion = "";
+    String AñoEstreno = "";
+    String Categoria = "";
+    String Idioma = "";
+    String Direcctores = "";
+    
     public Modificar_pelicula() {
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -174,19 +186,115 @@ public class Modificar_pelicula extends javax.swing.JFrame {
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
 
-        //ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
-
-        //Crear_E(BaseD);
-        //Cerrar_BD(BaseD);
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Modificar_Estudiante(BaseD);
+        Cerrar_BD(BaseD);
+        jTextField2.setEditable(true);
     }//GEN-LAST:event_jBguardarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
-        // ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
-        //Buscar_EstudianteID(BaseD);
-        //Cerrar_BD(BaseD);
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        buscar(BaseD);
+        Cerrar_BD(BaseD);
     }//GEN-LAST:event_BuscarActionPerformed
+    
+    
+    public void buscar(ObjectContainer basep) {//cargardatos
 
+        jBguardar.setEnabled(false);
+        String IDAux;
+        IDAux = jTextField2.getText();
+
+        Pelicula EAux = new Pelicula();
+
+        if (jTextField2.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Ingrese un ID");
+        } else {
+
+            if (EAux.Comprobar_Peliculas(basep, IDAux) == 0) {
+
+                JOptionPane.showMessageDialog(null, "La pelicula no existe en la base de datos");
+                LimpiarCamposTexto();
+
+            } else {
+
+                Pelicula Ebuscar = new Pelicula(IDAux, null, null, null, null, null, null, null , null);
+
+                ObjectSet result = basep.get(Ebuscar);
+                for (int i = 0; i < result.size(); i++) {
+
+                    Pelicula miE = new Pelicula();
+
+                    miE = (Pelicula) result.get(i);
+
+                   
+                    jTextField10.setText(miE.getTitulo_pelicula());
+                    jTextField8.setText(miE.getDuracion());
+                    jTextField7.setText(miE.getActores());
+                    for (int j = 0; j < jComboBox1.getItemCount(); j++) {
+                        if (miE.getClasificacion().equalsIgnoreCase(jComboBox1.getItemAt(j))) {
+                            jComboBox1.setSelectedIndex(j);
+                            j = jComboBox1.getItemCount();
+                        }
+                    }
+                    for (int j = 0; j < jComboBox2.getItemCount(); j++) {
+                        if (miE.getCategoria().equalsIgnoreCase(jComboBox2.getItemAt(j))) {
+                            jComboBox2.setSelectedIndex(j);
+                            j = jComboBox2.getItemCount();
+                        }
+                    }
+                    for (int j = 0; j < jComboBox3.getItemCount(); j++) {
+                        if (miE.getAnio_estreno().equalsIgnoreCase(jComboBox3.getItemAt(j))) {
+                            jComboBox3.setSelectedIndex(j);
+                            j = jComboBox3.getItemCount();
+                        }
+                    }
+                    
+                    jTextField12.setText(miE.getIdioma());
+                    jTextField9.setText(miE.getDirectores());
+                }
+                
+                HabilitarCampos_deTexto();
+                jTextField2.setEditable(false);
+            }
+
+        }
+    }
+    
+    public void Modificar_Estudiante(ObjectContainer basep) {
+
+       
+            JOptionPane.showMessageDialog(null, "Existen campos vacios");
+            //LimpiarCamposdeTexto();
+
+         
+            
+                Pelicula Emodi = new Pelicula(jTextField2.getText(), null, null, null, null, null, null, null , null);
+                ObjectSet result = basep.get(Emodi);
+                Pelicula Emodificar = (Pelicula) result.next();
+                Emodificar.setTitulo_pelicula(jTextField10.getText());
+                Emodificar.setDuracion(jTextField8.getText());
+                Emodificar.setActores(jTextField7.getText());
+                Emodificar.setClasificacion(jComboBox1.getSelectedItem().toString());
+                Emodificar.setCategoria(jComboBox2.getSelectedItem().toString());
+                Emodificar.setAnio_estreno(jComboBox3.getSelectedItem().toString());
+                Emodificar.setDirectores(jTextField9.getText());
+                Emodificar.setIdioma(jTextField12.getText());
+                basep.set(Emodificar);
+                JOptionPane.showMessageDialog(null, "La pelicula fue modificada exitosamente");
+                LimpiarCamposTexto();
+            
+
+       
+    }
+
+    
+    public static void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
     /**
      * @param args the command line arguments
      */
@@ -220,6 +328,30 @@ public class Modificar_pelicula extends javax.swing.JFrame {
                 new Modificar_pelicula().setVisible(true);
             }
         });
+    }
+    
+    public void LimpiarCamposTexto() {
+        jTextField2.setText("");
+        jTextField10.setText("");
+        jTextField8.setText("");
+        jTextField7.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jTextField12.setText("");
+        jTextField9.setText("");
+    }
+    
+    public void HabilitarCampos_deTexto() {
+        jTextField8.setEditable(true);
+        jTextField10.setEditable(true);
+        jTextField8.setEditable(true);
+        jTextField7.setEditable(true);
+        jComboBox1.setEditable(true);
+        jComboBox3.setEditable(true);
+        jComboBox2.setEditable(true);
+        jTextField12.setEditable(true);
+        jTextField9.setEditable(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
