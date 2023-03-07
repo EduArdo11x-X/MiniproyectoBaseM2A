@@ -4,11 +4,7 @@
  * and open the template in the editor.
  */
 package Ventanas;
-
-/**
- *
- * @author HP
- */
+//Import Clases.Boleto;
 public class Boleto extends javax.swing.JFrame {
 
     /**
@@ -58,6 +54,7 @@ public class Boleto extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel18 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -170,10 +167,10 @@ public class Boleto extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
         jButton3.setText("GUARDAR");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 438, 99, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 440, 99, -1));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/icons8-guardar-40.png"))); // NOI18N
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 387, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, -1, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terror", "Comedia", "Acción", "Drama", "Aventura", "Ciencia Ficción", "Fantasia", "Suspenso" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 160, -1));
@@ -181,6 +178,15 @@ public class Boleto extends javax.swing.JFrame {
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/icons8-palomitas-40.png"))); // NOI18N
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 34, -1, -1));
+
+        jButton1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jButton1.setText("REGRESAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, 120, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 820, 480));
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 590, -1, -1));
@@ -200,6 +206,13 @@ public class Boleto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_funcionidboletoActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        Inicio ini = new Inicio ();
+        ini.setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -210,6 +223,7 @@ public class Boleto extends javax.swing.JFrame {
     private javax.swing.JTextField cedemplboleto;
     private javax.swing.JTextField funcionidboleto;
     private javax.swing.JTextField horafunboleto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
