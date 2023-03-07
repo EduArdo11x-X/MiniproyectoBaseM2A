@@ -5,10 +5,7 @@
  */
 package miniproyectobasem2a;
 
-/**
- *
- * @author EDU
- */
+import Ventanas.Inicio;
 public class MiniproyectoBaseM2A {
 
     /**
