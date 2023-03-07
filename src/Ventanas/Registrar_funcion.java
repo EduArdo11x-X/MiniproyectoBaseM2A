@@ -5,11 +5,25 @@
  */
 package Ventanas;
 
+import Clases.Funcion;
+import Clases.Pelicula;
+import static Ventanas.Registrar_pelicula.Cerrar_BD;
+import static Ventanas.Registrar_pelicula.Comprobar_Peliculas;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author EDU
  */
 public class Registrar_funcion extends javax.swing.JFrame {
+    
+    String Id_funcion = "";
+    String fecha_funcion = "";
+    String formato = "";
+    String hora = "";
 
     /**
      * Creates new form Registrar_funcion
@@ -75,6 +89,11 @@ public class Registrar_funcion extends javax.swing.JFrame {
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 165, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar-datos.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3D", "2D", "4D" }));
@@ -96,8 +115,66 @@ public class Registrar_funcion extends javax.swing.JFrame {
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
+         ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+
+        Crear_E(BaseD);
+        Cerrar_BD(BaseD);
     }//GEN-LAST:event_jTextField4ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        Inicio vsar1 = new Inicio();
+        vsar1.setVisible(true); 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+     public void asignarVariables(ObjectContainer basep) {
+        Id_funcion = jTextField1.getText();
+        fecha_funcion = jTextField2.getText();
+        formato = jComboBox1.getSelectedItem().toString();
+        hora = jTextField4.getText();
+       
+    }
+     
+     public void Crear_E(ObjectContainer basep) {
+        
+        
+
+             Funcion Enuevo = new Funcion(Id_funcion, fecha_funcion, formato, hora);
+
+            if (Comprobar_Funcion(basep, Id_funcion) == 0) {
+                basep.set(Enuevo);
+                JOptionPane.showMessageDialog(null, "La funcion se guardo correctamente");
+                LimpiarCampos();
+            } else {
+
+                JOptionPane.showMessageDialog(null, "La funcion ya existe");
+            }
+
+           jTextField1.setText("");
+
+        
+    }
+     
+     public static int Comprobar_Funcion(ObjectContainer basep, String Id_funcion) {
+
+        Funcion Ebuscar = new Funcion(Id_funcion, null, null, null);
+
+        ObjectSet result = basep.get(Ebuscar);
+
+        return result.size();
+    }
+     
+      public static void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+      
+       public void LimpiarCampos() {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jTextField4.setText("");
+    }
     /**
      * @param args the command line arguments
      */
