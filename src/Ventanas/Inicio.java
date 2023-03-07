@@ -10,6 +10,9 @@ package Ventanas;
  * @author HP
  */
 public class Inicio extends javax.swing.JFrame {
+    
+    //COLOCAR LA DIRECCION DE LA BASE DE DATOS
+    public static String direccionBD="C:\\Users\\Lenovo\\Desktop\\Mini Proyecto\\Mini Proyecto\\\\CineInterfaz.yap";
 
     /**
      * Creates new form Inicio
@@ -75,6 +78,11 @@ public class Inicio extends javax.swing.JFrame {
         jMenu1.setText("Pelicula");
 
         jMenuItem1.setText("Registrar Pelicula");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Modificar Pelicula");
@@ -292,6 +300,12 @@ public class Inicio extends javax.swing.JFrame {
     private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem27ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        this.dispose();
+        Registrar_pelicula vsar1 = new Registrar_pelicula();
+            vsar1.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
