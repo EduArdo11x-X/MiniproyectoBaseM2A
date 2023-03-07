@@ -134,6 +134,11 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 110, -1));
 
         jTextField10.setText(" ");
+        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField10ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 100, -1));
 
         jLabel10.setFont(new java.awt.Font("Copperplate", 3, 24)); // NOI18N
@@ -201,6 +206,10 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField10ActionPerformed
+
     public void asignarVariables(ObjectContainer basep) {
         Cod_Pelicula = jTextField2.getText();
         titulo_pelicula = jTextField10.getText();
@@ -247,6 +256,18 @@ public class Registrar_pelicula extends javax.swing.JFrame {
                 ban_confirmar = false;
             }
         }
+        
+        if (jTextField10.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el titulo de la pelicula");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarNomApe(titulo_pelicula)) {
+                JOptionPane.showMessageDialog(this, "Titulo Pelicula invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        
 
         return ban_confirmar;
     }

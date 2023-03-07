@@ -121,7 +121,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, 100, -1));
 
         jTextField8.setText(" ");
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 110, -1));
+        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 110, -1));
 
         jTextField9.setText(" ");
         jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 110, -1));

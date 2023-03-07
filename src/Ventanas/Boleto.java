@@ -167,10 +167,10 @@ public class Boleto extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
         jButton3.setText("GUARDAR");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 440, 99, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, 99, -1));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/icons8-guardar-40.png"))); // NOI18N
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, -1, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terror", "Comedia", "Acción", "Drama", "Aventura", "Ciencia Ficción", "Fantasia", "Suspenso" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 160, -1));
@@ -186,7 +186,7 @@ public class Boleto extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, 120, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 410, 120, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 820, 480));
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 590, -1, -1));

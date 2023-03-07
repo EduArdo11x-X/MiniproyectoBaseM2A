@@ -196,17 +196,17 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
 
         if (jComboBox1.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Selección invalida");
-//            deshabilitarParametros();
+
         } else {
             if (jComboBox1.getSelectedIndex() == 1) {
-//                deshabilitarParametros();
+
                 Pelicula Ebuscar = new Pelicula(null, null, null, null, null, null, null , null, null);
 
                 ObjectSet result = basep.get(Ebuscar);
                 MostrarDatos(result);
             } else {
                 if (jComboBox1.getSelectedIndex() == 2) {
-//                    deshabilitarParametros();
+
                     String IDAux = JOptionPane.showInputDialog("Ingrese el ID a consultar");
 
                     Pelicula Ebuscar = new Pelicula(null, null, null, null, null, null, null , null, null);
@@ -228,7 +228,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
         jComboBox1.setSelectedIndex(0);
     }
     public void MostrarDatos(ObjectSet result) {
-        String matrizestudiantes[][] = new String[result.size()][6];
+        String matrizpelicula[][] = new String[result.size()][7];
 
         if (result.size() == 0) {
             JOptionPane.showMessageDialog(null, "La pelicula no se encuentra en la base de datos");
@@ -238,16 +238,16 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
                 Pelicula miE = new Pelicula();
 
                 miE = (Pelicula) result.get(i);
-                matrizestudiantes[i][0] = miE.getCod_Pelicula();
-                matrizestudiantes[i][1] = miE.getTitulo_pelicula();
-                matrizestudiantes[i][2] = miE.getActores();
-                matrizestudiantes[i][3] = miE.getClasificacion();
-                matrizestudiantes[i][4] = miE.getAnio_estreno();
-                matrizestudiantes[i][5] = miE.getIdioma();
-                matrizestudiantes[i][4] = miE.getDirectores();
-                matrizestudiantes[i][4] = miE.getDuracion();
+                matrizpelicula[i][0] = miE.getCod_Pelicula();
+                matrizpelicula[i][1] = miE.getTitulo_pelicula();
+                matrizpelicula[i][2] = miE.getActores();
+                matrizpelicula[i][3] = miE.getClasificacion();
+                matrizpelicula[i][4] = miE.getAnio_estreno();
+                matrizpelicula[i][5] = miE.getIdioma();
+                matrizpelicula[i][6] = miE.getDirectores();
+                matrizpelicula[i][7] = miE.getDuracion();
 
-                Tabla.setModel(new javax.swing.table.DefaultTableModel(matrizestudiantes, new String[]{"Codigo", "Titulo", "Actores", "Clasificacion", "Año Estreno", "Idioms","Directores","Duracion"}));
+                Tabla.setModel(new javax.swing.table.DefaultTableModel(matrizpelicula, new String[]{"Codigo", "Titulo", "Actores", "Clasificacion", "Año Estreno", "Idioms","Directores","Duracion"}));
 
             }
         }
