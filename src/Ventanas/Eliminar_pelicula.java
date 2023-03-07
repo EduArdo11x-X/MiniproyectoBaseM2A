@@ -68,7 +68,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
         jLabel13.setText("Filtro:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un campo:", "Ver todos", "ID", "Titulo" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un campo:", "Ver todos", "ID", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -247,7 +247,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
                 matrizestudiantes[i][4] = miE.getDirectores();
                 matrizestudiantes[i][4] = miE.getDuracion();
 
-                Tabla.setModel(new javax.swing.table.DefaultTableModel(matrizestudiantes, new String[]{"ID", "Titulo", "Actores", "Clasificacion", "Año Estreno", "Idioms","Directores","Duracion"}));
+                Tabla.setModel(new javax.swing.table.DefaultTableModel(matrizestudiantes, new String[]{"Codigo", "Titulo", "Actores", "Clasificacion", "Año Estreno", "Idioms","Directores","Duracion"}));
 
             }
         }
@@ -259,7 +259,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
         Registrar_pelicula Einterfaz = new Registrar_pelicula();//Crear un objeto de la clase Estudiantes para traer el metodo Comprobar_Estudiantes
 
         if (jTextField2.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "ID no valido");
+            JOptionPane.showMessageDialog(null, "Codigo no valido");
         } else {
 
             String IDE = jTextField2.getText();
@@ -268,13 +268,13 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
 
             if (Einterfaz.Comprobar_Peliculas(basep, IDE) == 0) {
 
-                JOptionPane.showMessageDialog(null, "El estudiante no existe en la base de datos");
+                JOptionPane.showMessageDialog(null, "La pelicula no existe en la base de datos");
 
             } else {
                 Pelicula Estudianteeliminar = (Pelicula) result.next();
 
                 basep.delete(Estudianteeliminar);
-                JOptionPane.showMessageDialog(null, "El estudiante fue eliminado de la base de datos exitosamente");
+                JOptionPane.showMessageDialog(null, "El pelicula fue eliminado de la base de datos exitosamente");
             }
 
         }

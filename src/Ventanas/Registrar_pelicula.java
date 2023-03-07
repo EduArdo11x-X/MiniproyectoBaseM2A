@@ -9,11 +9,11 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import Clases.Pelicula;
+import Clases.Validaciones;
 import javax.swing.JOptionPane;
 
 public class Registrar_pelicula extends javax.swing.JFrame {
 
-    
     String Cod_Pelicula = "";
     String titulo_pelicula = "";
     String Duracion = "";
@@ -23,7 +23,7 @@ public class Registrar_pelicula extends javax.swing.JFrame {
     String Categoria = "";
     String Idioma = "";
     String Direcctores = "";
-    
+
     public Registrar_pelicula() {
         initComponents();
     }
@@ -64,6 +64,7 @@ public class Registrar_pelicula extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(604, 375));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -116,7 +117,7 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 110, -1));
 
         jComboBox2.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elija una opcion", "Acción", "Aventuras", "Ciencia Ficción", "Comedia", "Drama", "Fantasía", "Musical" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 110, -1));
 
         jComboBox3.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
@@ -152,7 +153,7 @@ public class Registrar_pelicula extends javax.swing.JFrame {
                 jBguardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 30, 30));
+        jPanel1.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 30, 30));
 
         jTextField12.setText(" ");
         jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 100, -1));
@@ -167,7 +168,7 @@ public class Registrar_pelicula extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,7 +187,6 @@ public class Registrar_pelicula extends javax.swing.JFrame {
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
 
         ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-
         Crear_E(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jBguardarActionPerformed
@@ -194,17 +194,14 @@ public class Registrar_pelicula extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
         Inicio vsar1 = new Inicio();
-            vsar1.setVisible(true); 
+        vsar1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    
-    
-    
-     public void asignarVariables(ObjectContainer basep) {
+    public void asignarVariables(ObjectContainer basep) {
         Cod_Pelicula = jTextField2.getText();
         titulo_pelicula = jTextField10.getText();
         Duracion = jTextField8.getText();
@@ -215,12 +212,12 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         Idioma = jTextField12.getText();
         Direcctores = jTextField9.getText();
     }
-      
-      public void Crear_E(ObjectContainer basep) {
-        
-        
 
-             Pelicula Enuevo = new Pelicula(Cod_Pelicula, titulo_pelicula, Duracion, Actores, Clasificacion, Anio_estreno,Categoria,Idioma,Direcctores);
+    public void Crear_E(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        if (validarCampos(basep)) {
+
+            Pelicula Enuevo = new Pelicula(Cod_Pelicula, titulo_pelicula, Duracion, Actores, Clasificacion, Anio_estreno, Categoria, Idioma, Direcctores);
 
             if (Comprobar_Peliculas(basep, Cod_Pelicula) == 0) {
                 basep.set(Enuevo);
@@ -230,27 +227,44 @@ public class Registrar_pelicula extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, "La pelicula ya existe");
             }
+            jTextField2.setText("");
 
-           jTextField2.setText("");
-
+        }
         
     }
-      
-       public static int Comprobar_Peliculas(ObjectContainer basep, String CodPelicula) {
 
-        Pelicula Ebuscar = new Pelicula(CodPelicula, null, null, null, null, null, null,null,null);
+    public boolean validarCampos(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        asignarVariables(basep);
+        boolean ban_confirmar = true;
+
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE UN CODIGO");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid(Cod_Pelicula)) {
+                JOptionPane.showMessageDialog(this, "CODIGO INVALIDO");
+                ban_confirmar = false;
+            }
+        }
+
+        return ban_confirmar;
+    }
+
+    public static int Comprobar_Peliculas(ObjectContainer basep, String IdUsuario) {
+
+        Pelicula Ebuscar = new Pelicula(IdUsuario, null, null, null, null, null, null, null, null);
 
         ObjectSet result = basep.get(Ebuscar);
 
         return result.size();
     }
-       
-       public static void Cerrar_BD(ObjectContainer basep) {
+
+    public static void Cerrar_BD(ObjectContainer basep) {
 
         basep.close();
     }
 
-    
     public void LimpiarCampos() {
         jTextField2.setText("");
         jTextField10.setText("");

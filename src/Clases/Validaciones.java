@@ -34,7 +34,7 @@ public class Validaciones {
     }
 
     public boolean validarid(String cadena) {
-        boolean validar = cadena.matches("[[A-Z]{2}]*+\\-[[\\d]{4}]*");//AS-1234
+        boolean validar = cadena.matches("[[A-Z]{2}]*+\\-[[\\d]{4}]*");
         System.out.println(validar);
         return validar;
     }

@@ -72,7 +72,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel2.setText("Titulo Pelicula:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, 20));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, 20));
 
         jLabel3.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel3.setText("MODIFICAR");
@@ -92,18 +92,18 @@ public class Modificar_pelicula extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel7.setText("Idioma:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel8.setText("Directores:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, 20));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, 20));
 
         jLabel9.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel9.setText("Duración:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 20));
 
         jTextField2.setText(" ");
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 110, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 110, -1));
 
         jComboBox1.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apto para todo publico", "Mayor de 18 años", "Bajo supervision de adultos" }));
@@ -121,13 +121,13 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, 100, -1));
 
         jTextField8.setText(" ");
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 110, -1));
+        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 110, -1));
 
         jTextField9.setText(" ");
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 110, -1));
+        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 110, -1));
 
         jTextField10.setText(" ");
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 100, -1));
+        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 110, -1));
 
         jLabel10.setFont(new java.awt.Font("Copperplate", 3, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 0, 51));
@@ -146,14 +146,14 @@ public class Modificar_pelicula extends javax.swing.JFrame {
                 jBguardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, 30, 30));
+        jPanel1.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 50, 40));
 
         jTextField12.setText(" ");
-        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, 100, -1));
+        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, 100, -1));
 
         jLabel12.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel12.setText(" Codigo Pelicula a modificar:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, 30));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, 30));
 
         jLabel13.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel13.setText("Actores:");
@@ -169,7 +169,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 30, 30));
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 40, 30));
 
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -177,7 +177,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,8 +218,8 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     public void buscar(ObjectContainer basep) {//cargardatos
 
         jBguardar.setEnabled(false);
-        String IDAux;
-        IDAux = jTextField2.getText();
+        String CODIGOAux;
+        CODIGOAux = jTextField2.getText();
 
         Registrar_pelicula EAux = new Registrar_pelicula();
 
@@ -228,14 +228,14 @@ public class Modificar_pelicula extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese un ID");
         } else {
 
-            if (EAux.Comprobar_Peliculas(basep, IDAux) == 0) {
+            if (EAux.Comprobar_Peliculas(basep, CODIGOAux) == 0) {
                 
                 JOptionPane.showMessageDialog(null, "La pelicula no existe en la base de datos");
                 LimpiarCamposTexto();
                 
             } else {
                 
-                Pelicula Ebuscar = new Pelicula(IDAux, null, null, null, null, null, null, null , null);
+                Pelicula Ebuscar = new Pelicula(CODIGOAux, null, null, null, null, null, null, null , null);
 
                 ObjectSet result = basep.get(Ebuscar);
                 for (int i = 0; i < result.size(); i++) {

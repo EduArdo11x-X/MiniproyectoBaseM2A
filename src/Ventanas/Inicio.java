@@ -29,9 +29,9 @@ public class Inicio extends javax.swing.JFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem29 = new javax.swing.JMenuItem();
+        jMenuItem100 = new javax.swing.JMenuItem();
+        jMenuItem38 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -75,29 +75,29 @@ public class Inicio extends javax.swing.JFrame {
 
         jMenu1.setText("Pelicula");
 
-        jMenuItem1.setText("Registrar Pelicula");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem29.setText("Registrar Pelicula");
+        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItem29ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(jMenuItem29);
 
-        jMenuItem2.setText("Modificar Pelicula");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem100.setText("Modificar Pelicula");
+        jMenuItem100.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuItem100ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(jMenuItem100);
 
-        jMenuItem3.setText("Consultar y eliminar Pelicula");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem38.setText("Consultar y Eliminar pelicula");
+        jMenuItem38.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuItem38ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(jMenuItem38);
 
         jMenuBar1.add(jMenu1);
 
@@ -120,19 +120,34 @@ public class Inicio extends javax.swing.JFrame {
         jMenu2.add(jMenuItem9);
 
         jMenuItem14.setText("Consultar y eliminar Empleado");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem14);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Funciones");
 
-        jMenuItem5.setText("Registrar Cliente");
+        jMenuItem5.setText("Registrar Funciones");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
-        jMenuItem10.setText("Modificar Cliente");
+        jMenuItem10.setText("Modificar Funciones");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem10);
 
-        jMenuItem15.setText("Consultar y eliminar Cliente");
+        jMenuItem15.setText("Consultar y eliminar Funciones");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem15ActionPerformed(evt);
@@ -145,12 +160,27 @@ public class Inicio extends javax.swing.JFrame {
         jMenu4.setText("Cliente");
 
         jMenuItem6.setText("Registrar Cliente");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem6);
 
         jMenuItem11.setText("Modificar Cliente");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem11);
 
         jMenuItem16.setText("Consultar y eliminar Cliente");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem16);
 
         jMenuBar1.add(jMenu4);
@@ -284,11 +314,15 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+            Modificar_empleado bm = new Modificar_empleado ();
+            bm.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-         // TODO add your handling code here:
+         this.dispose();
+            Eliminar_funcion bm = new Eliminar_funcion ();
+            bm.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
@@ -331,28 +365,26 @@ public class Inicio extends javax.swing.JFrame {
             bb.setVisible(true);       
     }//GEN-LAST:event_jMenuItem27ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
        this.dispose();
             Registrar_pelicula p = new Registrar_pelicula ();
             p.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }                                          
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.dispose();
             Modificar_pelicula pm = new Modificar_pelicula ();
             pm.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }                                          
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        this.dispose();
-            Eliminar_pelicula pe = new Eliminar_pelicula ();
-            pe.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        
+    }                                          
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
        this.dispose();
-            Registrar_Empleado e = new Registrar_Empleado ();
-            e.setVisible(true);
+            Registrar_Empleado pm = new Registrar_Empleado ();
+            pm.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
@@ -367,23 +399,53 @@ public class Inicio extends javax.swing.JFrame {
             eb.setVisible(true);
     }//GEN-LAST:event_jMenuItem28ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-          this.dispose();
-          Registrar_pelicula vsar1 = new Registrar_pelicula();
-            vsar1.setVisible(true); 
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    
+    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+        this.dispose();
+            Registrar_pelicula e = new Registrar_pelicula ();
+            e.setVisible(true);
+    }//GEN-LAST:event_jMenuItem29ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuItem100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem100ActionPerformed
         this.dispose();
         Modificar_pelicula vsar1 = new Modificar_pelicula();
-            vsar1.setVisible(true); 
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+        vsar1.setVisible(true);
+    }//GEN-LAST:event_jMenuItem100ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-         this.dispose();
-        Eliminar_pelicula vsar1 = new Eliminar_pelicula();
-            vsar1.setVisible(true); 
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    private void jMenuItem38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem38ActionPerformed
+            this.dispose();
+            Eliminar_pelicula pe = new Eliminar_pelicula ();
+            pe.setVisible(true);    }//GEN-LAST:event_jMenuItem38ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+             this.dispose();
+            Eliminar_empleado pe = new Eliminar_empleado ();
+            pe.setVisible(true);    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+            this.dispose();
+            Modificar_funcion pe = new Modificar_funcion ();
+            pe.setVisible(true);    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+            this.dispose();
+            Registrar_funcion pe = new Registrar_funcion ();
+            pe.setVisible(true);    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+this.dispose();
+            Registro_Cliente pe = new Registro_Cliente ();
+            pe.setVisible(true);     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+this.dispose();
+            Modificar_cliente pe = new Modificar_cliente ();
+            pe.setVisible(true);    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+this.dispose();
+            Eliminar_cliente pe = new Eliminar_cliente ();
+            pe.setVisible(true);      }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -401,8 +463,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem100;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
@@ -412,7 +474,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
@@ -422,7 +483,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem28;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem29;
+    private javax.swing.JMenuItem jMenuItem38;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

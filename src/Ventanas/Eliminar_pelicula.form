@@ -121,7 +121,7 @@
                 <StringItem index="0" value="Seleccione un campo:"/>
                 <StringItem index="1" value="Ver todos"/>
                 <StringItem index="2" value="ID"/>
-                <StringItem index="3" value="Titulo"/>
+                <StringItem index="3" value=" "/>
               </StringArray>
             </Property>
           </Properties>
