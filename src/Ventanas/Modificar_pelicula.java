@@ -28,7 +28,6 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -51,15 +50,12 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         jTextField12 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        Buscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(595, 375));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/lupa.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 40, 30));
 
         jLabel2.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel2.setText("Titulo Pelicula:");
@@ -150,6 +146,18 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         jLabel13.setText("Actores:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, -1, 20));
 
+        Buscar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        Buscar.setForeground(new java.awt.Color(0, 0, 255));
+        Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/lupa.png"))); // NOI18N
+        Buscar.setToolTipText("Buscar");
+        Buscar.setBorder(null);
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 30, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,6 +179,13 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         //Crear_E(BaseD);
         //Cerrar_BD(BaseD);
     }//GEN-LAST:event_jBguardarActionPerformed
+
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+
+       // ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
+        //Buscar_EstudianteID(BaseD);
+        //Cerrar_BD(BaseD);
+    }//GEN-LAST:event_BuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,11 +223,11 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Buscar;
     private javax.swing.JButton jBguardar;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

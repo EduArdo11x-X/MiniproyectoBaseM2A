@@ -136,7 +136,7 @@ public class Registrar_pelicula extends javax.swing.JFrame {
                 jBguardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 30, 30));
+        jPanel1.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 30, 30));
 
         jTextField12.setText(" ");
         jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 100, -1));
