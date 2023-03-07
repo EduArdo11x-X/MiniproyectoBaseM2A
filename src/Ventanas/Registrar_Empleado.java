@@ -5,11 +5,27 @@
  */
 package Ventanas;
 
+import Clases.Empleado;
+import Clases.Pelicula;
+import static Ventanas.Registrar_pelicula.Cerrar_BD;
+import static Ventanas.Registrar_pelicula.Comprobar_Peliculas;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lenovo
  */
 public class Registrar_Empleado extends javax.swing.JFrame {
+    
+    String Ced_empleado = "";
+    String Id_Empleado = "";
+    String Area_Empleado = "";
+    String Hora_Entrada = "";
+    String Hora_salida= "";
+    String horas_sem = "";
 
     /**
      * Creates new form Registrar_Empleado
@@ -92,6 +108,11 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 165, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar-datos.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, -1, -1));
 
         jSiniciohoras.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
@@ -130,8 +151,66 @@ public class Registrar_Empleado extends javax.swing.JFrame {
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+
+        Crear_E(BaseD);
+        Cerrar_BD(BaseD);
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        Inicio vsar1 = new Inicio();
+        vsar1.setVisible(true); 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void asignarVariables(ObjectContainer basep) {
+        Ced_empleado = jTextField1.getText();
+        Id_Empleado = jTextField2.getText();
+        Area_Empleado = jTextField3.getText();
+        horas_sem = jTextField6.getText();
+    }
+    
+     public void Crear_E(ObjectContainer basep) {
+        
+        
+
+             Empleado Enuevo = new Empleado(Ced_empleado, Id_Empleado, Area_Empleado, Hora_Entrada, Hora_salida, horas_sem);
+
+            if (Comprobar_Peliculas(basep, Ced_empleado) == 0) {
+                basep.set(Enuevo);
+                JOptionPane.showMessageDialog(null, "El Empleado se guardo correctamente");
+                LimpiarCampos();
+            } else {
+
+                JOptionPane.showMessageDialog(null, "El Empleado ya existe");
+            }
+
+           jTextField1.setText("");
+
+        
+    }
+     
+      public static int Comprobar_Empleado(ObjectContainer basep, String Ced_empleado) {
+
+        Empleado Ebuscar = new Empleado(Ced_empleado, null, null, null, null, null);
+
+        ObjectSet result = basep.get(Ebuscar);
+
+        return result.size();
+    }
+      
+      public static void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+      
+       public void LimpiarCampos() {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField6.setText("");
+    }
     /**
      * @param args the command line arguments
      */
