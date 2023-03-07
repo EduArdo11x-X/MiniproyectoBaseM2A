@@ -182,7 +182,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
-       // ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
+        // ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
         //Buscar_EstudianteID(BaseD);
         //Cerrar_BD(BaseD);
     }//GEN-LAST:event_BuscarActionPerformed
