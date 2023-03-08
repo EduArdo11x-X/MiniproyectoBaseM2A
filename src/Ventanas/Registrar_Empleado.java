@@ -6,9 +6,6 @@
 package Ventanas;
 
 import Clases.Empleado;
-import Clases.Pelicula;
-import static Ventanas.Registrar_pelicula.Cerrar_BD;
-import static Ventanas.Registrar_pelicula.Comprobar_Peliculas;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
