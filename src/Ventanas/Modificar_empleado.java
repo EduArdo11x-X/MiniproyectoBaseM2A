@@ -54,7 +54,6 @@ public class Modificar_empleado extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         Buscar = new javax.swing.JButton();
         jBguardar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         jSiniciohoras = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
         jSiniciominutos = new javax.swing.JSpinner();
@@ -131,19 +130,15 @@ public class Modificar_empleado extends javax.swing.JFrame {
         });
         jPanel4.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 30, 30));
 
-        jBguardar.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jBguardar.setForeground(new java.awt.Color(0, 0, 255));
-        jBguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/girar.png"))); // NOI18N
+        jBguardar.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jBguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar.png"))); // NOI18N
+        jBguardar.setText("MODIFICAR");
         jBguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBguardarActionPerformed(evt);
             }
         });
-        jPanel4.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 30, 30));
-
-        jLabel7.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
-        jLabel7.setText("MODIFICAR");
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, -1, 20));
+        jPanel4.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 140, 30));
 
         jSiniciohoras.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
         jPanel4.add(jSiniciohoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, -1, -1));
@@ -165,13 +160,15 @@ public class Modificar_empleado extends javax.swing.JFrame {
         jSiniciominutos1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
         jPanel4.add(jSiniciominutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
 
-        jButton1.setText("Volver");
+        jButton1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
+        jButton1.setText("REGRESAR ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, -1, -1));
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, -1, 30));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -432,7 +429,6 @@ public class Modificar_empleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
