@@ -4,13 +4,6 @@
  * and open the template in the editor.
  */
 package Ventanas;
-import Clases.Cliente;
-import Clases.Pelicula;
-import com.db4o.Db4o;
-import com.db4o.ObjectContainer;
-import com.db4o.ObjectSet;
-import java.security.Principal;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,15 +29,16 @@ public class Eliminar_cliente extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jccliente = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         Buscar = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jtcedula = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         Eliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tablacli = new javax.swing.JTable();
+        Tabla = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,8 +49,8 @@ public class Eliminar_cliente extends javax.swing.JFrame {
         jLabel10.setText("SELECCIONE UN CAMPO PARA BUSCAR CLIENTE");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 360, 60));
 
-        jccliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un campo:", "Ver todos", "Cedula cliente", " " }));
-        jPanel1.add(jccliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 170, 30));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un campo:", "Ver todos", "Cedula Empleado", "ID Empleado", " " }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 170, 30));
 
         jLabel13.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel13.setText("Filtro:");
@@ -76,15 +70,15 @@ public class Eliminar_cliente extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Copperplate", 3, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(51, 0, 51));
-        jLabel14.setText("CEDULA DE CLIENTE A ELIMINAR");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 220, 40));
+        jLabel14.setText("ID DE CLIENTE A ELIMINAR");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 190, 40));
 
         jLabel12.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
-        jLabel12.setText("CEDULA:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, 30));
+        jLabel12.setText("ID : ");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 61, -1, 30));
 
-        jtcedula.setText(" ");
-        jPanel1.add(jtcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 61, 110, 30));
+        jTextField2.setText(" ");
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 61, 110, 30));
 
         Eliminar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         Eliminar.setForeground(new java.awt.Color(0, 0, 255));
@@ -99,10 +93,10 @@ public class Eliminar_cliente extends javax.swing.JFrame {
         });
         jPanel1.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(676, 61, 30, 30));
 
-        Tablacli.setBackground(new java.awt.Color(247, 247, 247));
-        Tablacli.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Tablacli.setForeground(new java.awt.Color(0, 51, 153));
-        Tablacli.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla.setBackground(new java.awt.Color(247, 247, 247));
+        Tabla.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Tabla.setForeground(new java.awt.Color(0, 51, 153));
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -118,9 +112,19 @@ public class Eliminar_cliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(Tablacli);
+        jScrollPane1.setViewportView(Tabla);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 109, 749, 242));
+
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
+        jButton2.setToolTipText("");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,129 +142,40 @@ public class Eliminar_cliente extends javax.swing.JFrame {
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
-      ObjectContainer Basep = Db4o.openFile(Inicio.direccionBD);
-       Buscar_ClienteCedula(Basep);
-        Cerrar_BD(Basep);
+        //  ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
+        //Buscar_EstudianteID(BaseD);
+        //Cerrar_BD(BaseD);
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
 
-         ObjectContainer Basep = Db4o.openFile(Inicio.direccionBD);
-       Eliminar_Cliente(Basep);
-        Cerrar_BD(Basep);
-
+        //ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
+        //Eliminar_Estudiante(BaseD);
+        //Cerrar_BD(BaseD);
     }//GEN-LAST:event_EliminarActionPerformed
 
-     public void Buscar_ClienteCedula(ObjectContainer basep) {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      
+        this.dispose();
+       Inicio ecli = new Inicio ();
+       ecli.setVisible(true);
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-        if (jccliente.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Selección invalida");
-
-        } else {
-            if (jccliente.getSelectedIndex() == 1) {
-
-        Cliente Clbuscar = new Cliente(null, null, null, null, null, null, null, null,0,0,0);
-
-                ObjectSet result = basep.get(Clbuscar);
-                MostrarDatos(result);
-            } else {
-                if (jccliente.getSelectedIndex() == 2) {
-
-                    String IDAux = JOptionPane.showInputDialog("Ingrese la Cedula a consultar");
-
-        Cliente Clbuscar = new Cliente(null, null, null, null, null, null, null, null,0,0,0);
-
-                    ObjectSet result = basep.get(Clbuscar);
-                    MostrarDatos(result);
-
-                } else {
-                    if (jccliente.getSelectedIndex() == 3) {
-//                        habilitarParametros();
-                       // BuscarParametros(basep);
-
-                    }
-                }
-            }
-        }
-
-        //Borrar la eleccion y ponerla al inicio
-        jccliente.setSelectedIndex(0);
-    }
-    public void MostrarDatos(ObjectSet result) {
-        String matrizcliente[][] = new String[result.size()][7];
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "La pelicula no se encuentra en la base de datos");
-        } else {
-            for (int i = 0; i < result.size(); i++) {
-
-                Cliente miCl = new Cliente();
-
-                miCl = (Cliente) result.get(i);
-                matrizcliente[i][0] = miCl.getCedula();
-                matrizcliente[i][1] = miCl.getNombre();
-                matrizcliente[i][2] = miCl.getDireccion();
-                matrizcliente[i][3] = miCl.getEdad();
-                matrizcliente[i][4] = miCl.getCorreo_cli();
-                matrizcliente[i][5] = miCl.getTelefono_cli();
-                matrizcliente[i][6] = miCl.getFecha_nacimiento();
-                matrizcliente[i][7] = miCl.getMembresia();
-
-                Tablacli.setModel(new javax.swing.table.DefaultTableModel(matrizcliente, new String[]{"Cedula", "Nombre", "Direccion", "Edad", "Correo Electronico", "Telefono","Fecha Nacimiento","Membresia"}));
-
-            }
-        }
-
-    }
-    
-    public void Eliminar_Cliente(ObjectContainer basep) {
-
-        Registro_Cliente Clinterfaz = new Registro_Cliente();//Crear un objeto de la clase Estudiantes para traer el metodo Comprobar_Estudiantes
-
-        if (jtcedula.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Cedula no valido");
-        } else {
-
-            String IDE = jtcedula.getText();
-        Cliente Cleliminar = new Cliente(null, null, null, null, null, null, null, null,0,0,0);
-            ObjectSet result = basep.get(Cleliminar);
-
-            if (Clinterfaz.Comprobar_Cliente(basep, IDE) == 0) {
-
-                JOptionPane.showMessageDialog(null, "El cliente no existe en la base de datos");
-
-            } else {
-                Cliente Clienteeliminar = (Cliente) result.next();
-
-                basep.delete(Clienteeliminar);
-                JOptionPane.showMessageDialog(null, "El Cliente fue eliminado de la base de datos exitosamente");
-            }
-
-        }
-
-        //Borrar el campo de texto
-        jtcedula.setText("");
-    }
-
-    public void Cerrar_BD(ObjectContainer basep) {
-
-        basep.close();
-    }
-            
-            
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
     private javax.swing.JButton Eliminar;
-    private javax.swing.JTable Tablacli;
+    private javax.swing.JTable Tabla;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> jccliente;
-    private javax.swing.JTextField jtcedula;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

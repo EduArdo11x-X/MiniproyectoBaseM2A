@@ -9,23 +9,26 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import Clases.Pelicula;
+import Clases.Validaciones;
 import javax.swing.JOptionPane;
 
 
 public class Modificar_pelicula extends javax.swing.JFrame {
 
      String Cod_Pelicula = "";
-    String TituloPelicula = "";
+    String titulo_pelicula = "";
     String Duracion = "";
     String Actores = "";
     String Clasificacion = "";
-    String AñoEstreno = "";
+    String Anio_estreno = "";
     String Categoria = "";
     String Idioma = "";
     String Direcctores = "";
     
     public Modificar_pelicula() {
         initComponents();
+        jTextField2.setEnabled(false);
+        
     }
     
     
@@ -198,7 +201,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
 
         ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-        Modificar_Estudiante(BaseD);
+        Modificar_Pelicula(BaseD);
         Cerrar_BD(BaseD);
         jTextField2.setEditable(true);
     }//GEN-LAST:event_jBguardarActionPerformed
@@ -216,10 +219,20 @@ public class Modificar_pelicula extends javax.swing.JFrame {
             vsar1.setVisible(true); 
     }//GEN-LAST:event_jButton1ActionPerformed
     
-    
+    public void asignarVariables(ObjectContainer basep) {
+        Cod_Pelicula = jTextField2.getText();
+        titulo_pelicula = jTextField10.getText();
+        Duracion = jTextField8.getText();
+        Actores = jTextField7.getText();
+        Clasificacion = jComboBox1.getSelectedItem().toString();
+        Anio_estreno = jComboBox3.getSelectedItem().toString();
+        Categoria = jComboBox2.getSelectedItem().toString();
+        Idioma = jTextField12.getText();
+        Direcctores = jTextField9.getText();
+    }
     public void buscar(ObjectContainer basep) {//cargardatos
 
-        jBguardar.setEnabled(false);
+       
         String CODIGOAux;
         CODIGOAux = jTextField2.getText();
 
@@ -273,6 +286,10 @@ public class Modificar_pelicula extends javax.swing.JFrame {
                     jTextField9.setText(miE.getDirectores());
                 }
                 
+                  if (validarCampos(basep)) {
+                    jBguardar.setEnabled(true);
+                }
+                
                 HabilitarCampos_deTexto();
                 jTextField2.setEditable(false);
             }
@@ -280,6 +297,36 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         }
     }
     
+    public boolean validarCampos(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        asignarVariables(basep);
+        boolean ban_confirmar = true;
+
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE UN CODIGO");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid(Cod_Pelicula)) {
+                JOptionPane.showMessageDialog(this, "CODIGO INVALIDO");
+                ban_confirmar = false;
+            }
+        }
+        
+        if (jTextField10.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el titulo de la pelicula");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarNomApe(titulo_pelicula)) {
+                JOptionPane.showMessageDialog(this, "Titulo Pelicula invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        
+
+        return ban_confirmar;
+    }
+
     public static int Comprobar_Peliculas(ObjectContainer basep, String CodPelicula) {
 
         Pelicula Ebuscar = new Pelicula(CodPelicula, null, null, null, null, null, null,null,null);
@@ -290,7 +337,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     }
        
     
-    public void Modificar_Estudiante(ObjectContainer basep) {
+    public void Modificar_Pelicula(ObjectContainer basep) {
 
        
             JOptionPane.showMessageDialog(null, "Existen campos vacios");
