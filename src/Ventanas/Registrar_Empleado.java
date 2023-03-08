@@ -233,11 +233,11 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         }
         
         if (jTextField6.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese el titulo de la pelicula");
+            JOptionPane.showMessageDialog(this, "Ingrese horas a la semana del empleado");
             ban_confirmar = false;
         } else {
             if (!miValidaciones.validarNomApe(horas_sem)) {
-                JOptionPane.showMessageDialog(this, "Titulo Pelicula invalido");
+                JOptionPane.showMessageDialog(this, "Hora de la semana invalido");
                 ban_confirmar = false;
             }
         }

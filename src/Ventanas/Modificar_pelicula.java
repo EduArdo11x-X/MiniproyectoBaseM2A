@@ -198,7 +198,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
 
         ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-        Modificar_Estudiante(BaseD);
+        Modificar_Pelicula(BaseD);
         Cerrar_BD(BaseD);
         jTextField2.setEditable(true);
     }//GEN-LAST:event_jBguardarActionPerformed
@@ -232,7 +232,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
 
             if (EAux.Comprobar_Peliculas(basep, CODIGOAux) == 0) {
                 
-                JOptionPane.showMessageDialog(null, "El Empleado no existe en la base de datos");
+                JOptionPane.showMessageDialog(null, "La pelicula no existe en la base de datos");
                 LimpiarCamposTexto();
                 
             } else {
@@ -290,7 +290,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     }
        
     
-    public void Modificar_Estudiante(ObjectContainer basep) {
+    public void Modificar_Pelicula(ObjectContainer basep) {
 
        
             JOptionPane.showMessageDialog(null, "Existen campos vacios");
