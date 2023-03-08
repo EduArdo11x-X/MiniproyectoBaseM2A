@@ -5,11 +5,23 @@
  */
 package Ventanas;
 
+import Clases.Genero;
+import Clases.Validaciones;
+import static Ventanas.Registro_Genero.Cerrar_BD;
+import static Ventanas.Registro_Genero.Comprobar_Genero;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
  */
 public class Modificar_Genero extends javax.swing.JFrame {
+    
+    String Id_genero = "";
+    String Tipo_genero = "";
 
     /**
      * Creates new form Modificar_Genero
@@ -135,13 +147,83 @@ public class Modificar_Genero extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+         ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+
+        Crear_E(BaseD);
+        Cerrar_BD(BaseD);
+    }     
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
         Inicio mg = new Inicio () ;
         mg.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    
+      public void asignarVariables(ObjectContainer basep) {
+        Id_genero = jTextField1.getText();
+        Tipo_genero = jComboBox2.getSelectedItem().toString();
+    }  
+      
+       public void Crear_E(ObjectContainer basep) {
+        
+        
+
+             Genero Enuevo = new Genero(Id_genero, Tipo_genero);
+
+            if (Comprobar_Genero(basep, Id_genero) == 0) {
+                basep.set(Enuevo);
+                JOptionPane.showMessageDialog(null, "El Genero se guardo correctamente");
+                LimpiarCampos();
+            } else {
+
+                JOptionPane.showMessageDialog(null, "El Genero ya existe");
+            }
+
+           jTextField1.setText("");
+
+        
+    }
+       
+       
+       public boolean validarCampos(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        asignarVariables(basep);
+        boolean ban_confirmar = true;
+
+        if (jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE EL ID DEL GENERO");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid(Id_genero)) {
+                JOptionPane.showMessageDialog(this, "CODIGO INVALIDO");
+                ban_confirmar = false;
+            }
+        } 
+        
+
+        return ban_confirmar;
+    }
+       
+        public static int Comprobar_Genero(ObjectContainer basep, String Id_genero) {
+
+        Genero Ebuscar = new Genero(Id_genero, null);
+
+        ObjectSet result = basep.get(Ebuscar);
+
+        return result.size();
+    }
+        
+         public static void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+      
+       public void LimpiarCampos() {
+        jTextField1.setText("");
+        jComboBox2.setSelectedIndex(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
