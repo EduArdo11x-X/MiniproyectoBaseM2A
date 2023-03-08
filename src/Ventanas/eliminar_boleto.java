@@ -67,7 +67,7 @@ public class eliminar_boleto extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("CÉDULA CLIENTE :");
+        jLabel4.setText("CEDULA CLIENTE :");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 141, 129, -1));
 
         jTextField2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 11)); // NOI18N
@@ -121,11 +121,6 @@ public class eliminar_boleto extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
         jButton4.setText("REGRESAR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
         jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, 30));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 700, 410));
@@ -158,12 +153,6 @@ public class eliminar_boleto extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       this.dispose();
-       Inicio ini = new Inicio();
-       ini.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     
    
