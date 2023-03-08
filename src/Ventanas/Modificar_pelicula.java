@@ -183,7 +183,9 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,7 +232,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
 
             if (EAux.Comprobar_Peliculas(basep, CODIGOAux) == 0) {
                 
-                JOptionPane.showMessageDialog(null, "La pelicula no existe en la base de datos");
+                JOptionPane.showMessageDialog(null, "El Empleado no existe en la base de datos");
                 LimpiarCamposTexto();
                 
             } else {

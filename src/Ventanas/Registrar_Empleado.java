@@ -13,6 +13,7 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
+import Clases.Validaciones;
 
 /**
  *
@@ -23,9 +24,13 @@ public class Registrar_Empleado extends javax.swing.JFrame {
     String Ced_empleado = "";
     String Id_Empleado = "";
     String Area_Empleado = "";
-    String Hora_Entrada = "";
-    String Hora_salida= "";
+    int hora_inicio = 0;
+    int min_inicio = 0;
+    int hora_fin = 0;
+    int min_fin = 0;
     String horas_sem = "";
+    String Horario_inicio = "";
+    String Horario_fin = "";
 
     /**
      * Creates new form Registrar_Empleado
@@ -62,6 +67,7 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         jSiniciohoras1 = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
         jSiniciominutos1 = new javax.swing.JSpinner();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,17 +80,17 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 20, 330, 40));
 
         jLabel1.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
-        jLabel1.setText("Cedula Empleado");
+        jLabel1.setText("Cedula Empleado:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 97, 120, -1));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 91, 166, -1));
 
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
-        jLabel2.setText("Id Empleado");
+        jLabel2.setText("Id Empleado:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 137, -1, -1));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 131, 166, -1));
 
         jLabel3.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
-        jLabel3.setText("Area de empleado");
+        jLabel3.setText("Area de empleado:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 179, -1, -1));
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +111,7 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
         jLabel6.setText("Horas a la semana");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 179, -1, -1));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 165, -1));
+        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 165, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar-datos.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -113,10 +119,10 @@ public class Registrar_Empleado extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, -1, -1));
 
         jSiniciohoras.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
-        jPanel1.add(jSiniciohoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, -1, -1));
+        jPanel1.add(jSiniciohoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText(":");
@@ -126,7 +132,7 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         jPanel1.add(jSiniciominutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, -1, -1));
 
         jSiniciohoras1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
-        jPanel1.add(jSiniciohoras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, -1, -1));
+        jPanel1.add(jSiniciohoras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText(":");
@@ -135,11 +141,19 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         jSiniciominutos1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
         jPanel1.add(jSiniciominutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, -1));
 
+        jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,33 +165,109 @@ public class Registrar_Empleado extends javax.swing.JFrame {
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
-        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-
-        Crear_E(BaseD);
-        Cerrar_BD(BaseD);
+       
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Crear_E(BaseD);
+        Cerrar_BD(BaseD);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
         Inicio vsar1 = new Inicio();
-        vsar1.setVisible(true); 
-    }//GEN-LAST:event_jButton1ActionPerformed
+        vsar1.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public void asignarVariables(ObjectContainer basep) {
         Ced_empleado = jTextField1.getText();
         Id_Empleado = jTextField2.getText();
         Area_Empleado = jTextField3.getText();
+        hora_inicio = (Integer) jSiniciohoras1.getValue();
+        min_inicio = (Integer) jSiniciominutos1.getValue();
+        hora_fin = (Integer) jSiniciohoras.getValue();
+        min_fin = (Integer) jSiniciominutos.getValue();
         horas_sem = jTextField6.getText();
+        String Ihora = String.valueOf(hora_inicio);
+        String Imin = String.valueOf(min_inicio);
+        String Fhora = String.valueOf(hora_fin);
+        String Fmin = String.valueOf(min_fin);
+        if (String.valueOf(hora_inicio).length() == 1) {
+            Ihora="0"+Ihora;
+        }
+        if (String.valueOf(min_inicio).length() == 1) {
+            Imin="0"+Imin;
+        }
+        
+        if (String.valueOf(hora_fin).length() == 1) {
+            Fhora="0"+Fhora;
+        }
+        if (String.valueOf(min_fin).length() == 1) {
+            Fmin="0"+Fmin;
+        }
+        Horario_inicio = Ihora+":" + Imin;
+        Horario_fin = Fhora + ":" + Fmin;
+    }
+    
+    public boolean validarCampos(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        asignarVariables(basep);
+        boolean ban_confirmar = true;
+
+        if (jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese una cedula");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarCedula(Ced_empleado)) {
+                JOptionPane.showMessageDialog(this, "Cedula Invalida");
+                ban_confirmar = false;
+            }
+        }
+
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un ID");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid(Id_Empleado)) {
+                JOptionPane.showMessageDialog(this, "ID invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        if (jTextField3.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el area en la que esta el empleado del cine");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarNomApe(Area_Empleado)) {
+                JOptionPane.showMessageDialog(this, "Area de empleado invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        if (jTextField6.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese horas a la semana del empleado");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarNomApe(horas_sem)) {
+                JOptionPane.showMessageDialog(this, "Hora de la semana invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        return ban_confirmar;
     }
     
      public void Crear_E(ObjectContainer basep) {
         
         
 
-             Empleado Enuevo = new Empleado(Ced_empleado, Id_Empleado, Area_Empleado, Hora_Entrada, Hora_salida, horas_sem);
-
-            if (Comprobar_Peliculas(basep, Ced_empleado) == 0) {
+             Empleado Enuevo = new Empleado(Ced_empleado, Id_Empleado, Area_Empleado, hora_inicio, min_inicio, hora_fin,min_fin, horas_sem,Horario_inicio,Horario_fin);
+             asignarVariables(basep);
+           if (validarCampos(basep)) {
+            if (Comprobar_Empleado(basep, Ced_empleado) == 0) {
                 basep.set(Enuevo);
                 JOptionPane.showMessageDialog(null, "El Empleado se guardo correctamente");
                 LimpiarCampos();
@@ -188,12 +278,12 @@ public class Registrar_Empleado extends javax.swing.JFrame {
 
            jTextField1.setText("");
 
-        
+           }
     }
      
       public static int Comprobar_Empleado(ObjectContainer basep, String Ced_empleado) {
 
-        Empleado Ebuscar = new Empleado(Ced_empleado, null, null, null, null, null);
+        Empleado Ebuscar = new Empleado(Ced_empleado, null, null, 0, 0, 0, 0, null, null, null);
 
         ObjectSet result = basep.get(Ebuscar);
 
@@ -210,10 +300,15 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         jTextField2.setText("");
         jTextField3.setText("");
         jTextField6.setText("");
+         jSiniciohoras1.setValue(0);
+        jSiniciominutos.setValue(0);
+        jSiniciominutos1.setValue(0);
+        jSiniciohoras.setValue(0);
     }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

@@ -16,13 +16,19 @@ public class Persona {
     private String direccion;
     private String edad;
     private String fecha_nacimiento;
+    private int dia;
+    private int mes;
+    private int anio;
 
-    public Persona(String cedula, String nombre, String direccion, String edad, String fecha_nacimiento) {
+    public Persona(String cedula, String nombre, String direccion, String edad, String fecha_nacimiento, int dia, int mes, int anio) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.direccion = direccion;
         this.edad = edad;
         this.fecha_nacimiento = fecha_nacimiento;
+        this.dia = dia;
+        this.mes = mes;
+        this.anio = anio;
     }
 
     public Persona() {
@@ -69,18 +75,36 @@ public class Persona {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Persona{" + "cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", edad=" + edad + ", fecha_nacimiento=" + fecha_nacimiento + '}';
     }
-    
-    
-    
-    
-    
-    
-    
-
-    
+      
     
 }
