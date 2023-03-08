@@ -5,6 +5,13 @@
  */
 package Ventanas;
 
+import Clases.Cliente;
+import Clases.Funcion;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author EDU
@@ -29,7 +36,7 @@ public class Eliminar_funcion extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tabla = new javax.swing.JTable();
+        Tablaf = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -44,10 +51,10 @@ public class Eliminar_funcion extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Tabla.setBackground(new java.awt.Color(247, 247, 247));
-        Tabla.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Tabla.setForeground(new java.awt.Color(0, 51, 153));
-        Tabla.setModel(new javax.swing.table.DefaultTableModel(
+        Tablaf.setBackground(new java.awt.Color(247, 247, 247));
+        Tablaf.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Tablaf.setForeground(new java.awt.Color(0, 51, 153));
+        Tablaf.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -63,7 +70,7 @@ public class Eliminar_funcion extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(Tabla);
+        jScrollPane1.setViewportView(Tablaf);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 680, 240));
 
@@ -110,6 +117,11 @@ public class Eliminar_funcion extends javax.swing.JFrame {
         jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 30, 30));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un campo:", "Ver todos", "ID Funcion", "Formato" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 170, 30));
 
         jLabel13.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
@@ -141,16 +153,16 @@ public class Eliminar_funcion extends javax.swing.JFrame {
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
 
-        //ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
-        //Eliminar_Estudiante(BaseD);
-        //Cerrar_BD(BaseD);
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Eliminar_Funcion(BaseD);
+        Cerrar_BD(BaseD);
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
-        //  ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
-        //Buscar_EstudianteID(BaseD);
-        //Cerrar_BD(BaseD);
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Buscar_Funcion(BaseD);
+        Cerrar_BD(BaseD);
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -161,12 +173,123 @@ public class Eliminar_funcion extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+if (jComboBox1.getSelectedIndex() == 0) {
+            //deshabilitarParametros();
+        } else {
+            if (jComboBox1.getSelectedIndex() == 1) {
+               // deshabilitarParametros();
+            } else {
+                if (jComboBox1.getSelectedIndex() == 2) {
+                   // deshabilitarParametros();
+                } else {
+                    if (jComboBox1.getSelectedIndex() == 3) {
+                       // habilitarParametros();
+                    }
+                }
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    public void Buscar_Funcion(ObjectContainer basep) {
+
+        if (jComboBox1.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Selección invalida");
+
+        } else {
+            if (jComboBox1.getSelectedIndex() == 1) {
+
+        Funcion Fbuscar = new Funcion(null, null, null, null);
+
+                ObjectSet result = basep.get(Fbuscar);
+                MostrarDatos(result);
+            } else {
+                if (jComboBox1.getSelectedIndex() == 2) {
+
+                    String IDAux = JOptionPane.showInputDialog("Ingrese la Cedula a consultar");
+
+        Funcion Fbuscar = new Funcion(null, null, null, null);
+
+                    ObjectSet result = basep.get(Fbuscar);
+                    MostrarDatos(result);
+
+                } else {
+                    if (jComboBox1.getSelectedIndex() == 3) {
+//                        habilitarParametros();
+                       // BuscarParametros(basep);
+
+                    }
+                }
+            }
+        }
+
+        //Borrar la eleccion y ponerla al inicio
+        jComboBox1.setSelectedIndex(0);
+    }
+    public void MostrarDatos(ObjectSet result) {
+        String matrizfuncion[][] = new String[result.size()][7];
+
+        if (result.size() == 0) {
+            JOptionPane.showMessageDialog(null, "La pelicula no se encuentra en la base de datos");
+        } else {
+            for (int i = 0; i < result.size(); i++) {
+
+                Funcion miF = new Funcion();
+
+                miF = (Funcion) result.get(i);
+                matrizfuncion[i][0] = miF.getId_funcion();
+                matrizfuncion[i][1] = miF.getFecha_funcion();
+                matrizfuncion[i][2] = miF.getFormato();
+                matrizfuncion[i][3] = miF.getHora();
+               
+
+                Tablaf.setModel(new javax.swing.table.DefaultTableModel(matrizfuncion, new String[]{"Cedula", "Nombre", "Direccion", "Edad", "Correo Electronico", "Telefono","Fecha Nacimiento","Membresia"}));
+
+            }
+        }
+
+    }
     
+    public void Eliminar_Funcion(ObjectContainer basep) {
+
+        Registrar_funcion Finterfaz = new Registrar_funcion();//Crear un objeto de la clase Estudiantes para traer el metodo Comprobar_Estudiantes
+
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Codigo no valido");
+        } else {
+
+            String IDE = jTextField2.getText();
+        Funcion Feliminar = new Funcion(null, null, null, null);
+            ObjectSet result = basep.get(Feliminar);
+
+            if (Finterfaz.Comprobar_Funcion(basep, IDE) == 0) {
+
+                JOptionPane.showMessageDialog(null, "La funcion no existe en la base de datos");
+
+            } else {
+                Funcion Funcioneliminar = (Funcion) result.next();
+
+                basep.delete(Funcioneliminar);
+                JOptionPane.showMessageDialog(null, "La funcion fue eliminado de la base de datos exitosamente");
+            }
+
+        }
+
+        //Borrar el campo de texto
+        jTextField2.setText("");
+    }
+
+    public void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+            
+            
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
     private javax.swing.JButton Eliminar;
-    private javax.swing.JTable Tabla;
+    private javax.swing.JTable Tablaf;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
