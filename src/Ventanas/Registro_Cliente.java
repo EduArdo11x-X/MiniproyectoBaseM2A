@@ -5,11 +5,29 @@
  */
 package Ventanas;
 
+import Clases.Cliente;
+import Clases.Validaciones;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LENOVO
  */
 public class Registro_Cliente extends javax.swing.JFrame {
+    String cedula="";
+    String nombre="";
+    String direccion="";
+    String edad="";
+    String fecha_nacimiento="";
+    String telefono_cli="";
+    String correo_cli="";
+    String membresia="";
+    int dia=0;
+    int mes=0;
+    int anio=0;
 
     /**
      * Creates new form Registro_Cliente
@@ -31,22 +49,26 @@ public class Registro_Cliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        cedula_cliente = new javax.swing.JTextField();
+        nombre_cliente = new javax.swing.JTextField();
+        telefono_cliente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jTextField6 = new javax.swing.JTextField();
+        edad_cliente = new javax.swing.JSpinner();
+        correo_cliente = new javax.swing.JTextField();
+        REGISTRAR_CLI = new javax.swing.JToggleButton();
+        CANCELAR_CLI = new javax.swing.JToggleButton();
+        direccion_cliente = new javax.swing.JTextField();
+        anio_cli = new javax.swing.JSpinner();
+        jLabel10 = new javax.swing.JLabel();
+        dia_cli = new javax.swing.JSpinner();
+        jLabel11 = new javax.swing.JLabel();
+        mes_cli = new javax.swing.JSpinner();
+        membresia_cliente = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,21 +89,21 @@ public class Registro_Cliente extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/ic_location_on_128_28437.png"))); // NOI18N
         jLabel3.setText("direccion");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 297, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 165, 149, -1));
+        jPanel1.add(cedula_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 165, 149, -1));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        nombre_cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                nombre_clienteActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 228, 149, -1));
+        jPanel1.add(nombre_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 228, 149, -1));
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        telefono_cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                telefono_clienteActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 216, 189, -1));
+        jPanel1.add(telefono_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 216, 189, -1));
 
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 204, 255));
@@ -113,37 +135,51 @@ public class Registro_Cliente extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/wallet_membership_icon_136040.png"))); // NOI18N
         jLabel9.setText("Membresia");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 376, -1, -1));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 380, -1, -1));
 
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+        edad_cliente.setModel(new javax.swing.SpinnerNumberModel(18, 18, 80, 1));
+        jPanel1.add(edad_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 380, -1, -1));
+        jPanel1.add(correo_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 302, 189, -1));
+
+        REGISTRAR_CLI.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
+        REGISTRAR_CLI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/registro.png"))); // NOI18N
+        REGISTRAR_CLI.setText("REGISTRAR ");
+        REGISTRAR_CLI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
+                REGISTRAR_CLIActionPerformed(evt);
             }
         });
-        jPanel1.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 164, 189, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 302, 189, -1));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 396, 189, -1));
+        jPanel1.add(REGISTRAR_CLI, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, -1, 33));
 
-        jToggleButton1.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/registro.png"))); // NOI18N
-        jToggleButton1.setText("REGISTRAR ");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        CANCELAR_CLI.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
+        CANCELAR_CLI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cNCELAR.png"))); // NOI18N
+        CANCELAR_CLI.setText("CANCELAR");
+        CANCELAR_CLI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                CANCELAR_CLIActionPerformed(evt);
             }
         });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, -1, 33));
+        jPanel1.add(CANCELAR_CLI, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, -1, 33));
+        jPanel1.add(direccion_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 302, 149, -1));
 
-        jToggleButton2.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cNCELAR.png"))); // NOI18N
-        jToggleButton2.setText("CANCELAR");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, -1, 33));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 302, 149, -1));
+        anio_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        jPanel1.add(anio_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 160, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel10.setText(":");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 160, -1, -1));
+
+        dia_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+        jPanel1.add(dia_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 160, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText(":");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 160, 10, -1));
+
+        mes_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        jPanel1.add(mes_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, -1, -1));
+
+        membresia_cliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "VIP sencilla", "Premium Sencilla", "Standard Sencilla", "VIP Doble", "Premium Doble", "Standard Doble" }));
+        jPanel1.add(membresia_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 380, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,31 +195,175 @@ public class Registro_Cliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    private void CANCELAR_CLIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CANCELAR_CLIActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+    }//GEN-LAST:event_CANCELAR_CLIActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void REGISTRAR_CLIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REGISTRAR_CLIActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_REGISTRAR_CLIActionPerformed
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+    private void telefono_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefono_clienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+    }//GEN-LAST:event_telefono_clienteActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void nombre_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_clienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_nombre_clienteActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    public void asignarVariables(ObjectContainer basep) {
+        cedula = cedula_cliente.getText();
+        nombre = nombre_cliente.getText();
+        direccion = direccion_cliente.getText();
+        
+        edad = (String) edad_cliente.getValue();
+        telefono_cli = telefono_cliente.getText();
+        correo_cli = correo_cliente.getText();
+        membresia = membresia_cliente.getSelectedItem().toString();
+        
+        String day = String.valueOf(dia);
+        String Mounth = String.valueOf(mes);
+        String Year = String.valueOf(anio);
+        
+        if (String.valueOf(dia_cli).length() == 1) {
+            day="0"+day;
+        }
+        if (String.valueOf(mes_cli).length() == 1) {
+            Mounth="0"+Mounth;
+        }
+        if (String.valueOf(anio_cli).length() == 1) {
+            Year="0"+Year;
+        }
+        
+        fecha_nacimiento = day+":" + Mounth + "/" + Year;
+
+            }
+
+    public void Crear_Cl(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        if (validarCampos(basep)) {
+
+            Cliente Clnuevo = new Cliente( telefono_cli,  correo_cli,  membresia,  cedula,  nombre,  direccion,  edad,  fecha_nacimiento,dia,mes,anio);
+
+            if (Comprobar_Cliente(basep, cedula) == 0) {
+                basep.set(Clnuevo);
+                JOptionPane.showMessageDialog(null, "El cliente se guardo correctamente");
+                LimpiarCampos();
+            } else {
+
+                JOptionPane.showMessageDialog(null, "La cliente ya existe");
+            }
+            cedula_cliente.setText("");
+
+        }
+        
+    }
+
+    public boolean validarCampos(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        asignarVariables(basep);
+        boolean ban_confirmar = true;
+
+        if (cedula_cliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE UNA CEDULA");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarCedula(cedula)) {
+                JOptionPane.showMessageDialog(this, "CEDULA INVALIDA");
+                ban_confirmar = false;
+            }
+        }
+        
+        if (nombre_cliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el titulo de la pelicula");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarNomApe(nombre)) {
+                JOptionPane.showMessageDialog(this, "Titulo Pelicula invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        if (direccion_cliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el titulo de la pelicula");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarNomApe(direccion)) {
+                JOptionPane.showMessageDialog(this, "Titulo Pelicula invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        if (telefono_cliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese  un telefono");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarCedula(telefono_cli)) {
+                JOptionPane.showMessageDialog(this, "Telefono invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        if (correo_cliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese  un correo");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarCorreo(correo_cli)) {
+                JOptionPane.showMessageDialog(this, "Correo invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        if (membresia_cliente.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione una membresia");
+            ban_confirmar = false;
+        }
+        
+        return ban_confirmar;
+    }
+
+    public static int Comprobar_Cliente(ObjectContainer basep, String cedula) {
+
+        Cliente Clbuscar = new Cliente(null, null, null, cedula, null, null, null, null,0,0,0);
+
+        ObjectSet result = basep.get(Clbuscar);
+
+        return result.size();
+    }
+
+    public static void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+
+    public void LimpiarCampos() {
+        cedula_cliente.setText("");
+        nombre_cliente.setText("");
+        direccion_cliente.setText("");
+        dia_cli.setValue(0);
+        mes_cli.setValue(0);
+        anio_cli.setValue(0);
+
+        edad_cliente.setValue(18);
+        telefono_cliente.setText("");
+        correo_cliente.setText("");
+        membresia_cliente.setSelectedIndex(0);
+    }
 
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JToggleButton CANCELAR_CLI;
+    private javax.swing.JToggleButton REGISTRAR_CLI;
+    private javax.swing.JSpinner anio_cli;
+    private javax.swing.JTextField cedula_cliente;
+    private javax.swing.JTextField correo_cliente;
+    private javax.swing.JSpinner dia_cli;
+    private javax.swing.JTextField direccion_cliente;
+    private javax.swing.JSpinner edad_cliente;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -193,14 +373,9 @@ public class Registro_Cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JComboBox<String> membresia_cliente;
+    private javax.swing.JSpinner mes_cli;
+    private javax.swing.JTextField nombre_cliente;
+    private javax.swing.JTextField telefono_cliente;
     // End of variables declaration//GEN-END:variables
 }

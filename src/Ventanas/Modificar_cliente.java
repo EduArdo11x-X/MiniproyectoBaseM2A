@@ -4,12 +4,32 @@
  * and open the template in the editor.
  */
 package Ventanas;
+import Clases.Cliente;
+import static Ventanas.Modificar_pelicula.Cerrar_BD;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author EDU
  */
 public class Modificar_cliente extends javax.swing.JFrame {
+    
+    String cedula = "";
+    String nombre = "";
+    String direccion = "";
+    String edad = "";
+    String fecha_nacimiento = "";
+    String telefono_cli = "";
+    String correo_cli = "";
+    String membresia = "";
+    int dia = 0;
+    int mes = 0;
+    int anio = 0;
+
 
     /**
      * Creates new form Modificar_cliente
@@ -28,31 +48,34 @@ public class Modificar_cliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField5 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        correo_cli2 = new javax.swing.JTextField();
+        telefono_cli2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jTextField2 = new javax.swing.JTextField();
+        cedula_cliente2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        nombre_cli2 = new javax.swing.JTextField();
+        direccion_cli2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        edad_cliente2 = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jBguardar = new javax.swing.JButton();
+        Modificar_cli = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        dia_cli = new javax.swing.JSpinner();
+        jLabel11 = new javax.swing.JLabel();
+        mes_cli = new javax.swing.JSpinner();
+        jLabel12 = new javax.swing.JLabel();
+        anio_cli = new javax.swing.JSpinner();
+        membresia_cliente2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 150, -1));
 
         jLabel9.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/wallet_membership_icon_136040.png"))); // NOI18N
@@ -63,14 +86,14 @@ public class Modificar_cliente extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/email.png"))); // NOI18N
         jLabel8.setText("Correo electronico");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 189, -1));
+        jPanel1.add(correo_cli2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 189, -1));
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        telefono_cli2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                telefono_cli2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 189, -1));
+        jPanel1.add(telefono_cli2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 189, -1));
 
         jLabel7.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/telefono.png"))); // NOI18N
@@ -81,14 +104,7 @@ public class Modificar_cliente extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/date.png"))); // NOI18N
         jLabel6.setText("Fecha nacimiento");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, -1, -1));
-
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 189, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 149, -1));
+        jPanel1.add(cedula_cliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 149, -1));
 
         jLabel1.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cedula.png"))); // NOI18N
@@ -100,13 +116,13 @@ public class Modificar_cliente extends javax.swing.JFrame {
         jLabel2.setText("nombre");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        nombre_cli2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                nombre_cli2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 149, -1));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 149, -1));
+        jPanel1.add(nombre_cli2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 149, -1));
+        jPanel1.add(direccion_cli2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 149, -1));
 
         jLabel3.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/ic_location_on_128_28437.png"))); // NOI18N
@@ -117,7 +133,9 @@ public class Modificar_cliente extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/age_theapplication_3019.png"))); // NOI18N
         jLabel5.setText("Edad");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
+
+        edad_cliente2.setModel(new javax.swing.SpinnerNumberModel(18, 18, 80, 1));
+        jPanel1.add(edad_cliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 204, 255));
@@ -130,25 +148,45 @@ public class Modificar_cliente extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, -1, 29));
 
-        jBguardar.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jBguardar.setForeground(new java.awt.Color(0, 0, 255));
-        jBguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/girar.png"))); // NOI18N
-        jBguardar.addActionListener(new java.awt.event.ActionListener() {
+        Modificar_cli.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        Modificar_cli.setForeground(new java.awt.Color(0, 0, 255));
+        Modificar_cli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/girar.png"))); // NOI18N
+        Modificar_cli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBguardarActionPerformed(evt);
+                Modificar_cliActionPerformed(evt);
             }
         });
-        jPanel1.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 30, 30));
+        jPanel1.add(Modificar_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 30, 30));
 
         jLabel10.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel10.setText("MODIFICAR");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, -1, 20));
 
+        dia_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+        jPanel1.add(dia_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText(":");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 10, -1));
+
+        mes_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        jPanel1.add(mes_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel12.setText(":");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, -1, -1));
+
+        anio_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        jPanel1.add(anio_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, -1, -1));
+
+        membresia_cliente2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "VIP sencilla", "Premium Sencilla", "Standard Sencilla", "VIP Doble", "Premium Doble", "Standard Doble" }));
+        jPanel1.add(membresia_cliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,33 +196,138 @@ public class Modificar_cliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void telefono_cli2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefono_cli2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_telefono_cli2ActionPerformed
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+    private void nombre_cli2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_cli2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+    }//GEN-LAST:event_nombre_cli2ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    private void Modificar_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Modificar_cliActionPerformed
 
-    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Modificar_Cliente(BaseD);
+        Cerrar_BD(BaseD);
+        cedula_cliente2.setEditable(true);
+    }//GEN-LAST:event_Modificar_cliActionPerformed
+ public void buscar(ObjectContainer basep) {//cargardatos
 
-        //ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
+        Modificar_cli.setEnabled(false);
+        String CODIGOAux;
+        CODIGOAux = cedula_cliente2.getText();
+        Registro_Cliente EAux = new Registro_Cliente();
+        if (cedula_cliente2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese una Cedula");
+        } else {
+            if (EAux.Comprobar_Cliente(basep, CODIGOAux) == 0) {
+                JOptionPane.showMessageDialog(null, "El cliente no existe en la base de datos");
+                LimpiarCamposTexto();
+            } else {
+                Cliente Clbuscar = new Cliente(null, null, null, cedula, null, null, null, null, 0, 0, 0);
+                ObjectSet result = basep.get(Clbuscar);
+                for (int i = 0; i < result.size(); i++) {
+                    Cliente miCl = new Cliente();
+                    miCl = (Cliente) result.get(i);
+                    nombre_cli2.setText(miCl.getNombre());
+                    direccion_cli2.setText(miCl.getDireccion());
+                    telefono_cli2.setText(miCl.getTelefono_cli());
+                    for (int j = 0; j < membresia_cliente2.getItemCount(); j++) {
+                        if (miCl.getMembresia().equalsIgnoreCase(membresia_cliente2.getItemAt(j))) {
+                            membresia_cliente2.setSelectedIndex(j);
+                            j = membresia_cliente2.getItemCount();
+                        }
+                    }
+                    correo_cli2.setText(miCl.getCorreo_cli());
+                    dia_cli.setValue(miCl.getDia());
+                    mes_cli.setValue(miCl.getMes());
+                    anio_cli.setValue(miCl.getAnio());
+                    edad_cliente2.setValue(miCl.getEdad());
 
-        //Crear_E(BaseD);
-        //Cerrar_BD(BaseD);
-    }//GEN-LAST:event_jBguardarActionPerformed
+                }
 
-    
+                HabilitarCampos_deTexto();
+                cedula_cliente2.setEditable(false);
+            }
+
+        }
+    }
+
+    public static int Comprobar_Cliente(ObjectContainer basep, String cedula) {
+
+        Cliente Clbuscar = new Cliente(null, null, null, cedula, null, null, null, null, 0, 0, 0);
+
+        ObjectSet result = basep.get(Clbuscar);
+
+        return result.size();
+    }
+
+    public void Modificar_Cliente(ObjectContainer basep) {
+
+        JOptionPane.showMessageDialog(null, "Existen campos vacios");
+        //LimpiarCamposdeTexto();
+
+        Cliente Clmod = new Cliente(null, null, null, cedula_cliente2.getText(), null, null, null, null,0,0,0);
+        ObjectSet result = basep.get(Clmod);
+        Cliente Clmodificar = (Cliente) result.next();
+        
+        Clmodificar.setNombre(nombre_cli2.getText());
+        Clmodificar.setDireccion(direccion_cli2.getText());
+        Clmodificar.setTelefono_cli(telefono_cli2.getText());
+        Clmodificar.setCorreo_cli(correo_cli2.getText());
+        Clmodificar.setMembresia(membresia_cliente2.getSelectedItem().toString());
+        Clmodificar.setEdad((String) edad_cliente2.getValue());
+        Clmodificar.setDia((Integer) dia_cli.getValue());
+        Clmodificar.setMes((Integer) mes_cli.getValue());
+        Clmodificar.setAnio((Integer) anio_cli.getValue());
+
+        basep.set(Clmodificar);
+        JOptionPane.showMessageDialog(null, "El cliente fue modificado exitosamente");
+        LimpiarCamposTexto();
+
+    }
+
+    public static void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+     public void LimpiarCamposTexto() {
+         cedula_cliente2.setText("");
+        nombre_cli2.setText("");
+        direccion_cli2.setText("");
+        dia_cli.setValue(0);
+        mes_cli.setValue(0);
+        anio_cli.setValue(0);
+
+        edad_cliente2.setValue(18);
+        telefono_cli2.setText("");
+        correo_cli2.setText("");
+        membresia_cliente2.setSelectedIndex(0);
+    }
+
+    public void HabilitarCampos_deTexto() {
+        cedula_cliente2.setEditable(true);
+        nombre_cli2.setEditable(true);
+        direccion_cli2.setEditable(true);
+       
+        telefono_cli2.setEditable(true);
+        membresia_cliente2.setEditable(true);
+        correo_cli2.setEditable(true);
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBguardar;
+    private javax.swing.JButton Modificar_cli;
+    private javax.swing.JSpinner anio_cli;
+    private javax.swing.JTextField cedula_cliente2;
+    private javax.swing.JTextField correo_cli2;
+    private javax.swing.JSpinner dia_cli;
+    private javax.swing.JTextField direccion_cli2;
+    private javax.swing.JSpinner edad_cliente2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -194,12 +337,9 @@ public class Modificar_cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JComboBox<String> membresia_cliente2;
+    private javax.swing.JSpinner mes_cli;
+    private javax.swing.JTextField nombre_cli2;
+    private javax.swing.JTextField telefono_cli2;
     // End of variables declaration//GEN-END:variables
 }
