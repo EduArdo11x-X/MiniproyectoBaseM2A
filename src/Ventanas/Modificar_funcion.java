@@ -5,11 +5,24 @@
  */
 package Ventanas;
 
+import Clases.Cliente;
+import Clases.Funcion;
+import static Ventanas.Modificar_pelicula.Cerrar_BD;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author EDU
  */
 public class Modificar_funcion extends javax.swing.JFrame {
+    
+    String Id_funcion = "";
+    String fecha_funcion = "";
+    String formato = "";
+    String hora = "";
 
     /**
      * Creates new form Modificar_funcion
@@ -36,9 +49,9 @@ public class Modificar_funcion extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        cod_funcion = new javax.swing.JTextField();
         Buscar = new javax.swing.JButton();
-        jBguardar = new javax.swing.JButton();
+        modificar_funcion = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,12 +92,12 @@ public class Modificar_funcion extends javax.swing.JFrame {
             }
         });
 
-        jBguardar.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jBguardar.setForeground(new java.awt.Color(0, 0, 255));
-        jBguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/girar.png"))); // NOI18N
-        jBguardar.addActionListener(new java.awt.event.ActionListener() {
+        modificar_funcion.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        modificar_funcion.setForeground(new java.awt.Color(0, 0, 255));
+        modificar_funcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/girar.png"))); // NOI18N
+        modificar_funcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBguardarActionPerformed(evt);
+                modificar_funcionActionPerformed(evt);
             }
         });
 
@@ -106,7 +119,7 @@ public class Modificar_funcion extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(168, 168, 168)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cod_funcion, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -124,7 +137,7 @@ public class Modificar_funcion extends javax.swing.JFrame {
                             .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addComponent(jBguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(modificar_funcion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel6))))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
@@ -138,9 +151,8 @@ public class Modificar_funcion extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(jLabel1))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cod_funcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -157,7 +169,7 @@ public class Modificar_funcion extends javax.swing.JFrame {
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(jBguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(modificar_funcion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -183,23 +195,107 @@ public class Modificar_funcion extends javax.swing.JFrame {
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
-        // ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
-        //Buscar_EstudianteID(BaseD);
-        //Cerrar_BD(BaseD);
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        buscar(BaseD);
+        Cerrar_BD(BaseD);
     }//GEN-LAST:event_BuscarActionPerformed
 
-    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
+    private void modificar_funcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_funcionActionPerformed
 
-        //ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Modificar_Funcion(BaseD);
+        Cerrar_BD(BaseD);
+        jTextField2.setEditable(true);
+    }//GEN-LAST:event_modificar_funcionActionPerformed
 
-        //Crear_E(BaseD);
-        //Cerrar_BD(BaseD);
-    }//GEN-LAST:event_jBguardarActionPerformed
+    public void buscar(ObjectContainer basep) {//cargardatos
 
+        modificar_funcion.setEnabled(false);
+        String CODIGOAux;
+        CODIGOAux = cod_funcion.getText();
+        Registrar_funcion FAux = new Registrar_funcion();
+        if (cod_funcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un Codigo de funcion");
+        } else {
+            if (FAux.Comprobar_Funcion(basep, CODIGOAux) == 0) {
+                JOptionPane.showMessageDialog(null, "La funcion no existe en la base de datos");
+                LimpiarCampos();
+            } else {
+        Funcion Ebuscar = new Funcion(Id_funcion, null, null, null);
+                ObjectSet result = basep.get(Ebuscar);
+                for (int i = 0; i < result.size(); i++) {
+                    Funcion miF = new Funcion();
+                    miF = (Funcion) result.get(i);
+                    jTextField2.setText(miF.getFecha_funcion());
+                    jTextField4.setText(miF.getHora());
+                    for (int j = 0; j < jComboBox1.getItemCount(); j++) {
+                        if (miF.getFormato().equalsIgnoreCase(jComboBox1.getItemAt(j))) {
+                            jComboBox1.setSelectedIndex(j);
+                            j = jComboBox1.getItemCount();
+                        }
+                    }
+                    
+                   
+
+                }
+
+                HabilitarCampos_deTexto();
+                cod_funcion.setEditable(false);
+            }
+
+        }
+    }
+
+    public static int Comprobar_Funcion(ObjectContainer basep, String Id_funcion) {
+
+        Funcion Ebuscar = new Funcion(Id_funcion, null, null, null);
+
+        ObjectSet result = basep.get(Ebuscar);
+
+        return result.size();
+    }
+
+    public void Modificar_Funcion(ObjectContainer basep) {
+
+        JOptionPane.showMessageDialog(null, "Existen campos vacios");
+        //LimpiarCamposdeTexto();
+
+        Funcion Fmodi = new Funcion(cod_funcion.getText(), null, null, null);
+        ObjectSet result = basep.get(Fmodi);
+        Funcion Fmodificar = (Funcion) result.next();
+        
+        Fmodificar.setFecha_funcion(jTextField2.getText());
+        Fmodificar.setHora(jTextField4.getText());
+        Fmodificar.setFormato(jComboBox1.getSelectedItem().toString());
+        
+
+        basep.set(Fmodificar);
+        JOptionPane.showMessageDialog(null, "El cliente fue modificado exitosamente");
+        LimpiarCampos();
+
+    }
+
+    public static void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+     public void LimpiarCampos() {
+        cod_funcion.setText("");
+        jTextField2.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jTextField4.setText("");
+    }
+
+    public void HabilitarCampos_deTexto() {
+        jTextField4.setEditable(true);
+        jTextField2.setEditable(true);
+        jComboBox1.setEditable(true);
+       
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
-    private javax.swing.JButton jBguardar;
+    private javax.swing.JTextField cod_funcion;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -208,8 +304,8 @@ public class Modificar_funcion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JButton modificar_funcion;
     // End of variables declaration//GEN-END:variables
 }

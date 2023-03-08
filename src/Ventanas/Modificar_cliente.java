@@ -63,7 +63,7 @@ public class Modificar_cliente extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         edad_cliente2 = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BUSCAR = new javax.swing.JButton();
         Modificar_cli = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         dia_cli = new javax.swing.JSpinner();
@@ -143,10 +143,15 @@ public class Modificar_cliente extends javax.swing.JFrame {
         jLabel4.setText("MODIFICAR CLIENTE ");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(101, 153, 169));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/lupa.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, -1, 29));
+        BUSCAR.setBackground(new java.awt.Color(101, 153, 169));
+        BUSCAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/lupa.png"))); // NOI18N
+        BUSCAR.setBorder(null);
+        BUSCAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUSCARActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BUSCAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, -1, 29));
 
         Modificar_cli.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         Modificar_cli.setForeground(new java.awt.Color(0, 0, 255));
@@ -211,6 +216,12 @@ public class Modificar_cliente extends javax.swing.JFrame {
         Cerrar_BD(BaseD);
         cedula_cliente2.setEditable(true);
     }//GEN-LAST:event_Modificar_cliActionPerformed
+
+    private void BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSCARActionPerformed
+ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        buscar(BaseD);
+        Cerrar_BD(BaseD);        
+    }//GEN-LAST:event_BUSCARActionPerformed
  public void buscar(ObjectContainer basep) {//cargardatos
 
         Modificar_cli.setEnabled(false);
@@ -316,6 +327,7 @@ public class Modificar_cliente extends javax.swing.JFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BUSCAR;
     private javax.swing.JButton Modificar_cli;
     private javax.swing.JSpinner anio_cli;
     private javax.swing.JTextField cedula_cliente2;
@@ -323,7 +335,6 @@ public class Modificar_cliente extends javax.swing.JFrame {
     private javax.swing.JSpinner dia_cli;
     private javax.swing.JTextField direccion_cli2;
     private javax.swing.JSpinner edad_cliente2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
