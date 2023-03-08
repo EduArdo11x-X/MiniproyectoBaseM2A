@@ -198,7 +198,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
 
         ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-        Modificar_Pelicula(BaseD);
+        Modificar_Estudiante(BaseD);
         Cerrar_BD(BaseD);
         jTextField2.setEditable(true);
     }//GEN-LAST:event_jBguardarActionPerformed
@@ -290,7 +290,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     }
        
     
-    public void Modificar_Pelicula(ObjectContainer basep) {
+    public void Modificar_Estudiante(ObjectContainer basep) {
 
        
             JOptionPane.showMessageDialog(null, "Existen campos vacios");
