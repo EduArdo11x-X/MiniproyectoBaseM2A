@@ -7,7 +7,6 @@ package Ventanas;
 
 import Clases.Empleado;
 import Clases.Genero;
-import Clases.Validaciones;
 import static Ventanas.Registrar_Empleado.Cerrar_BD;
 import static Ventanas.Registrar_pelicula.Comprobar_Peliculas;
 import com.db4o.Db4o;
@@ -169,25 +168,6 @@ public class Registro_Genero extends javax.swing.JFrame {
            jTextField1.setText("");
 
         
-    }
-      
-       public boolean validarCampos(ObjectContainer basep) {
-        Validaciones miValidaciones = new Validaciones();
-        asignarVariables(basep);
-        boolean ban_confirmar = true;
-
-        if (jTextField1.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "INGRESE EL ID DEL GENERO");
-            ban_confirmar = false;
-        } else {
-            if (!miValidaciones.validarid(Id_genero)) {
-                JOptionPane.showMessageDialog(this, "CODIGO INVALIDO");
-                ban_confirmar = false;
-            }
-        } 
-        
-
-        return ban_confirmar;
     }
       
        public static int Comprobar_Genero(ObjectContainer basep, String Id_genero) {
