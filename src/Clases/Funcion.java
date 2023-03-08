@@ -14,9 +14,9 @@ public class Funcion {
     private String Id_funcion;
     private String fecha_funcion;
     private String formato;
-    private double hora;
+    private String  hora;
 
-    public Funcion(String Id_funcion, String fecha_funcion, String formato, double hora) {
+    public Funcion(String Id_funcion, String fecha_funcion, String formato, String hora) {
         this.Id_funcion = Id_funcion;
         this.fecha_funcion = fecha_funcion;
         this.formato = formato;
@@ -73,14 +73,14 @@ public class Funcion {
     /**
      * @return the hora
      */
-    public double getHora() {
+    public String getHora() {
         return hora;
     }
 
     /**
      * @param hora the hora to set
      */
-    public void setHora(double hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 

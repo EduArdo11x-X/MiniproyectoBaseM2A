@@ -5,15 +5,25 @@
  */
 package Ventanas;
 
-/**
- *
- * @author EDU
- */
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import Clases.Pelicula;
+import Clases.Validaciones;
+import javax.swing.JOptionPane;
+
 public class Registrar_pelicula extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Registrar_pelicula
-     */
+    String Cod_Pelicula = "";
+    String titulo_pelicula = "";
+    String Duracion = "";
+    String Actores = "";
+    String Clasificacion = "";
+    String Anio_estreno = "";
+    String Categoria = "";
+    String Idioma = "";
+    String Direcctores = "";
+
     public Registrar_pelicula() {
         initComponents();
     }
@@ -50,9 +60,11 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         jBguardar = new javax.swing.JButton();
         jTextField12 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(604, 375));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -93,6 +105,11 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 20));
 
         jTextField2.setText(" ");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 110, -1));
 
         jComboBox1.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
@@ -100,7 +117,7 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 110, -1));
 
         jComboBox2.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elija una opcion", "Acción", "Aventuras", "Ciencia Ficción", "Comedia", "Drama", "Fantasía", "Musical" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 110, -1));
 
         jComboBox3.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
@@ -117,6 +134,11 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 110, -1));
 
         jTextField10.setText(" ");
+        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField10ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 100, -1));
 
         jLabel10.setFont(new java.awt.Font("Copperplate", 3, 24)); // NOI18N
@@ -136,7 +158,7 @@ public class Registrar_pelicula extends javax.swing.JFrame {
                 jBguardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 30, 30));
+        jPanel1.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 30, 30));
 
         jTextField12.setText(" ");
         jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 100, -1));
@@ -144,6 +166,14 @@ public class Registrar_pelicula extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Copperplate", 3, 18)); // NOI18N
         jLabel12.setText("Registro de peliculas");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 10));
+
+        jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,49 +191,116 @@ public class Registrar_pelicula extends javax.swing.JFrame {
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
 
-        //ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
-
-        //Crear_E(BaseD);
-        //Cerrar_BD(BaseD);
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Crear_E(BaseD);
+        Cerrar_BD(BaseD);
     }//GEN-LAST:event_jBguardarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Registrar_pelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Registrar_pelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Registrar_pelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Registrar_pelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        Inicio vsar1 = new Inicio();
+        vsar1.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Registrar_pelicula().setVisible(true);
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField10ActionPerformed
+
+    public void asignarVariables(ObjectContainer basep) {
+        Cod_Pelicula = jTextField2.getText();
+        titulo_pelicula = jTextField10.getText();
+        Duracion = jTextField8.getText();
+        Actores = jTextField7.getText();
+        Clasificacion = jComboBox1.getSelectedItem().toString();
+        Anio_estreno = jComboBox3.getSelectedItem().toString();
+        Categoria = jComboBox2.getSelectedItem().toString();
+        Idioma = jTextField12.getText();
+        Direcctores = jTextField9.getText();
+    }
+
+    public void Crear_E(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        if (validarCampos(basep)) {
+
+            Pelicula Enuevo = new Pelicula(Cod_Pelicula, titulo_pelicula, Duracion, Actores, Clasificacion, Anio_estreno, Categoria, Idioma, Direcctores);
+
+            if (Comprobar_Peliculas(basep, Cod_Pelicula) == 0) {
+                basep.set(Enuevo);
+                JOptionPane.showMessageDialog(null, "La pelicula se guardo correctamente");
+                LimpiarCampos();
+            } else {
+
+                JOptionPane.showMessageDialog(null, "La pelicula ya existe");
             }
-        });
+            jTextField2.setText("");
+
+        }
+        
+    }
+
+    public boolean validarCampos(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        asignarVariables(basep);
+        boolean ban_confirmar = true;
+
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE UN CODIGO");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid(Cod_Pelicula)) {
+                JOptionPane.showMessageDialog(this, "CODIGO INVALIDO");
+                ban_confirmar = false;
+            }
+        }
+        
+        if (jTextField10.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el titulo de la pelicula");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarNomApe(titulo_pelicula)) {
+                JOptionPane.showMessageDialog(this, "Titulo Pelicula invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        
+
+        return ban_confirmar;
+    }
+
+    public static int Comprobar_Peliculas(ObjectContainer basep, String IdUsuario) {
+
+        Pelicula Ebuscar = new Pelicula(IdUsuario, null, null, null, null, null, null, null, null);
+
+        ObjectSet result = basep.get(Ebuscar);
+
+        return result.size();
+    }
+
+    public static void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+
+    public void LimpiarCampos() {
+        jTextField2.setText("");
+        jTextField10.setText("");
+        jTextField8.setText("");
+        jTextField7.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        jTextField12.setText("");
+        jTextField9.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBguardar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
