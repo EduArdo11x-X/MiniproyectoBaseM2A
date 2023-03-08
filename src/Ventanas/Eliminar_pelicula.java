@@ -150,14 +150,14 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
       ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-        Buscar_peliculaID(BaseD);
+        Buscar_EstudianteID(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
 
         ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-        Eliminar_Pelicula(BaseD);
+        Eliminar_Estudiante(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_EliminarActionPerformed
 
@@ -190,7 +190,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
-    public void Buscar_peliculaID(ObjectContainer basep) {
+    public void Buscar_EstudianteID(ObjectContainer basep) {
 
         if (jComboBox1.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Selección invalida");
@@ -226,7 +226,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
         jComboBox1.setSelectedIndex(0);
     }
     public void MostrarDatos(ObjectSet result) {
-        String matrizpelicula[][] = new String[result.size()][8];
+        String matrizpelicula[][] = new String[result.size()][7];
 
         if (result.size() == 0) {
             JOptionPane.showMessageDialog(null, "La pelicula no se encuentra en la base de datos");
@@ -252,9 +252,9 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
 
     }
     
-    public void Eliminar_Pelicula(ObjectContainer basep) {
+    public void Eliminar_Estudiante(ObjectContainer basep) {
 
-        Registrar_pelicula Einterfaz = new Registrar_pelicula();
+        Registrar_pelicula Einterfaz = new Registrar_pelicula();//Crear un objeto de la clase Estudiantes para traer el metodo Comprobar_Estudiantes
 
         if (jTextField2.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Codigo no valido");
@@ -269,9 +269,9 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "La pelicula no existe en la base de datos");
 
             } else {
-                Pelicula Peliculaeliminar = (Pelicula) result.next();
+                Pelicula Estudianteeliminar = (Pelicula) result.next();
 
-                basep.delete(Peliculaeliminar);
+                basep.delete(Estudianteeliminar);
                 JOptionPane.showMessageDialog(null, "El pelicula fue eliminado de la base de datos exitosamente");
             }
 

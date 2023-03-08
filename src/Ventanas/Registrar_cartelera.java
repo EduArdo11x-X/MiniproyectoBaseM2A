@@ -5,20 +5,15 @@
  */
 package Ventanas;
 
-import com.db4o.Db4o;
-import com.db4o.ObjectContainer;
-import com.db4o.ObjectSet;
-import Clases.Validaciones;
-import javax.swing.JOptionPane;
-
+/**
+ *
+ * @author EDU
+ */
 public class Registrar_cartelera extends javax.swing.JFrame {
 
-    String Cod_Cartelera = "";
-    String titulo_pelicula = "";
-    String fecha_estreno = "";
-    String Generos = "";
-    String Clasificacion = "";
-
+    /**
+     * Creates new form Registrar_cartelera
+     */
     public Registrar_cartelera() {
         initComponents();
     }
@@ -78,7 +73,7 @@ public class Registrar_cartelera extends javax.swing.JFrame {
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 173, 165, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar-datos.png"))); // NOI18N
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, -1, -1));
 
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

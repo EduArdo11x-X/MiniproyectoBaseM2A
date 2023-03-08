@@ -5,12 +5,10 @@
  */
 package Ventanas;
 
-import com.db4o.Db4o;
-import com.db4o.ObjectContainer;
-import com.db4o.ObjectSet;
-import Clases.Empleado;
-import javax.swing.JOptionPane;
-
+/**
+ *
+ * @author EDU
+ */
 public class Eliminar_empleado extends javax.swing.JFrame {
 
     /**
@@ -70,11 +68,6 @@ public class Eliminar_empleado extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 698, 240));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un campo:", "Ver todos", "Cedula Empleado", "ID Empleado", " " }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 170, 30));
 
         jLabel13.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
@@ -148,140 +141,25 @@ public class Eliminar_empleado extends javax.swing.JFrame {
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
-        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-        Buscar_empleadoID(BaseD);
-        Cerrar_BD(BaseD);
-
-
+        //  ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
+        //Buscar_EstudianteID(BaseD);
+        //Cerrar_BD(BaseD);
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
 
-        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-        Eliminar_Empleado(BaseD);
-        Cerrar_BD(BaseD);
+        //ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
+        //Eliminar_Estudiante(BaseD);
+        //Cerrar_BD(BaseD);
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        Inicio eemp = new Inicio();
+        Inicio eemp = new Inicio ();
         eemp.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        if (jComboBox1.getSelectedIndex() == 0) {
-            //deshabilitarParametros();
-        } else {
-            if (jComboBox1.getSelectedIndex() == 1) {
-                // deshabilitarParametros();
-            } else {
-                if (jComboBox1.getSelectedIndex() == 2) {
-                    // deshabilitarParametros();
-                } else {
-                    if (jComboBox1.getSelectedIndex() == 3) {
-                        // habilitarParametros();
-                    }
-                }
-            }
-        }
-    }
-
-    public void Buscar_empleadoID(ObjectContainer basep) {
-
-        if (jComboBox1.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Selección invalida");
-
-        } else {
-            if (jComboBox1.getSelectedIndex() == 1) {
-
-                Empleado Ebuscar = new Empleado(null, null, null, 0, 0, 0, 0, null, null, null);
-
-                ObjectSet result = basep.get(Ebuscar);
-                MostrarDatos(result);
-            } else {
-                if (jComboBox1.getSelectedIndex() == 2) {
-
-                    String IDAux = JOptionPane.showInputDialog("Ingrese el ID a consultar");
-
-                    Empleado Ebuscar = new Empleado(null, null, null, 0, 0, 0, 0, null, null, null);
-
-                    ObjectSet result = basep.get(Ebuscar);
-                    MostrarDatos(result);
-
-                } else {
-                    if (jComboBox1.getSelectedIndex() == 3) {
-//                        habilitarParametros();
-                        // BuscarParametros(basep);
-
-                    }
-                }
-            }
-
-        }
-        //Borrar la eleccion y ponerla al inicio
-        jComboBox1.setSelectedIndex(0);
-    }
-
-    public void MostrarDatos(ObjectSet result) {
-        String matrizpempleado[][] = new String[result.size()][8];
-
-        if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "El empleado no se encuentra en la base de datos");
-        } else {
-            for (int i = 0; i < result.size(); i++) {
-
-                Empleado miE = new Empleado();
-
-                miE = (Empleado) result.get(i);
-                matrizpempleado[i][0] = miE.getId_Empleado();
-                matrizpempleado[i][1] = miE.getCed_empleado();
-                matrizpempleado[i][2] = miE.getArea_Empleado();
-                matrizpempleado[i][3] = miE.getHoras_sem();
-                matrizpempleado[i][4] = miE.getHorario_inicio();
-                matrizpempleado[i][5] = miE.getHorario_fin();
-
-                Tabla.setModel(new javax.swing.table.DefaultTableModel(matrizpempleado, new String[]{"Id Empleado","Ced Empleado","Area Empleado","Horas Semana","Horatio Inicio","Horario Fin"}));
-
-            }
-        }
-    }
     
-    public void Eliminar_Empleado(ObjectContainer basep) {
-
-        Registrar_Empleado Einterfaz = new Registrar_Empleado();
-
-        if (jTextField2.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Codigo no valido");
-        } else {
-
-            String IDE = jTextField2.getText();
-            Empleado Leliminar = new Empleado(null, IDE, null, 0, 0, 0, 0, null, null, null);
-            ObjectSet result = basep.get(Leliminar);
-
-            if (Einterfaz.Comprobar_Empleado(basep, IDE) == 0) {
-
-                JOptionPane.showMessageDialog(null, "La pelicula no existe en la base de datos");
-
-            } else {
-                Empleado Empleadoeliminar = (Empleado) result.next();
-
-                basep.delete(Empleadoeliminar);
-                JOptionPane.showMessageDialog(null, "El pelicula fue eliminado de la base de datos exitosamente");
-            }
-
-        }
-
-        //Borrar el campo de texto
-        jTextField2.setText("");
-    }
-
-    public void Cerrar_BD(ObjectContainer basep) {
-
-        basep.close();
-
-
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
     private javax.swing.JButton Eliminar;
