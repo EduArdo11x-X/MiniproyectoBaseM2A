@@ -67,7 +67,6 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         jSiniciohoras1 = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
         jSiniciominutos1 = new javax.swing.JSpinner();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,14 +140,6 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         jSiniciominutos1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
         jPanel1.add(jSiniciominutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, -1));
 
-        jButton2.setText("Volver");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, -1, -1));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,12 +166,6 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         Crear_E(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
-        Inicio vsar1 = new Inicio();
-        vsar1.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     public void asignarVariables(ObjectContainer basep) {
         Ced_empleado = jTextField1.getText();
@@ -248,11 +233,11 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         }
         
         if (jTextField6.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese horas a la semana del empleado");
+            JOptionPane.showMessageDialog(this, "Ingrese el titulo de la pelicula");
             ban_confirmar = false;
         } else {
             if (!miValidaciones.validarNomApe(horas_sem)) {
-                JOptionPane.showMessageDialog(this, "Hora de la semana invalido");
+                JOptionPane.showMessageDialog(this, "Titulo Pelicula invalido");
                 ban_confirmar = false;
             }
         }
@@ -308,7 +293,6 @@ public class Registrar_Empleado extends javax.swing.JFrame {
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

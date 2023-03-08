@@ -35,11 +35,6 @@ public class Empleado {
         this.horas_sem = horas_sem;
     }
 
-    public Empleado() {
-    }
-    
-    
-
     public String getCed_empleado() {
         return Ced_empleado;
     }
