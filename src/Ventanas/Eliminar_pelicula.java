@@ -48,25 +48,25 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextField2.setText(" ");
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, 110, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 110, 30));
 
         jLabel10.setFont(new java.awt.Font("Copperplate", 3, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 0, 51));
         jLabel10.setText("SELECCIONE UN CAMPO PARA BUSCAR UNA PELICULA");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 360, 60));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 360, 60));
 
         jLabel12.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
-        jLabel12.setText("id:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, -1, 30));
+        jLabel12.setText("ID :");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, 30));
 
         jLabel14.setFont(new java.awt.Font("Copperplate", 3, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(51, 0, 51));
         jLabel14.setText("ID DE PELICULA A ELIMINAR");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 190, 40));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 190, 40));
 
         jLabel13.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel13.setText("Filtro:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 30));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, 30));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un campo:", "Ver todos", "ID", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +74,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 170, 30));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 170, 30));
 
         Tabla.setBackground(new java.awt.Color(247, 247, 247));
         Tabla.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -97,7 +97,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tabla);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 680, 230));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 700, 260));
 
         Buscar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         Buscar.setForeground(new java.awt.Color(0, 0, 255));
@@ -109,7 +109,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 30, 30));
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 30, 30));
 
         Eliminar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         Eliminar.setForeground(new java.awt.Color(0, 0, 255));
@@ -122,30 +122,26 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
                 EliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 30, 30));
+        jPanel1.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, 30, 30));
 
-        jButton1.setText("Regresar");
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
         );
 
         pack();
@@ -186,9 +182,11 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         this.dispose();
-        Inicio vsar1 = new Inicio();
-            vsar1.setVisible(true); 
+        Inicio v = new Inicio();
+            v.setVisible(true); 
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
