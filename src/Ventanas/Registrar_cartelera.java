@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import Clases.Cartelera;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -14,10 +15,13 @@ import javax.swing.JOptionPane;
 public class Registrar_cartelera extends javax.swing.JFrame {
 
     String Cod_Cartelera = "";
-    String titulo_pelicula = "";
-    String fecha_estreno = "";
-    String Generos = "";
+    String Titulo_pelicula = "";
+    String Fecha_estreno = "";
+    String Genero = "";
     String Clasificacion = "";
+    int dia = 0;
+    int mes = 0;
+    int anio = 0;
 
     public Registrar_cartelera() {
         initComponents();
@@ -39,15 +43,21 @@ public class Registrar_cartelera extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        dia_cli = new javax.swing.JSpinner();
+        mes_cli = new javax.swing.JSpinner();
+        anio_cli = new javax.swing.JSpinner();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jBguardar1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel10.setFont(new java.awt.Font("Copperplate", 3, 24)); // NOI18N
@@ -70,60 +80,204 @@ public class Registrar_cartelera extends javax.swing.JFrame {
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 91, 166, -1));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 131, 166, -1));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 173, 165, -1));
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar-datos.png"))); // NOI18N
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, -1, -1));
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 91, 165, -1));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 133, 165, -1));
-
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
         jLabel4.setText("Genero:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 97, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
         jLabel5.setText("Clasificacion:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 137, -1, -1));
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terror", "Comedia", "Acción", "Drama", "Aventura", "Ciencia Ficción", "Fantasia", "Suspenso" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 150, 30));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elija una opcion", "Apto para todo publico", "Mayor de 18 años", "Bajo supervision de adultos" }));
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 150, 30));
+
+        dia_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+        jPanel1.add(dia_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 40, -1));
+
+        mes_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        jPanel1.add(mes_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
+
+        anio_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        jPanel1.add(anio_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText(":");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 10, -1));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel12.setText(":");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, -1, -1));
+
+        jBguardar1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jBguardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar-datos.png"))); // NOI18N
+        jBguardar1.setText("GUARDAR");
+        jBguardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBguardar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBguardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 150, 30));
+
+        jButton2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
+        jButton2.setText("REGRESAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, -1, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    private void jBguardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardar1ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Crear_Cl(BaseD);
+        Cerrar_BD(BaseD);
+    }//GEN-LAST:event_jBguardar1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        Inicio vsar1 = new Inicio();
+        vsar1.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+      
+    public void asignarVariables(ObjectContainer basep) {
+        Cod_Cartelera = jTextField1.getText();
+        Titulo_pelicula = jTextField2.getText(); 
+        Genero = jComboBox1.getSelectedItem().toString();
+        Clasificacion = jComboBox2.getSelectedItem().toString();
+        
+        String day = String.valueOf(dia);
+        String Mounth = String.valueOf(mes);
+        String Year = String.valueOf(anio);
+        
+        if (String.valueOf(dia_cli).length() == 1) {
+            day="0"+day;
+        }
+        if (String.valueOf(mes_cli).length() == 1) {
+            Mounth="0"+Mounth;
+        }
+        if (String.valueOf(anio_cli).length() == 1) {
+            Year="0"+Year;
+        }
+        
+        Fecha_estreno = day + " / " + Mounth + " / " + Year;
+
+            }
     
+    public void Crear_Cl(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        if (validarCampos(basep)) {
+
+            Cartelera Clnuevo = new Cartelera(Cod_Cartelera,Titulo_pelicula,Fecha_estreno,Genero,Clasificacion,dia,mes,anio);
+
+            if (Comprobar_cartelera(basep, Cod_Cartelera) == 0) {
+                basep.set(Clnuevo);
+                JOptionPane.showMessageDialog(null, "La cartelera se guardo correctamente");
+                LimpiarCampos();
+            } else {
+
+                JOptionPane.showMessageDialog(null, "La cartelera ya existe");
+            }
+            jTextField1.setText("");
+
+        }
+        
+    }
+    
+    public boolean validarCampos(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        asignarVariables(basep);
+        boolean ban_confirmar = true;
+
+        if (jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE UN CODIGO DE CARTELERA");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid(Cod_Cartelera)) {
+                JOptionPane.showMessageDialog(this, "CODIGO INVALIDO");
+                ban_confirmar = false;
+            }
+        }
+        
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el titulo de la pelicula");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarNomApe(Titulo_pelicula)) {
+                JOptionPane.showMessageDialog(this, "Titulo Pelicula invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        
+        if (jComboBox1.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione una dato");
+            ban_confirmar = false;
+        }
+        
+        if (jComboBox2.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione una dato");
+            ban_confirmar = false;
+        }
+        
+        return ban_confirmar;
+    }
+    
+    public static int Comprobar_cartelera(ObjectContainer basep, String cedula) {
+
+        Cartelera Clbuscar = new Cartelera(null, null, null, null, null,0,0,0);
+
+        ObjectSet result = basep.get(Clbuscar);
+
+        return result.size();
+    }
+    
+    public static void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+
+    public void LimpiarCampos() {
+       jTextField1.setText("");
+       jTextField2.setText("");
+        dia_cli.setValue(0);
+        mes_cli.setValue(0);
+        anio_cli.setValue(0);
+        jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
+        
+    }
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JSpinner anio_cli;
+    private javax.swing.JSpinner dia_cli;
+    private javax.swing.JButton jBguardar1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -131,8 +285,6 @@ public class Registrar_cartelera extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JSpinner mes_cli;
     // End of variables declaration//GEN-END:variables
 }

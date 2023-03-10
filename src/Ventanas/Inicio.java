@@ -211,6 +211,11 @@ public class Inicio extends javax.swing.JFrame {
         jMenu6.setText("Cartelera");
 
         jMenuItem8.setText("Ingresar Pelicula");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem8);
 
         jMenuItem13.setText("Modificar Cartelera");
@@ -222,6 +227,11 @@ public class Inicio extends javax.swing.JFrame {
         jMenu6.add(jMenuItem13);
 
         jMenuItem18.setText("Consultar y eliminar Cartelera");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem18);
 
         jMenuBar1.add(jMenu6);
@@ -334,7 +344,14 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        // TODO add your handling code here:
+      
+        this.dispose();
+            Modificar_cartelera bm = new Modificar_cartelera ();
+            bm.setVisible(true);
+        
+        
+        
+        
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
@@ -446,6 +463,20 @@ this.dispose();
 this.dispose();
             Eliminar_cliente pe = new Eliminar_cliente ();
             pe.setVisible(true);      }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        this.dispose();
+            Registrar_cartelera pe = new Registrar_cartelera ();
+            pe.setVisible(true);  
+        
+        
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        this.dispose();
+            Eliminar_cartelera pe = new Eliminar_cartelera ();
+            pe.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     /**
      * @param args the command line arguments

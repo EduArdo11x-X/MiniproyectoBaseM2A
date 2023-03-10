@@ -16,19 +16,27 @@ public class Cartelera {
     private String Fecha_estreno;
     private String Genero;
     private String Clasificacion;
+    private int dia;
+    private int mes;
+    private int anio;
 
-    public Cartelera(String Cod_Cartelera, String Titulo_pelicula, String Fecha_estreno, String Genero, String Clasificacion) {
+    public Cartelera(String Cod_Cartelera, String Titulo_pelicula, String Fecha_estreno, String Genero, String Clasificacion, int dia, int mes, int anio) {
         this.Cod_Cartelera = Cod_Cartelera;
         this.Titulo_pelicula = Titulo_pelicula;
         this.Fecha_estreno = Fecha_estreno;
         this.Genero = Genero;
         this.Clasificacion = Clasificacion;
+        this.dia = dia;
+        this.mes = mes;
+        this.anio = anio;
     }
 
+    
+   
+    
+    
     public Cartelera() {
     }
-    
-    
 
     public String getCod_Cartelera() {
         return Cod_Cartelera;
@@ -70,11 +78,33 @@ public class Cartelera {
         this.Clasificacion = Clasificacion;
     }
 
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+
     @Override
     public String toString() {
-        return "Cartelera{" + "Cod_Cartelera=" + Cod_Cartelera + ", Titulo_pelicula=" + Titulo_pelicula + ", Fecha_estreno=" + Fecha_estreno + ", Genero=" + Genero + ", Clasificacion=" + Clasificacion + '}';
+        return "Cartelera{" + "Cod_Cartelera=" + Cod_Cartelera + ", Titulo_pelicula=" + Titulo_pelicula + ", Fecha_estreno=" + Fecha_estreno + ", Genero=" + Genero + ", Clasificacion=" + Clasificacion + ", dia=" + dia + ", mes=" + mes + ", anio=" + anio + '}';
     }
-    
-    
     
 }

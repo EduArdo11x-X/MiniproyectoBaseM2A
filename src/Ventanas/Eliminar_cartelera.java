@@ -5,10 +5,13 @@
  */
 package Ventanas;
 
-/**
- *
- * @author EDU
- */
+import Clases.Cartelera;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import Clases.Validaciones;
+import javax.swing.JOptionPane;
+
 public class Eliminar_cartelera extends javax.swing.JFrame {
 
     /**
@@ -40,6 +43,7 @@ public class Eliminar_cartelera extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Tabla.setBackground(new java.awt.Color(247, 247, 247));
@@ -63,7 +67,7 @@ public class Eliminar_cartelera extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tabla);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 135, 680, 219));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 680, 219));
 
         jLabel10.setFont(new java.awt.Font("Copperplate", 3, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 0, 51));
@@ -105,9 +109,9 @@ public class Eliminar_cartelera extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 86, 30, 30));
+        getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 30, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un campo:", "Ver todos", "ID", "Fecha Estreno", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un campo:", "Ver todos", "ID", "Fecha de estreno" }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 87, 170, 30));
 
         jLabel13.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
@@ -127,17 +131,17 @@ public class Eliminar_cartelera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+ ObjectContainer Basep = Db4o.openFile(Inicio.direccionBD);
+       Eliminar_Cliente(Basep);
+        Cerrar_BD(Basep);
 
-        //ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
-        //Eliminar_Estudiante(BaseD);
-        //Cerrar_BD(BaseD);
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
-        //  ObjectContainer BaseD = Db4o.openFile(Principal.direccionBD);
-        //Buscar_EstudianteID(BaseD);
-        //Cerrar_BD(BaseD);
+        ObjectContainer Basep = Db4o.openFile(Inicio.direccionBD);
+       Buscar_ClienteCedula(Basep);
+        Cerrar_BD(Basep);
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -146,7 +150,105 @@ public class Eliminar_cartelera extends javax.swing.JFrame {
         ecar.setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    public void Buscar_ClienteCedula(ObjectContainer basep) {
 
+        if (jComboBox1.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Selección invalida");
+
+        } else {
+            if (jComboBox1.getSelectedIndex() == 1) {
+
+        Cartelera Clbuscar = new Cartelera(null, null, null, null, null, 0, 0, 0);
+
+                ObjectSet result = basep.get(Clbuscar);
+                MostrarDatos(result);
+            } else {
+                if (jComboBox1.getSelectedIndex() == 2) {
+
+                    String IDAux = JOptionPane.showInputDialog("Ingrese la Cedula a consultar");
+
+        Cartelera Clbuscar = new Cartelera(IDAux, null, null, null, null, 0, 0, 0);
+
+                    ObjectSet result = basep.get(Clbuscar);
+                    MostrarDatos(result);
+
+                } else {
+                    if (jComboBox1.getSelectedIndex() == 3) {
+                        String IDAux = JOptionPane.showInputDialog("Ingrese la Cedula a consultar");
+
+                         Cartelera Clbuscar = new Cartelera(null, null, IDAux, null, null, 0, 0, 0);
+
+                    ObjectSet result = basep.get(Clbuscar);
+                    MostrarDatos(result);
+                    }
+                }
+            }
+        }
+
+        //Borrar la eleccion y ponerla al inicio
+        jComboBox1.setSelectedIndex(0);
+    }
+    
+    public void MostrarDatos(ObjectSet result) {
+        String matrizcliente[][] = new String[result.size()][5];
+
+        if (result.size() == 0) {
+            JOptionPane.showMessageDialog(null, "La pelicula no se encuentra en la base de datos");
+        } else {
+            for (int i = 0; i < result.size(); i++) {
+
+                Cartelera miCl = new Cartelera();
+
+                miCl = (Cartelera) result.get(i);
+                matrizcliente[i][0] = miCl.getCod_Cartelera();
+                matrizcliente[i][1] = miCl.getTitulo_pelicula();
+                matrizcliente[i][2] = miCl.getGenero();               
+                matrizcliente[i][3] = miCl.getClasificacion();
+                matrizcliente[i][4] =  String.valueOf(miCl.getFecha_estreno());
+              
+
+                Tabla.setModel(new javax.swing.table.DefaultTableModel(matrizcliente, new String[]{"Codigo", "Titulo", "Genero", "Clasidicacion", "Fecha Estreno"}));
+
+            }
+        }
+
+    }
+    
+    public void Eliminar_Cliente(ObjectContainer basep) {
+
+        Registro_Cliente Clinterfaz = new Registro_Cliente();//Crear un objeto de la clase Estudiantes para traer el metodo Comprobar_Estudiantes
+
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Cedula no valido");
+        } else {
+
+            String IDE = jTextField2.getText();
+        Cartelera Cleliminar = new Cartelera(null, null, null, null, null, 0, 0, 0);
+            ObjectSet result = basep.get(Cleliminar);
+
+            if (Clinterfaz.Comprobar_Cliente(basep, IDE) == 0) {
+
+                JOptionPane.showMessageDialog(null, "El cliente no existe en la base de datos");
+
+            } else {
+                Cartelera Clienteeliminar = (Cartelera) result.next();
+
+                basep.delete(Clienteeliminar);
+                JOptionPane.showMessageDialog(null, "El Cliente fue eliminado de la base de datos exitosamente");
+            }
+
+        }
+
+        //Borrar el campo de texto
+        jTextField2.setText("");
+    }
+
+    public void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+            
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -238,7 +238,7 @@ public class Registro_Cliente extends javax.swing.JFrame {
             Year="0"+Year;
         }
         
-        fecha_nacimiento = day+":" + Mounth + "/" + Year;
+        fecha_nacimiento = day + " / " + Mounth + " / " + Year;
 
             }
 
@@ -336,7 +336,7 @@ public class Registro_Cliente extends javax.swing.JFrame {
 
     public static void Cerrar_BD(ObjectContainer basep) {
 
-        basep.close();
+        basep.close();  
     }
 
     public void LimpiarCampos() {
@@ -380,4 +380,8 @@ public class Registro_Cliente extends javax.swing.JFrame {
     private javax.swing.JTextField nombre_cliente;
     private javax.swing.JTextField telefono_cliente;
     // End of variables declaration//GEN-END:variables
+
+    int Comprobar_cartelera(ObjectContainer basep, String CODIGOAux) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
