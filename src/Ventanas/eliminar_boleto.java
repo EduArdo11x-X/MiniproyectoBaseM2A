@@ -115,7 +115,7 @@ public class eliminar_boleto extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(467, 139, -1, 29));
+        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, 29));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 700, 410));
 

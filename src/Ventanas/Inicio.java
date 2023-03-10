@@ -406,8 +406,8 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
        this.dispose();
-           // Boleto b = new Boleto (Id_boleto, Id_sala, Cedula_Cliente, Titulo_pelicula, Id_empleado, hora_ini_pelicula, num_asiento, nombre_cine, Id_funcion, tipo_genero, fecha_compra, hora_compra);
-           // b.setVisible(true);
+       Registrar_boleto pm = new Registrar_boleto ();
+            pm.setVisible(true);
     }//GEN-LAST:event_jMenuItem25ActionPerformed
 
     private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed

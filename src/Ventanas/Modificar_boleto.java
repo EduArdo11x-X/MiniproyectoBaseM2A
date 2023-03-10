@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import Clases.Boleto;
 import Clases.Validaciones;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
@@ -291,28 +292,57 @@ public class Modificar_boleto extends javax.swing.JFrame {
         
         return ban_confirmar;
     } 
-     
-     public void Crear_E(ObjectContainer basep) {
-        
-        
+     /*
+     public void buscar(ObjectContainer basep) {//cargardatos
 
-             Boleto Enuevo = new Boleto(Id_boleto, Id_sala, Cedula_Cliente, Titulo_pelicula, Id_empleado, hora_ini_pelicula,num_asiento, nombre_cine,Id_funcion,tipo_genero,fecha_compra,hora_compra);
-             asignarVariables(basep);
-           if (validarCampos(basep)) {
-            if (Comprobar_Boleto(basep, Id_boleto) == 0) {
-                basep.set(Enuevo);
-                JOptionPane.showMessageDialog(null, "EL BOLETO SE GUARDO CORRECTAMENTE");
+        jButton2.setEnabled(false);
+        String CODIGOAux;
+        CODIGOAux = jTextField1.getText();
+
+        Boleto EAux = new Boleto();
+
+        if (jTextField1.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Ingrese la cedula del empleado");
+        } else {
+
+            if (EAux.Comprobar_Empleado(basep, CODIGOAux) == 0) {
+                
+                JOptionPane.showMessageDialog(null, "El empleado no existe en la base de datos");
                 LimpiarCampos();
+                
             } else {
+                
+                Boleto Ebuscar = new Boleto(CODIGOAux, null, null, 0, 0, 0, 0, null, null, null);
 
-                JOptionPane.showMessageDialog(null, "EL BOLETO YA EXISTE");
+                ObjectSet result = basep.get(Ebuscar);
+                for (int i = 0; i < result.size(); i++) {
+
+                    Boleto miE = new Boleto();
+
+                    miE = (Boleto) result.get(i);
+                    
+                    jTextField1.setText(miE.getCed_empleado());
+                    jTextField2.setText(miE.getId_Empleado());
+                    jTextField3.setText(miE.getArea_Empleado());
+                    jTextField6.setText(miE.getHoras_sem());
+                    jSiniciohoras1.setValue(miE.getHora_inicio());
+                    jSiniciominutos1.setValue(miE.getMin_inicio());
+                    jSiniciohoras.setValue(miE.getHora_fin());
+                    jSiniciominutos.setValue(miE.getMin_fin());
+                    }
+
+                    if (validarCampos(basep)) {
+                    jBguardar3.setEnabled(true);
+                }
+                    
+              
+                jTextField1.setEditable(false);
             }
 
-            jTextField1.setText("");
-
-           }
+        }
     }
-       
+       */
         public static int Comprobar_Boleto(ObjectContainer basep, String Id_boleto) {
 
         Boleto Ebuscar = new Boleto(Id_boleto, null, null, null, null, null, 0, null, null, null, null, null);
