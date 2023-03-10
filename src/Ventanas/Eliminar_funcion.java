@@ -5,12 +5,12 @@
  */
 package Ventanas;
 
-import Clases.Cliente;
-import Clases.Funcion;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
+import Clases.Funcion;
 import javax.swing.JOptionPane;
+import Clases.Validaciones;
 
 /**
  *
@@ -190,7 +190,7 @@ if (jComboBox1.getSelectedIndex() == 0) {
             }
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
+Validaciones miValidaciones = new Validaciones();
     public void Buscar_Funcion(ObjectContainer basep) {
 
         if (jComboBox1.getSelectedIndex() == 0) {
@@ -199,7 +199,7 @@ if (jComboBox1.getSelectedIndex() == 0) {
         } else {
             if (jComboBox1.getSelectedIndex() == 1) {
 
-        Funcion Fbuscar = new Funcion(null, null, null, null);
+        Funcion Fbuscar = new Funcion(null, null, null, null, 0, 0);
 
                 ObjectSet result = basep.get(Fbuscar);
                 MostrarDatos(result);
@@ -208,15 +208,19 @@ if (jComboBox1.getSelectedIndex() == 0) {
 
                     String IDAux = JOptionPane.showInputDialog("Ingrese la Cedula a consultar");
 
-        Funcion Fbuscar = new Funcion(null, null, null, null);
+        Funcion Fbuscar = new Funcion(IDAux, null, null, null, 0, 0);
 
                     ObjectSet result = basep.get(Fbuscar);
                     MostrarDatos(result);
 
                 } else {
                     if (jComboBox1.getSelectedIndex() == 3) {
-//                        habilitarParametros();
-                       // BuscarParametros(basep);
+                   String IDAux = JOptionPane.showInputDialog("Ingrese la Cedula a consultar");
+
+        Funcion Fbuscar = new Funcion(null, null, IDAux, null, 0, 0);
+
+                    ObjectSet result = basep.get(Fbuscar);
+                    MostrarDatos(result);
 
                     }
                 }
@@ -227,10 +231,10 @@ if (jComboBox1.getSelectedIndex() == 0) {
         jComboBox1.setSelectedIndex(0);
     }
     public void MostrarDatos(ObjectSet result) {
-        String matrizfuncion[][] = new String[result.size()][7];
+        String matrizfuncion[][] = new String[result.size()][4];
 
         if (result.size() == 0) {
-            JOptionPane.showMessageDialog(null, "La pelicula no se encuentra en la base de datos");
+            JOptionPane.showMessageDialog(null, "La funcion no se encuentra en la base de datos");
         } else {
             for (int i = 0; i < result.size(); i++) {
 
@@ -243,7 +247,7 @@ if (jComboBox1.getSelectedIndex() == 0) {
                 matrizfuncion[i][3] = miF.getHora();
                
 
-                Tablaf.setModel(new javax.swing.table.DefaultTableModel(matrizfuncion, new String[]{"Cedula", "Nombre", "Direccion", "Edad", "Correo Electronico", "Telefono","Fecha Nacimiento","Membresia"}));
+                Tablaf.setModel(new javax.swing.table.DefaultTableModel(matrizfuncion, new String[]{"Id_funcion","fecha_funcion","Formato","Hora"}));
 
             }
         }
@@ -252,14 +256,14 @@ if (jComboBox1.getSelectedIndex() == 0) {
     
     public void Eliminar_Funcion(ObjectContainer basep) {
 
-        Registrar_funcion Finterfaz = new Registrar_funcion();//Crear un objeto de la clase Estudiantes para traer el metodo Comprobar_Estudiantes
+        Registrar_funcion Finterfaz = new Registrar_funcion();
 
         if (jTextField2.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Codigo no valido");
         } else {
 
             String IDE = jTextField2.getText();
-        Funcion Feliminar = new Funcion(null, null, null, null);
+        Funcion Feliminar = new Funcion(null, null, null, null, 0, 0);
             ObjectSet result = basep.get(Feliminar);
 
             if (Finterfaz.Comprobar_Funcion(basep, IDE) == 0) {

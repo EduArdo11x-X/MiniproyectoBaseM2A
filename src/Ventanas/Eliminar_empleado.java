@@ -286,7 +286,6 @@ Validaciones miValidaciones = new Validaciones();
 
         basep.close();
 
-
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

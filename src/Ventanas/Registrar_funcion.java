@@ -6,9 +6,7 @@
 package Ventanas;
 
 import Clases.Funcion;
-import Clases.Pelicula;
-import static Ventanas.Registrar_pelicula.Cerrar_BD;
-import static Ventanas.Registrar_pelicula.Comprobar_Peliculas;
+import Clases.Validaciones;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -24,6 +22,9 @@ public class Registrar_funcion extends javax.swing.JFrame {
     String fecha_funcion = "";
     String formato = "";
     String hora = "";
+    int hora_inicio = 0;
+    int min_inicio = 0;
+    
 
     /**
      * Creates new form Registrar_funcion
@@ -49,13 +50,16 @@ public class Registrar_funcion extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jBguardar1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jSiniciohoras1 = new javax.swing.JSpinner();
+        jLabel8 = new javax.swing.JLabel();
+        jSiniciominutos1 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel10.setFont(new java.awt.Font("Copperplate", 3, 24)); // NOI18N
@@ -70,27 +74,20 @@ public class Registrar_funcion extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
         jLabel2.setText("Fecha Funcion:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 137, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
         jLabel3.setText("Formato:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 179, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 131, 166, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 20));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 166, -1));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 91, 166, -1));
 
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
         jLabel4.setText("Hora:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 165, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3D", "2D", "4D" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
         jBguardar1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
         jBguardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar-datos.png"))); // NOI18N
@@ -100,7 +97,7 @@ public class Registrar_funcion extends javax.swing.JFrame {
                 jBguardar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jBguardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 150, 30));
+        jPanel1.add(jBguardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 150, 30));
 
         jButton2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
@@ -110,13 +107,25 @@ public class Registrar_funcion extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, -1, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, 30));
+
+        jSiniciohoras1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+        jPanel1.add(jSiniciohoras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setText(":");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, -1));
+
+        jSiniciominutos1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+        jPanel1.add(jSiniciominutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,14 +134,6 @@ public class Registrar_funcion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-         ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-
-        Crear_E(BaseD);
-        Cerrar_BD(BaseD);
-    }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jBguardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardar1ActionPerformed
 
@@ -151,15 +152,47 @@ public class Registrar_funcion extends javax.swing.JFrame {
         Id_funcion = jTextField1.getText();
         fecha_funcion = jTextField2.getText();
         formato = jComboBox1.getSelectedItem().toString();
-        hora = jTextField4.getText();
+        hora_inicio = (Integer) jSiniciohoras1.getValue();
+        min_inicio = (Integer) jSiniciominutos1.getValue();
+        String Ihora = String.valueOf(hora_inicio);
+        String Imin = String.valueOf(min_inicio);
+        
+        if (String.valueOf(hora_inicio).length() == 1) {
+            Ihora="0"+Ihora;
+        }
+        if (String.valueOf(min_inicio).length() == 1) {
+            Imin="0"+Imin;
+        }
+        hora= Ihora+":" + Imin;
        
     }
      
-     public void Crear_E(ObjectContainer basep) {
-        
+     public boolean validarCampos(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        asignarVariables(basep);
+        boolean ban_confirmar = true;
+
         
 
-             Funcion Enuevo = new Funcion(Id_funcion, fecha_funcion, formato, hora);
+        if (jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un ID");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid(Id_funcion)) {
+                JOptionPane.showMessageDialog(this, "ID invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        
+        return ban_confirmar;
+    }
+ 
+     public void Crear_E(ObjectContainer basep) {
+
+             Funcion Enuevo = new Funcion(Id_funcion, fecha_funcion, formato, hora,hora_inicio,min_inicio);
+              asignarVariables(basep);
+               if (validarCampos(basep)) {
 
             if (Comprobar_Funcion(basep, Id_funcion) == 0) {
                 basep.set(Enuevo);
@@ -171,13 +204,13 @@ public class Registrar_funcion extends javax.swing.JFrame {
             }
 
            jTextField1.setText("");
-
-        
+      
     }
+     }
      
      public static int Comprobar_Funcion(ObjectContainer basep, String Id_funcion) {
 
-        Funcion Ebuscar = new Funcion(Id_funcion, null, null, null);
+        Funcion Ebuscar = new Funcion(Id_funcion, null,null, null, 0,0);
 
         ObjectSet result = basep.get(Ebuscar);
 
@@ -193,7 +226,8 @@ public class Registrar_funcion extends javax.swing.JFrame {
         jTextField1.setText("");
         jTextField2.setText("");
         jComboBox1.setSelectedIndex(0);
-        jTextField4.setText("");
+        jSiniciohoras1.setValue(0);
+        jSiniciominutos1.setValue(0);
     }
     
 
@@ -206,9 +240,11 @@ public class Registrar_funcion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSpinner jSiniciohoras1;
+    private javax.swing.JSpinner jSiniciominutos1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

@@ -303,7 +303,7 @@ public class Modificar_empleado extends javax.swing.JFrame {
                     jBguardar3.setEnabled(true);
                 }
                     
-               // HabilitarCampos_deTexto();
+              
                 jTextField1.setEditable(false);
             }
 

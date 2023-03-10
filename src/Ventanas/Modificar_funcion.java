@@ -5,9 +5,8 @@
  */
 package Ventanas;
 
-import Clases.Cliente;
 import Clases.Funcion;
-import static Ventanas.Modificar_pelicula.Cerrar_BD;
+import Clases.Validaciones;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -18,17 +17,20 @@ import javax.swing.JOptionPane;
  * @author EDU
  */
 public class Modificar_funcion extends javax.swing.JFrame {
-    
+
     String Id_funcion = "";
     String fecha_funcion = "";
     String formato = "";
     String hora = "";
+    int hora_inicio = 0;
+    int min_inicio = 0;
 
     /**
      * Creates new form Modificar_funcion
      */
     public Modificar_funcion() {
         initComponents();
+        jBguardar1.setEnabled(false);
     }
 
     /**
@@ -47,14 +49,18 @@ public class Modificar_funcion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         cod_funcion = new javax.swing.JTextField();
         Buscar = new javax.swing.JButton();
-        modificar_funcion = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        jBguardar1 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jSiniciohoras1 = new javax.swing.JSpinner();
+        jLabel8 = new javax.swing.JLabel();
+        jSiniciominutos1 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         jLabel10.setFont(new java.awt.Font("Copperplate", 3, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 0, 51));
@@ -72,12 +78,6 @@ public class Modificar_funcion extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
         jLabel4.setText("Hora:");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
         jLabel1.setText("Codigo funcion a modificar:");
 
@@ -92,17 +92,30 @@ public class Modificar_funcion extends javax.swing.JFrame {
             }
         });
 
-        modificar_funcion.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        modificar_funcion.setForeground(new java.awt.Color(0, 0, 255));
-        modificar_funcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/girar.png"))); // NOI18N
-        modificar_funcion.addActionListener(new java.awt.event.ActionListener() {
+        jBguardar1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jBguardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar.png"))); // NOI18N
+        jBguardar1.setText("MODIFICAR");
+        jBguardar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificar_funcionActionPerformed(evt);
+                jBguardar1ActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
-        jLabel6.setText("MODIFICAR");
+        jButton1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
+        jButton1.setText("REGRESAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jSiniciohoras1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setText(":");
+
+        jSiniciominutos1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,63 +129,67 @@ public class Modificar_funcion extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(168, 168, 168)
-                                .addComponent(cod_funcion, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel4))
-                                .addGap(59, 59, 59)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(109, 109, 109)
+                                        .addComponent(jSiniciohoras1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSiniciominutos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(108, 108, 108)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(modificar_funcion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel6))))
-                .addContainerGap(73, Short.MAX_VALUE))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(cod_funcion, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(jBguardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton1)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel1))
-                    .addComponent(cod_funcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel2))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)))
+                        .addComponent(jLabel1)
+                        .addComponent(cod_funcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jSiniciohoras1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jSiniciominutos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(modificar_funcion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jBguardar1))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -183,15 +200,11 @@ public class Modificar_funcion extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
@@ -200,17 +213,59 @@ public class Modificar_funcion extends javax.swing.JFrame {
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_BuscarActionPerformed
 
-    private void modificar_funcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_funcionActionPerformed
+    private void jBguardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardar1ActionPerformed
 
         ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
         Modificar_Funcion(BaseD);
         Cerrar_BD(BaseD);
-        jTextField2.setEditable(true);
-    }//GEN-LAST:event_modificar_funcionActionPerformed
+        cod_funcion.setEditable(true);
+    }//GEN-LAST:event_jBguardar1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        Inicio vsar1 = new Inicio();
+        vsar1.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void asignarVariables(ObjectContainer basep) {
+        Id_funcion = cod_funcion.getText();
+        fecha_funcion = jTextField2.getText();
+        formato = jComboBox1.getSelectedItem().toString();
+        hora_inicio = (Integer) jSiniciohoras1.getValue();
+        min_inicio = (Integer) jSiniciominutos1.getValue();
+        String Ihora = String.valueOf(hora_inicio);
+        String Imin = String.valueOf(min_inicio);
+
+        if (String.valueOf(hora_inicio).length() == 1) {
+            Ihora = "0" + Ihora;
+        }
+        if (String.valueOf(min_inicio).length() == 1) {
+            Imin = "0" + Imin;
+        }
+
+    }
+
+    public boolean validarCampos(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        asignarVariables(basep);
+        boolean ban_confirmar = true;
+
+        if (cod_funcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un ID");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid(Id_funcion)) {
+                JOptionPane.showMessageDialog(this, "ID invalido");
+                ban_confirmar = false;
+            }
+        }
+
+        return ban_confirmar;
+    }
 
     public void buscar(ObjectContainer basep) {//cargardatos
 
-        modificar_funcion.setEnabled(false);
+        jBguardar1.setEnabled(false);
         String CODIGOAux;
         CODIGOAux = cod_funcion.getText();
         Registrar_funcion FAux = new Registrar_funcion();
@@ -221,25 +276,29 @@ public class Modificar_funcion extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "La funcion no existe en la base de datos");
                 LimpiarCampos();
             } else {
-        Funcion Ebuscar = new Funcion(Id_funcion, null, null, null);
+                Funcion Ebuscar = new Funcion(CODIGOAux, null, null, null, 0, 0);
                 ObjectSet result = basep.get(Ebuscar);
                 for (int i = 0; i < result.size(); i++) {
+
                     Funcion miF = new Funcion();
+
                     miF = (Funcion) result.get(i);
+                    cod_funcion.setText(miF.getId_funcion());
                     jTextField2.setText(miF.getFecha_funcion());
-                    jTextField4.setText(miF.getHora());
+                    jSiniciohoras1.setValue(miF.getHora_inicio());
+                    jSiniciominutos1.setValue(miF.getMin_inicio());
                     for (int j = 0; j < jComboBox1.getItemCount(); j++) {
                         if (miF.getFormato().equalsIgnoreCase(jComboBox1.getItemAt(j))) {
                             jComboBox1.setSelectedIndex(j);
                             j = jComboBox1.getItemCount();
                         }
                     }
-                    
-                   
 
                 }
+                if (validarCampos(basep)) {
+                    jBguardar1.setEnabled(true);
+                }
 
-                HabilitarCampos_deTexto();
                 cod_funcion.setEditable(false);
             }
 
@@ -248,7 +307,7 @@ public class Modificar_funcion extends javax.swing.JFrame {
 
     public static int Comprobar_Funcion(ObjectContainer basep, String Id_funcion) {
 
-        Funcion Ebuscar = new Funcion(Id_funcion, null, null, null);
+        Funcion Ebuscar = new Funcion(Id_funcion, null, null, null, 0, 0);
 
         ObjectSet result = basep.get(Ebuscar);
 
@@ -260,14 +319,14 @@ public class Modificar_funcion extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Existen campos vacios");
         //LimpiarCamposdeTexto();
 
-        Funcion Fmodi = new Funcion(cod_funcion.getText(), null, null, null);
+        Funcion Fmodi = new Funcion(cod_funcion.getText(), null, null, null, 0, 0);
         ObjectSet result = basep.get(Fmodi);
         Funcion Fmodificar = (Funcion) result.next();
-        
+
         Fmodificar.setFecha_funcion(jTextField2.getText());
-        Fmodificar.setHora(jTextField4.getText());
+        Fmodificar.setHora_inicio((int) jSiniciohoras1.getValue());
+        Fmodificar.setMin_inicio((int) jSiniciominutos1.getValue());
         Fmodificar.setFormato(jComboBox1.getSelectedItem().toString());
-        
 
         basep.set(Fmodificar);
         JOptionPane.showMessageDialog(null, "El cliente fue modificado exitosamente");
@@ -279,33 +338,31 @@ public class Modificar_funcion extends javax.swing.JFrame {
 
         basep.close();
     }
-     public void LimpiarCampos() {
+
+    public void LimpiarCampos() {
         cod_funcion.setText("");
         jTextField2.setText("");
         jComboBox1.setSelectedIndex(0);
-        jTextField4.setText("");
+        jSiniciohoras1.setValue(0);
+        jSiniciominutos1.setValue(0);
     }
 
-    public void HabilitarCampos_deTexto() {
-        jTextField4.setEditable(true);
-        jTextField2.setEditable(true);
-        jComboBox1.setEditable(true);
-       
-    }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
     private javax.swing.JTextField cod_funcion;
+    private javax.swing.JButton jBguardar1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSpinner jSiniciohoras1;
+    private javax.swing.JSpinner jSiniciominutos1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JButton modificar_funcion;
     // End of variables declaration//GEN-END:variables
 }
