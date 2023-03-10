@@ -15,12 +15,20 @@ public class Cliente extends Persona {
     private String correo_cli;
     private String membresia;
 
-    public Cliente(String telefono_cli, String correo_cli, String membresia, String cedula, String nombre, String direccion, String edad, String fecha_nacimiento, int dia, int mes, int anio) {
+    public Cliente(String telefono_cli, String correo_cli, String membresia, String cedula, String nombre, String direccion, int edad, String fecha_nacimiento, int dia, int mes, int anio) {
         super(cedula, nombre, direccion, edad, fecha_nacimiento, dia, mes, anio);
         this.telefono_cli = telefono_cli;
         this.correo_cli = correo_cli;
         this.membresia = membresia;
     }
+
+    public Cliente(String telefono_cli, String correo_cli, String membresia) {
+        this.telefono_cli = telefono_cli;
+        this.correo_cli = correo_cli;
+        this.membresia = membresia;
+    }
+
+  
 
     public Cliente() {
         super();
@@ -54,6 +62,7 @@ public class Cliente extends Persona {
     public String toString() {
         return "Cliente{" + "telefono_cli=" + telefono_cli + ", correo_cli=" + correo_cli + ", membresia=" + membresia + '}';
     }
+
     
     
 }

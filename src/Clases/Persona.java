@@ -14,13 +14,13 @@ public class Persona {
     private String cedula;
     private String nombre;
     private String direccion;
-    private String edad;
+    private int edad;
     private String fecha_nacimiento;
     private int dia;
     private int mes;
     private int anio;
 
-    public Persona(String cedula, String nombre, String direccion, String edad, String fecha_nacimiento, int dia, int mes, int anio) {
+    public Persona(String cedula, String nombre, String direccion, int edad, String fecha_nacimiento, int dia, int mes, int anio) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -59,11 +59,11 @@ public class Persona {
         this.direccion = direccion;
     }
 
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
@@ -98,7 +98,6 @@ public class Persona {
     public void setAnio(int anio) {
         this.anio = anio;
     }
-    
     
 
     @Override

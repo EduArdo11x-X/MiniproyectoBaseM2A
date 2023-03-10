@@ -4,24 +4,24 @@
  * and open the template in the editor.
  */
 package Ventanas;
+
 import Clases.Cliente;
-import static Ventanas.Modificar_pelicula.Cerrar_BD;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import javax.swing.JOptionPane;
-
+import Clases.Validaciones;
 
 /**
  *
  * @author EDU
  */
 public class Modificar_cliente extends javax.swing.JFrame {
-    
+
     String cedula = "";
     String nombre = "";
     String direccion = "";
-    String edad = "";
+    int edad = 0;
     String fecha_nacimiento = "";
     String telefono_cli = "";
     String correo_cli = "";
@@ -30,12 +30,12 @@ public class Modificar_cliente extends javax.swing.JFrame {
     int mes = 0;
     int anio = 0;
 
-
     /**
      * Creates new form Modificar_cliente
      */
     public Modificar_cliente() {
         initComponents();
+        jBguardar1.setEnabled(false);
     }
 
     /**
@@ -50,28 +50,28 @@ public class Modificar_cliente extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        correo_cli2 = new javax.swing.JTextField();
-        telefono_cli2 = new javax.swing.JTextField();
+        correo_cliente = new javax.swing.JTextField();
+        telefono_cliente = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        cedula_cliente2 = new javax.swing.JTextField();
+        cedula_cliente = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        nombre_cli2 = new javax.swing.JTextField();
-        direccion_cli2 = new javax.swing.JTextField();
+        nombre_cliente = new javax.swing.JTextField();
+        direccion_cliente = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        edad_cliente2 = new javax.swing.JSpinner();
+        edad_cliente = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
         BUSCAR = new javax.swing.JButton();
-        Modificar_cli = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
         dia_cli = new javax.swing.JSpinner();
         jLabel11 = new javax.swing.JLabel();
         mes_cli = new javax.swing.JSpinner();
         jLabel12 = new javax.swing.JLabel();
         anio_cli = new javax.swing.JSpinner();
-        membresia_cliente2 = new javax.swing.JComboBox<>();
+        membresia_cliente = new javax.swing.JComboBox<>();
+        jBguardar1 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,26 +85,26 @@ public class Modificar_cliente extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/email.png"))); // NOI18N
         jLabel8.setText("Correo electronico");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
-        jPanel1.add(correo_cli2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 189, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, -1, -1));
+        jPanel1.add(correo_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 250, 189, -1));
 
-        telefono_cli2.addActionListener(new java.awt.event.ActionListener() {
+        telefono_cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telefono_cli2ActionPerformed(evt);
+                telefono_clienteActionPerformed(evt);
             }
         });
-        jPanel1.add(telefono_cli2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 210, 189, -1));
+        jPanel1.add(telefono_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 189, -1));
 
         jLabel7.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/telefono.png"))); // NOI18N
         jLabel7.setText("Telefono");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/date.png"))); // NOI18N
         jLabel6.setText("Fecha nacimiento");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, -1, -1));
-        jPanel1.add(cedula_cliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 149, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, -1, -1));
+        jPanel1.add(cedula_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 149, -1));
 
         jLabel1.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cedula.png"))); // NOI18N
@@ -116,13 +116,13 @@ public class Modificar_cliente extends javax.swing.JFrame {
         jLabel2.setText("nombre");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
 
-        nombre_cli2.addActionListener(new java.awt.event.ActionListener() {
+        nombre_cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombre_cli2ActionPerformed(evt);
+                nombre_clienteActionPerformed(evt);
             }
         });
-        jPanel1.add(nombre_cli2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 149, -1));
-        jPanel1.add(direccion_cli2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 149, -1));
+        jPanel1.add(nombre_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 149, -1));
+        jPanel1.add(direccion_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 149, -1));
 
         jLabel3.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/ic_location_on_128_28437.png"))); // NOI18N
@@ -134,8 +134,8 @@ public class Modificar_cliente extends javax.swing.JFrame {
         jLabel5.setText("Edad");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
-        edad_cliente2.setModel(new javax.swing.SpinnerNumberModel(18, 18, 80, 1));
-        jPanel1.add(edad_cliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
+        edad_cliente.setModel(new javax.swing.SpinnerNumberModel(18, 18, 80, 1));
+        jPanel1.add(edad_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 204, 255));
@@ -153,45 +153,56 @@ public class Modificar_cliente extends javax.swing.JFrame {
         });
         jPanel1.add(BUSCAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, -1, 29));
 
-        Modificar_cli.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        Modificar_cli.setForeground(new java.awt.Color(0, 0, 255));
-        Modificar_cli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/girar.png"))); // NOI18N
-        Modificar_cli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Modificar_cliActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Modificar_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 30, 30));
-
-        jLabel10.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
-        jLabel10.setText("MODIFICAR");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, -1, 20));
-
         dia_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
-        jPanel1.add(dia_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, -1, -1));
+        jPanel1.add(dia_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 40, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setText(":");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 10, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 10, -1));
 
         mes_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
-        jPanel1.add(mes_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, -1, -1));
+        jPanel1.add(mes_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setText(":");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, -1, -1));
 
         anio_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
-        jPanel1.add(anio_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, -1, -1));
+        jPanel1.add(anio_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 160, -1, -1));
 
-        membresia_cliente2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "VIP sencilla", "Premium Sencilla", "Standard Sencilla", "VIP Doble", "Premium Doble", "Standard Doble" }));
-        jPanel1.add(membresia_cliente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
+        membresia_cliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "VIP sencilla", "Premium Sencilla", "Standard Sencilla", "VIP Doble", "Premium Doble", "Standard Doble" }));
+        membresia_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                membresia_clienteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(membresia_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
+
+        jBguardar1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jBguardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar.png"))); // NOI18N
+        jBguardar1.setText("MODIFICAR");
+        jBguardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBguardar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBguardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 150, -1));
+
+        jButton1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
+        jButton1.setText("REGRESAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,72 +212,176 @@ public class Modificar_cliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void telefono_cli2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefono_cli2ActionPerformed
+    private void telefono_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefono_clienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_telefono_cli2ActionPerformed
+    }//GEN-LAST:event_telefono_clienteActionPerformed
 
-    private void nombre_cli2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_cli2ActionPerformed
+    private void nombre_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre_clienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombre_cli2ActionPerformed
+    }//GEN-LAST:event_nombre_clienteActionPerformed
 
-    private void Modificar_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Modificar_cliActionPerformed
+    private void BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSCARActionPerformed
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        buscar(BaseD);
+        Cerrar_BD(BaseD);
+    }//GEN-LAST:event_BUSCARActionPerformed
+
+    private void jBguardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardar1ActionPerformed
 
         ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
         Modificar_Cliente(BaseD);
         Cerrar_BD(BaseD);
-        cedula_cliente2.setEditable(true);
-    }//GEN-LAST:event_Modificar_cliActionPerformed
+        cedula_cliente.setEditable(true);
+    }//GEN-LAST:event_jBguardar1ActionPerformed
 
-    private void BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSCARActionPerformed
-ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-        buscar(BaseD);
-        Cerrar_BD(BaseD);        
-    }//GEN-LAST:event_BUSCARActionPerformed
- public void buscar(ObjectContainer basep) {//cargardatos
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        Inicio vsar1 = new Inicio();
+        vsar1.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-        Modificar_cli.setEnabled(false);
+    private void membresia_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membresia_clienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_membresia_clienteActionPerformed
+    public void buscar(ObjectContainer basep) {//cargardatos
+
+        jBguardar1.setEnabled(false);
         String CODIGOAux;
-        CODIGOAux = cedula_cliente2.getText();
+        CODIGOAux = cedula_cliente.getText();
         Registro_Cliente EAux = new Registro_Cliente();
-        if (cedula_cliente2.getText().isEmpty()) {
+        if (cedula_cliente.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese una Cedula");
         } else {
             if (EAux.Comprobar_Cliente(basep, CODIGOAux) == 0) {
                 JOptionPane.showMessageDialog(null, "El cliente no existe en la base de datos");
                 LimpiarCamposTexto();
             } else {
-                Cliente Clbuscar = new Cliente(null, null, null, cedula, null, null, null, null, 0, 0, 0);
+                Cliente Clbuscar = new Cliente(null, null, null, CODIGOAux, null, null, 0, null, 0, 0, 0);
                 ObjectSet result = basep.get(Clbuscar);
                 for (int i = 0; i < result.size(); i++) {
                     Cliente miCl = new Cliente();
                     miCl = (Cliente) result.get(i);
-                    nombre_cli2.setText(miCl.getNombre());
-                    direccion_cli2.setText(miCl.getDireccion());
-                    telefono_cli2.setText(miCl.getTelefono_cli());
-                    for (int j = 0; j < membresia_cliente2.getItemCount(); j++) {
-                        if (miCl.getMembresia().equalsIgnoreCase(membresia_cliente2.getItemAt(j))) {
-                            membresia_cliente2.setSelectedIndex(j);
-                            j = membresia_cliente2.getItemCount();
+                    nombre_cliente.setText(miCl.getNombre());
+                    direccion_cliente.setText(miCl.getDireccion());
+                    telefono_cliente.setText(miCl.getTelefono_cli());
+                    for (int j = 0; j < membresia_cliente.getItemCount(); j++) {
+                        if (miCl.getMembresia().equalsIgnoreCase(membresia_cliente.getItemAt(j))) {
+                            membresia_cliente.setSelectedIndex(j);
+                            j = membresia_cliente.getItemCount();
                         }
                     }
-                    correo_cli2.setText(miCl.getCorreo_cli());
+                    correo_cliente.setText(miCl.getCorreo_cli());
                     dia_cli.setValue(miCl.getDia());
                     mes_cli.setValue(miCl.getMes());
                     anio_cli.setValue(miCl.getAnio());
-                    edad_cliente2.setValue(miCl.getEdad());
+                    edad_cliente.setValue(miCl.getEdad());
 
                 }
 
+                if (validarCampos(basep)) {
+                    jBguardar1.setEnabled(true);
+                }
+
                 HabilitarCampos_deTexto();
-                cedula_cliente2.setEditable(false);
+                cedula_cliente.setEditable(false);
             }
 
         }
     }
 
+    public boolean validarCampos(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        asignarVariables(basep);
+        boolean ban_confirmar = true;
+
+        if (cedula_cliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE UNA CEDULA");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarCedula(cedula)) {
+                JOptionPane.showMessageDialog(this, "CEDULA INVALIDA");
+                ban_confirmar = false;
+            }
+        }
+
+        if (nombre_cliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el titulo de la pelicula");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarNomApe(nombre)) {
+                JOptionPane.showMessageDialog(this, "Titulo Pelicula invalido");
+                ban_confirmar = false;
+            }
+        }
+
+        if (direccion_cliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el titulo de la pelicula");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarNomApe(direccion)) {
+                JOptionPane.showMessageDialog(this, "Titulo Pelicula invalido");
+                ban_confirmar = false;
+            }
+        }
+
+        if (telefono_cliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese  un telefono");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarCedula(telefono_cli)) {
+                JOptionPane.showMessageDialog(this, "Telefono invalido");
+                ban_confirmar = false;
+            }
+        }
+
+        if (correo_cliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese  un correo");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarCorreo(correo_cli)) {
+                JOptionPane.showMessageDialog(this, "Correo invalido");
+                ban_confirmar = false;
+            }
+        }
+
+        if (membresia_cliente.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione una membresia");
+            ban_confirmar = false;
+        }
+
+        return ban_confirmar;
+    }
+
+    public void asignarVariables(ObjectContainer basep) {
+        cedula = cedula_cliente.getText();
+        nombre = nombre_cliente.getText();
+        direccion = direccion_cliente.getText();
+        edad = (Integer) edad_cliente.getValue();
+        telefono_cli = telefono_cliente.getText();
+        correo_cli = correo_cliente.getText();
+        membresia = membresia_cliente.getSelectedItem().toString();
+
+        String day = String.valueOf(dia);
+        String Mounth = String.valueOf(mes);
+        String Year = String.valueOf(anio);
+
+        if (String.valueOf(dia_cli).length() == 1) {
+            day = "0" + day;
+        }
+        if (String.valueOf(mes_cli).length() == 1) {
+            Mounth = "0" + Mounth;
+        }
+        if (String.valueOf(anio_cli).length() == 1) {
+            Year = "0" + Year;
+        }
+
+        fecha_nacimiento = day + ":" + Mounth + "/" + Year;
+
+    }
+
     public static int Comprobar_Cliente(ObjectContainer basep, String cedula) {
 
-        Cliente Clbuscar = new Cliente(null, null, null, cedula, null, null, null, null, 0, 0, 0);
+        Cliente Clbuscar = new Cliente(null, null, null, cedula, null, null, 0, null, 0, 0, 0);
 
         ObjectSet result = basep.get(Clbuscar);
 
@@ -275,68 +390,73 @@ ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
 
     public void Modificar_Cliente(ObjectContainer basep) {
 
-        JOptionPane.showMessageDialog(null, "Existen campos vacios");
-        //LimpiarCamposdeTexto();
+        if (!validarCampos(basep)) {
+            JOptionPane.showMessageDialog(null, "Existen campos vacios");
+            //LimpiarCamposdeTexto();
 
-        Cliente Clmod = new Cliente(null, null, null, cedula_cliente2.getText(), null, null, null, null,0,0,0);
-        ObjectSet result = basep.get(Clmod);
-        Cliente Clmodificar = (Cliente) result.next();
-        
-        Clmodificar.setNombre(nombre_cli2.getText());
-        Clmodificar.setDireccion(direccion_cli2.getText());
-        Clmodificar.setTelefono_cli(telefono_cli2.getText());
-        Clmodificar.setCorreo_cli(correo_cli2.getText());
-        Clmodificar.setMembresia(membresia_cliente2.getSelectedItem().toString());
-        Clmodificar.setEdad((String) edad_cliente2.getValue());
-        Clmodificar.setDia((Integer) dia_cli.getValue());
-        Clmodificar.setMes((Integer) mes_cli.getValue());
-        Clmodificar.setAnio((Integer) anio_cli.getValue());
+        } else {
+            if (validarCampos(basep)) {
 
-        basep.set(Clmodificar);
-        JOptionPane.showMessageDialog(null, "El cliente fue modificado exitosamente");
-        LimpiarCamposTexto();
+                Cliente Clmod = new Cliente(null, null, null, cedula_cliente.getText(), null, null, 0, null, 0, 0, 0);
+                ObjectSet result = basep.get(Clmod);
+                Cliente Clmodificar = (Cliente) result.next();
 
+                Clmodificar.setNombre(nombre_cliente.getText());
+                Clmodificar.setDireccion(direccion_cliente.getText());
+                Clmodificar.setTelefono_cli(telefono_cliente.getText());
+                Clmodificar.setCorreo_cli(correo_cliente.getText());
+                Clmodificar.setMembresia(membresia_cliente.getSelectedItem().toString());
+                Clmodificar.setEdad((Integer) edad_cliente.getValue());
+                Clmodificar.setDia((Integer) dia_cli.getValue());
+                Clmodificar.setMes((Integer) mes_cli.getValue());
+                Clmodificar.setAnio((Integer) anio_cli.getValue());
+
+                basep.set(Clmodificar);
+                JOptionPane.showMessageDialog(null, "El cliente fue modificado exitosamente");
+                LimpiarCamposTexto();
+
+            }
+        }
     }
 
     public static void Cerrar_BD(ObjectContainer basep) {
 
         basep.close();
     }
-     public void LimpiarCamposTexto() {
-         cedula_cliente2.setText("");
-        nombre_cli2.setText("");
-        direccion_cli2.setText("");
+
+    public void LimpiarCamposTexto() {
+        cedula_cliente.setText("");
+        nombre_cliente.setText("");
+        direccion_cliente.setText("");
         dia_cli.setValue(0);
         mes_cli.setValue(0);
         anio_cli.setValue(0);
-
-        edad_cliente2.setValue(18);
-        telefono_cli2.setText("");
-        correo_cli2.setText("");
-        membresia_cliente2.setSelectedIndex(0);
+        edad_cliente.setValue(18);
+        telefono_cliente.setText("");
+        correo_cliente.setText("");
+        membresia_cliente.setSelectedIndex(0);
     }
 
     public void HabilitarCampos_deTexto() {
-        cedula_cliente2.setEditable(true);
-        nombre_cli2.setEditable(true);
-        direccion_cli2.setEditable(true);
-       
-        telefono_cli2.setEditable(true);
-        membresia_cliente2.setEditable(true);
-        correo_cli2.setEditable(true);
+        cedula_cliente.setEditable(true);
+        nombre_cliente.setEditable(true);
+        direccion_cliente.setEditable(true);
+        telefono_cliente.setEditable(true);
+        membresia_cliente.setEditable(true);
+        correo_cliente.setEditable(true);
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUSCAR;
-    private javax.swing.JButton Modificar_cli;
     private javax.swing.JSpinner anio_cli;
-    private javax.swing.JTextField cedula_cliente2;
-    private javax.swing.JTextField correo_cli2;
+    private javax.swing.JTextField cedula_cliente;
+    private javax.swing.JTextField correo_cliente;
     private javax.swing.JSpinner dia_cli;
-    private javax.swing.JTextField direccion_cli2;
-    private javax.swing.JSpinner edad_cliente2;
+    private javax.swing.JTextField direccion_cliente;
+    private javax.swing.JSpinner edad_cliente;
+    private javax.swing.JButton jBguardar1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -348,9 +468,9 @@ ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JComboBox<String> membresia_cliente2;
+    private javax.swing.JComboBox<String> membresia_cliente;
     private javax.swing.JSpinner mes_cli;
-    private javax.swing.JTextField nombre_cli2;
-    private javax.swing.JTextField telefono_cli2;
+    private javax.swing.JTextField nombre_cliente;
+    private javax.swing.JTextField telefono_cliente;
     // End of variables declaration//GEN-END:variables
 }

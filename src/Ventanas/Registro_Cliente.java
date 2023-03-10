@@ -20,7 +20,7 @@ public class Registro_Cliente extends javax.swing.JFrame {
     String cedula="";
     String nombre="";
     String direccion="";
-    String edad="";
+    int edad=0;
     String fecha_nacimiento="";
     String telefono_cli="";
     String correo_cli="";
@@ -103,7 +103,7 @@ public class Registro_Cliente extends javax.swing.JFrame {
                 telefono_clienteActionPerformed(evt);
             }
         });
-        jPanel1.add(telefono_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 216, 189, -1));
+        jPanel1.add(telefono_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 240, 189, -1));
 
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 204, 255));
@@ -114,30 +114,30 @@ public class Registro_Cliente extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/age_theapplication_3019.png"))); // NOI18N
         jLabel5.setText("Edad");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 376, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/date.png"))); // NOI18N
         jLabel6.setText("Fecha nacimiento");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 160, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/telefono.png"))); // NOI18N
         jLabel7.setText("Telefono");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 211, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/email.png"))); // NOI18N
         jLabel8.setText("Correo electronico");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 297, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/wallet_membership_icon_136040.png"))); // NOI18N
         jLabel9.setText("Membresia");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 376, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, -1, -1));
 
         edad_cliente.setModel(new javax.swing.SpinnerNumberModel(18, 18, 80, 1));
-        jPanel1.add(edad_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 380, -1, -1));
+        jPanel1.add(edad_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
         jPanel1.add(correo_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 302, 189, -1));
 
         REGISTRAR_CLI.setFont(new java.awt.Font("Copperplate Gothic Bold", 3, 14)); // NOI18N
@@ -162,24 +162,24 @@ public class Registro_Cliente extends javax.swing.JFrame {
         jPanel1.add(direccion_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 302, 149, -1));
 
         anio_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
-        jPanel1.add(anio_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 160, -1, -1));
+        jPanel1.add(anio_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 170, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setText(":");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 160, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 170, -1, -1));
 
         dia_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
-        jPanel1.add(dia_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 160, -1, -1));
+        jPanel1.add(dia_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 170, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setText(":");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 160, 10, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 170, 10, -1));
 
         mes_cli.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
-        jPanel1.add(mes_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 160, -1, -1));
+        jPanel1.add(mes_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 170, -1, -1));
 
         membresia_cliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "VIP sencilla", "Premium Sencilla", "Standard Sencilla", "VIP Doble", "Premium Doble", "Standard Doble" }));
-        jPanel1.add(membresia_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 380, -1, -1));
+        jPanel1.add(membresia_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 370, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -196,11 +196,15 @@ public class Registro_Cliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CANCELAR_CLIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CANCELAR_CLIActionPerformed
-        // TODO add your handling code here:
+       this.dispose();
+        Inicio vsar1 = new Inicio();
+        vsar1.setVisible(true);
     }//GEN-LAST:event_CANCELAR_CLIActionPerformed
 
     private void REGISTRAR_CLIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REGISTRAR_CLIActionPerformed
-        // TODO add your handling code here:
+         ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Crear_Cl(BaseD);
+        Cerrar_BD(BaseD);
     }//GEN-LAST:event_REGISTRAR_CLIActionPerformed
 
     private void telefono_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefono_clienteActionPerformed
@@ -214,9 +218,8 @@ public class Registro_Cliente extends javax.swing.JFrame {
     public void asignarVariables(ObjectContainer basep) {
         cedula = cedula_cliente.getText();
         nombre = nombre_cliente.getText();
-        direccion = direccion_cliente.getText();
-        
-        edad = (String) edad_cliente.getValue();
+        direccion = direccion_cliente.getText();        
+        edad = (Integer) edad_cliente.getValue();
         telefono_cli = telefono_cliente.getText();
         correo_cli = correo_cliente.getText();
         membresia = membresia_cliente.getSelectedItem().toString();
@@ -243,7 +246,7 @@ public class Registro_Cliente extends javax.swing.JFrame {
         Validaciones miValidaciones = new Validaciones();
         if (validarCampos(basep)) {
 
-            Cliente Clnuevo = new Cliente( telefono_cli,  correo_cli,  membresia,  cedula,  nombre,  direccion,  edad,  fecha_nacimiento,dia,mes,anio);
+            Cliente Clnuevo = new Cliente(telefono_cli,  correo_cli,  membresia,  cedula,  nombre,  direccion,  edad,  fecha_nacimiento,dia,mes,anio);
 
             if (Comprobar_Cliente(basep, cedula) == 0) {
                 basep.set(Clnuevo);
@@ -324,7 +327,7 @@ public class Registro_Cliente extends javax.swing.JFrame {
 
     public static int Comprobar_Cliente(ObjectContainer basep, String cedula) {
 
-        Cliente Clbuscar = new Cliente(null, null, null, cedula, null, null, null, null,0,0,0);
+        Cliente Clbuscar = new Cliente(null, null, null, cedula, null, null, 0, null,0,0,0);
 
         ObjectSet result = basep.get(Clbuscar);
 
@@ -343,7 +346,6 @@ public class Registro_Cliente extends javax.swing.JFrame {
         dia_cli.setValue(0);
         mes_cli.setValue(0);
         anio_cli.setValue(0);
-
         edad_cliente.setValue(18);
         telefono_cliente.setText("");
         correo_cliente.setText("");

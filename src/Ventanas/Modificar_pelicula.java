@@ -235,7 +235,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
 
             if (EAux.Comprobar_Peliculas(basep, CODIGOAux) == 0) {
 
-                JOptionPane.showMessageDialog(null, "El Empleado no existe en la base de datos");
+                JOptionPane.showMessageDialog(null, "El cliente no existe en la base de datos");
                 LimpiarCamposTexto();
 
             } else {

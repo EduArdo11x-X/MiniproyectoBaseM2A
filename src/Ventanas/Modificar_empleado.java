@@ -270,7 +270,7 @@ public class Modificar_empleado extends javax.swing.JFrame {
 
         if (jTextField1.getText().isEmpty()) {
 
-            JOptionPane.showMessageDialog(null, "Ingrese el ID de empleado");
+            JOptionPane.showMessageDialog(null, "Ingrese la cedula del empleado");
         } else {
 
             if (EAux.Comprobar_Empleado(basep, CODIGOAux) == 0) {
@@ -401,8 +401,12 @@ public class Modificar_empleado extends javax.swing.JFrame {
   
     
   public void Modificar_empleado(ObjectContainer basep) {
-        asignarVariables(basep);
-        if (validarCampos(basep)) {
+        if (!validarCampos(basep)) {
+            JOptionPane.showMessageDialog(null, "Existen campos vacios");
+            //LimpiarCamposdeTexto();
+
+        } else {
+            if (validarCampos(basep)) {
             Empleado Emodi = new Empleado(jTextField1.getText(), null, null, 0, 0, 0, 0, null, null, null);
             ObjectSet result = basep.get(Emodi);
             Empleado emodificar = (Empleado) result.next();
@@ -420,9 +424,10 @@ public class Modificar_empleado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El Empleado fue modificado exitosamente");
             LimpiarCampos();
         }
+            
 
     }
-
+  }
     public static void Cerrar_BD(ObjectContainer basep) {
 
         basep.close();

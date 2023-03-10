@@ -5,11 +5,9 @@
  */
 package Ventanas;
 import Clases.Cliente;
-import Clases.Pelicula;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
-import java.security.Principal;
 import javax.swing.JOptionPane;
 
 /**
@@ -45,6 +43,7 @@ public class Eliminar_cliente extends javax.swing.JFrame {
         Eliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tablacli = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,6 +121,15 @@ public class Eliminar_cliente extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 109, 749, 242));
 
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,6 +159,14 @@ public class Eliminar_cliente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_EliminarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        this.dispose();
+        Inicio v = new Inicio();
+        v.setVisible(true);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
      public void Buscar_ClienteCedula(ObjectContainer basep) {
 
         if (jccliente.getSelectedIndex() == 0) {
@@ -159,7 +175,7 @@ public class Eliminar_cliente extends javax.swing.JFrame {
         } else {
             if (jccliente.getSelectedIndex() == 1) {
 
-        Cliente Clbuscar = new Cliente(null, null, null, null, null, null, null, null,0,0,0);
+        Cliente Clbuscar = new Cliente(null, null, null, null, null, null, 0, null,0,0,0);
 
                 ObjectSet result = basep.get(Clbuscar);
                 MostrarDatos(result);
@@ -168,7 +184,7 @@ public class Eliminar_cliente extends javax.swing.JFrame {
 
                     String IDAux = JOptionPane.showInputDialog("Ingrese la Cedula a consultar");
 
-        Cliente Clbuscar = new Cliente(null, null, null, null, null, null, null, null,0,0,0);
+        Cliente Clbuscar = new Cliente(null, null, null, null, null, null, 0, null,0,0,0);
 
                     ObjectSet result = basep.get(Clbuscar);
                     MostrarDatos(result);
@@ -187,7 +203,7 @@ public class Eliminar_cliente extends javax.swing.JFrame {
         jccliente.setSelectedIndex(0);
     }
     public void MostrarDatos(ObjectSet result) {
-        String matrizcliente[][] = new String[result.size()][7];
+        String matrizcliente[][] = new String[result.size()][8];
 
         if (result.size() == 0) {
             JOptionPane.showMessageDialog(null, "La pelicula no se encuentra en la base de datos");
@@ -200,7 +216,7 @@ public class Eliminar_cliente extends javax.swing.JFrame {
                 matrizcliente[i][0] = miCl.getCedula();
                 matrizcliente[i][1] = miCl.getNombre();
                 matrizcliente[i][2] = miCl.getDireccion();
-                matrizcliente[i][3] = miCl.getEdad();
+                matrizcliente[i][3] = String.valueOf(miCl.getEdad());
                 matrizcliente[i][4] = miCl.getCorreo_cli();
                 matrizcliente[i][5] = miCl.getTelefono_cli();
                 matrizcliente[i][6] = miCl.getFecha_nacimiento();
@@ -222,7 +238,7 @@ public class Eliminar_cliente extends javax.swing.JFrame {
         } else {
 
             String IDE = jtcedula.getText();
-        Cliente Cleliminar = new Cliente(null, null, null, null, null, null, null, null,0,0,0);
+        Cliente Cleliminar = new Cliente(null, null, null, null, null, null, 0, null,0,0,0);
             ObjectSet result = basep.get(Cleliminar);
 
             if (Clinterfaz.Comprobar_Cliente(basep, IDE) == 0) {
@@ -254,6 +270,7 @@ public class Eliminar_cliente extends javax.swing.JFrame {
     private javax.swing.JButton Buscar;
     private javax.swing.JButton Eliminar;
     private javax.swing.JTable Tablacli;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
