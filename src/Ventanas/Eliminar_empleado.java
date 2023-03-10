@@ -10,6 +10,7 @@ import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import Clases.Empleado;
 import javax.swing.JOptionPane;
+import Clases.Validaciones;
 
 public class Eliminar_empleado extends javax.swing.JFrame {
 
@@ -185,7 +186,7 @@ public class Eliminar_empleado extends javax.swing.JFrame {
             }
         }
     }
-
+Validaciones miValidaciones = new Validaciones();
     public void Buscar_empleadoID(ObjectContainer basep) {
 
         if (jComboBox1.getSelectedIndex() == 0) {
@@ -203,15 +204,21 @@ public class Eliminar_empleado extends javax.swing.JFrame {
 
                     String IDAux = JOptionPane.showInputDialog("Ingrese el ID a consultar");
 
-                    Empleado Ebuscar = new Empleado(null, null, null, 0, 0, 0, 0, null, null, null);
+                    Empleado Ebuscar = new Empleado(IDAux, null, null, 0, 0, 0, 0, null, null, null);
 
                     ObjectSet result = basep.get(Ebuscar);
                     MostrarDatos(result);
 
                 } else {
                     if (jComboBox1.getSelectedIndex() == 3) {
-//                        habilitarParametros();
-                        // BuscarParametros(basep);
+                        
+                        String IDAux = JOptionPane.showInputDialog("Ingrese el ID a consultar");
+
+                    Empleado Ebuscar = new Empleado(null, IDAux, null, 0, 0, 0, 0, null, null, null);
+
+                    ObjectSet result = basep.get(Ebuscar);
+                    MostrarDatos(result);
+                      
 
                     }
                 }
@@ -223,7 +230,7 @@ public class Eliminar_empleado extends javax.swing.JFrame {
     }
 
     public void MostrarDatos(ObjectSet result) {
-        String matrizpempleado[][] = new String[result.size()][8];
+        String matrizpempleado[][] = new String[result.size()][6];
 
         if (result.size() == 0) {
             JOptionPane.showMessageDialog(null, "El empleado no se encuentra en la base de datos");

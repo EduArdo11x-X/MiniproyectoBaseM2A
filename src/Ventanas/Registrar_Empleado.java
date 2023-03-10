@@ -57,14 +57,14 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jSiniciohoras = new javax.swing.JSpinner();
         jLabel7 = new javax.swing.JLabel();
         jSiniciominutos = new javax.swing.JSpinner();
         jSiniciohoras1 = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
         jSiniciominutos1 = new javax.swing.JSpinner();
-        jButton2 = new javax.swing.JButton();
+        jBguardar1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,14 +110,6 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 179, -1, -1));
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 165, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar-datos.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, -1, -1));
-
         jSiniciohoras.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
         jPanel1.add(jSiniciohoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, -1));
 
@@ -138,13 +130,25 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         jSiniciominutos1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
         jPanel1.add(jSiniciominutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, -1));
 
-        jButton2.setText("Volver");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBguardar1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jBguardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar-datos.png"))); // NOI18N
+        jBguardar1.setText("GUARDAR");
+        jBguardar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBguardar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, -1, -1));
+        jPanel1.add(jBguardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 150, 30));
+
+        jButton3.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
+        jButton3.setText("REGRESAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,7 +158,7 @@ public class Registrar_Empleado extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
         );
 
         pack();
@@ -165,19 +169,18 @@ public class Registrar_Empleado extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
+    private void jBguardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardar1ActionPerformed
+
         ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
         Crear_E(BaseD);
         Cerrar_BD(BaseD);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBguardar1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.dispose();
         Inicio vsar1 = new Inicio();
         vsar1.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public void asignarVariables(ObjectContainer basep) {
         Ced_empleado = jTextField1.getText();
@@ -304,8 +307,8 @@ public class Registrar_Empleado extends javax.swing.JFrame {
     }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBguardar1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

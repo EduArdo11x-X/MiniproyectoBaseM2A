@@ -12,10 +12,9 @@ import Clases.Pelicula;
 import Clases.Validaciones;
 import javax.swing.JOptionPane;
 
-
 public class Modificar_pelicula extends javax.swing.JFrame {
 
-     String Cod_Pelicula = "";
+    String Cod_Pelicula = "";
     String titulo_pelicula = "";
     String Duracion = "";
     String Actores = "";
@@ -24,14 +23,12 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     String Categoria = "";
     String Idioma = "";
     String Direcctores = "";
-    
+
     public Modificar_pelicula() {
         initComponents();
         jBguardar1.setEnabled(false);
-        
+
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -210,7 +207,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         Inicio vsar1 = new Inicio();
         vsar1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-    
+
     public void asignarVariables(ObjectContainer basep) {
         Cod_Pelicula = jTextField2.getText();
         titulo_pelicula = jTextField10.getText();
@@ -222,9 +219,10 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         Idioma = jTextField12.getText();
         Direcctores = jTextField9.getText();
     }
+
     public void buscar(ObjectContainer basep) {//cargardatos
 
-       jBguardar1.setEnabled(false);
+        jBguardar1.setEnabled(false);
         String CODIGOAux;
         CODIGOAux = jTextField2.getText();
 
@@ -236,13 +234,13 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         } else {
 
             if (EAux.Comprobar_Peliculas(basep, CODIGOAux) == 0) {
-                
+
                 JOptionPane.showMessageDialog(null, "El Empleado no existe en la base de datos");
                 LimpiarCamposTexto();
-                
+
             } else {
-                
-                Pelicula Ebuscar = new Pelicula(CODIGOAux, null, null, null, null, null, null, null , null);
+
+                Pelicula Ebuscar = new Pelicula(CODIGOAux, null, null, null, null, null, null, null, null);
 
                 ObjectSet result = basep.get(Ebuscar);
                 for (int i = 0; i < result.size(); i++) {
@@ -250,8 +248,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
                     Pelicula miE = new Pelicula();
 
                     miE = (Pelicula) result.get(i);
-                    
-                    
+
                     jTextField10.setText(miE.getTitulo_pelicula());
                     jTextField8.setText(miE.getDuracion());
                     jTextField7.setText(miE.getActores());
@@ -273,22 +270,22 @@ public class Modificar_pelicula extends javax.swing.JFrame {
                             j = jComboBox3.getItemCount();
                         }
                     }
-                    
+
                     jTextField12.setText(miE.getIdioma());
                     jTextField9.setText(miE.getDirectores());
                 }
-                
-                  if (validarCampos(basep)) {
+
+                if (validarCampos(basep)) {
                     jBguardar1.setEnabled(true);
                 }
-                
+
                 HabilitarCampos_deTexto();
                 jTextField2.setEditable(false);
             }
 
         }
     }
-    
+
     public boolean validarCampos(ObjectContainer basep) {
         Validaciones miValidaciones = new Validaciones();
         asignarVariables(basep);
@@ -303,7 +300,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
                 ban_confirmar = false;
             }
         }
-        
+
         if (jTextField10.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese el titulo de la pelicula");
             ban_confirmar = false;
@@ -313,31 +310,29 @@ public class Modificar_pelicula extends javax.swing.JFrame {
                 ban_confirmar = false;
             }
         }
-        
-        
 
         return ban_confirmar;
     }
 
     public static int Comprobar_Peliculas(ObjectContainer basep, String CodPelicula) {
 
-        Pelicula Ebuscar = new Pelicula(CodPelicula, null, null, null, null, null, null,null,null);
+        Pelicula Ebuscar = new Pelicula(CodPelicula, null, null, null, null, null, null, null, null);
 
         ObjectSet result = basep.get(Ebuscar);
 
         return result.size();
     }
-       
-    
+
     public void Modificar_Pelicula(ObjectContainer basep) {
 
-       
+        if (!validarCampos(basep)) {
             JOptionPane.showMessageDialog(null, "Existen campos vacios");
             //LimpiarCamposdeTexto();
 
-         
-            
-                Pelicula Emodi = new Pelicula(jTextField2.getText(), null, null, null, null, null, null, null , null);
+        } else {
+            if (validarCampos(basep)) {
+
+                Pelicula Emodi = new Pelicula(jTextField2.getText(), null, null, null, null, null, null, null, null);
                 ObjectSet result = basep.get(Emodi);
                 Pelicula Emodificar = (Pelicula) result.next();
                 Emodificar.setTitulo_pelicula(jTextField10.getText());
@@ -351,21 +346,20 @@ public class Modificar_pelicula extends javax.swing.JFrame {
                 basep.set(Emodificar);
                 JOptionPane.showMessageDialog(null, "La pelicula fue modificada exitosamente");
                 LimpiarCamposTexto();
-            
 
-       
+            }
+        }
     }
 
-    
     public static void Cerrar_BD(ObjectContainer basep) {
 
         basep.close();
     }
+
     /**
      * @param args the command line arguments
      */
-    
-    
+
     public void LimpiarCamposTexto() {
         jTextField2.setText("");
         jTextField10.setText("");
@@ -377,7 +371,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         jTextField12.setText("");
         jTextField9.setText("");
     }
-    
+
     public void HabilitarCampos_deTexto() {
         jTextField8.setEditable(true);
         jTextField10.setEditable(true);

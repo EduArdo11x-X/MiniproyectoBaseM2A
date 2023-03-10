@@ -26,6 +26,7 @@ public class Modificar_empleado extends javax.swing.JFrame {
     
     public Modificar_empleado() {
         initComponents();
+        jBguardar3.setEnabled(false);
     }
 
     /**
@@ -53,18 +54,29 @@ public class Modificar_empleado extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         Buscar = new javax.swing.JButton();
-        jBguardar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         jSiniciohoras = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
         jSiniciominutos = new javax.swing.JSpinner();
         jSiniciohoras1 = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
         jSiniciominutos1 = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
+        jBguardar3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 354, Short.MAX_VALUE)
+        );
+
+        jPanel4.setBackground(new java.awt.Color(204, 255, 204));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel10.setFont(new java.awt.Font("Copperplate", 3, 24)); // NOI18N
@@ -74,50 +86,50 @@ public class Modificar_empleado extends javax.swing.JFrame {
         jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 20, 380, 40));
 
         jLabel1.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
-        jLabel1.setText("Cedula Empleado");
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 97, 120, -1));
+        jLabel1.setText("Cedula Empleado:");
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 120, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel4.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 91, 166, -1));
+        jPanel4.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 166, -1));
 
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
-        jLabel2.setText("Id Empleado");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 137, -1, -1));
+        jLabel2.setText("Id Empleado:");
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
-        jPanel4.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 131, 166, -1));
+        jPanel4.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 166, -1));
 
         jLabel3.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
-        jLabel3.setText("Area de empleado");
-        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 179, -1, -1));
+        jLabel3.setText("Area de empleado:");
+        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
-        jPanel4.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 173, 165, -1));
+        jPanel4.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 165, -1));
 
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
-        jLabel4.setText("Hora de entrada");
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+        jLabel4.setText("Hora de entrada:");
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
-        jLabel5.setText("Hora de salida");
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 137, -1, -1));
+        jLabel5.setText("Hora de salida:");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Copperplate Gothic Light", 2, 11)); // NOI18N
-        jLabel6.setText("Horas a la semana");
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 179, -1, -1));
-        jPanel4.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 165, -1));
+        jLabel6.setText("Horas a la semana:");
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+        jPanel4.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 165, -1));
 
         Buscar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         Buscar.setForeground(new java.awt.Color(0, 0, 255));
@@ -129,79 +141,69 @@ public class Modificar_empleado extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-        jPanel4.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 30, 30));
-
-        jBguardar.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jBguardar.setForeground(new java.awt.Color(0, 0, 255));
-        jBguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/girar.png"))); // NOI18N
-        jBguardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBguardarActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 30, 30));
-
-        jLabel7.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
-        jLabel7.setText("MODIFICAR");
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, -1, 20));
+        jPanel4.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 30, 30));
 
         jSiniciohoras.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
-        jPanel4.add(jSiniciohoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, -1, -1));
+        jPanel4.add(jSiniciohoras, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText(":");
         jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, -1, -1));
 
         jSiniciominutos.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
-        jPanel4.add(jSiniciominutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, -1, -1));
+        jPanel4.add(jSiniciominutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, -1, -1));
 
         jSiniciohoras1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
-        jPanel4.add(jSiniciohoras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
+        jPanel4.add(jSiniciohoras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText(":");
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, -1));
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, -1, -1));
 
         jSiniciominutos1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
-        jPanel4.add(jSiniciominutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
+        jPanel4.add(jSiniciominutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, -1, -1));
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBguardar3.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jBguardar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar.png"))); // NOI18N
+        jBguardar3.setText("MODIFICAR");
+        jBguardar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBguardar3ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, -1, -1));
+        jPanel4.add(jBguardar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 273, 160, 40));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jButton2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
+        jButton2.setText("REGRESAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 273, 140, 40));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +214,9 @@ public class Modificar_empleado extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,14 +237,6 @@ public class Modificar_empleado extends javax.swing.JFrame {
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_BuscarActionPerformed
 
-    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
-
-        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-        Modificar_empleado(BaseD);
-        Cerrar_BD(BaseD);
-        jTextField1.setEditable(true);
-    }//GEN-LAST:event_jBguardarActionPerformed
-
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
@@ -249,16 +245,24 @@ public class Modificar_empleado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBguardar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardar3ActionPerformed
+
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Modificar_empleado(BaseD);
+        Cerrar_BD(BaseD);
+        jTextField1.setEditable(true);
+    }//GEN-LAST:event_jBguardar3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
         Inicio vsar1 = new Inicio();
         vsar1.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
      
     
     public void buscar(ObjectContainer basep) {//cargardatos
 
-        jBguardar.setEnabled(false);
+        jBguardar3.setEnabled(false);
         String CODIGOAux;
         CODIGOAux = jTextField1.getText();
 
@@ -266,7 +270,7 @@ public class Modificar_empleado extends javax.swing.JFrame {
 
         if (jTextField1.getText().isEmpty()) {
 
-            JOptionPane.showMessageDialog(null, "Ingrese una cedula");
+            JOptionPane.showMessageDialog(null, "Ingrese el ID de empleado");
         } else {
 
             if (EAux.Comprobar_Empleado(basep, CODIGOAux) == 0) {
@@ -276,7 +280,7 @@ public class Modificar_empleado extends javax.swing.JFrame {
                 
             } else {
                 
-                Empleado Ebuscar = new Empleado(Ced_empleado, null, null, 0, 0, 0, 0, null, null, null);
+                Empleado Ebuscar = new Empleado(CODIGOAux, null, null, 0, 0, 0, 0, null, null, null);
 
                 ObjectSet result = basep.get(Ebuscar);
                 for (int i = 0; i < result.size(); i++) {
@@ -288,11 +292,16 @@ public class Modificar_empleado extends javax.swing.JFrame {
                     jTextField1.setText(miE.getCed_empleado());
                     jTextField2.setText(miE.getId_Empleado());
                     jTextField3.setText(miE.getArea_Empleado());
-                    jTextField3.setText(miE.getHoras_sem());
+                    jTextField6.setText(miE.getHoras_sem());
                     jSiniciohoras1.setValue(miE.getHora_inicio());
                     jSiniciominutos1.setValue(miE.getMin_inicio());
                     jSiniciohoras.setValue(miE.getHora_fin());
                     jSiniciominutos.setValue(miE.getMin_fin());
+                    }
+
+                    if (validarCampos(basep)) {
+                    jBguardar3.setEnabled(true);
+                }
                     
                // HabilitarCampos_deTexto();
                 jTextField1.setEditable(false);
@@ -300,7 +309,7 @@ public class Modificar_empleado extends javax.swing.JFrame {
 
         }
     }
-    }
+    
  public void asignarVariables(ObjectContainer basep) {
         Ced_empleado = jTextField1.getText();
         Id_Empleado = jTextField2.getText();
@@ -330,6 +339,17 @@ public class Modificar_empleado extends javax.swing.JFrame {
         Horario_inicio = Ihora+":" + Imin;
         Horario_fin = Fhora + ":" + Fmin;
     }
+ 
+ public static int Comprobar_Peliculas(ObjectContainer basep, String Ced_empleado) {
+
+        Empleado Ebuscar = new Empleado(Ced_empleado, null, null, 0, 0, 0, 0, null, null, null);
+
+        ObjectSet result = basep.get(Ebuscar);
+
+        return result.size();
+    }
+       
+ 
  public boolean validarCampos(ObjectContainer basep) {
         Validaciones miValidaciones = new Validaciones();
         asignarVariables(basep);
@@ -366,11 +386,11 @@ public class Modificar_empleado extends javax.swing.JFrame {
         }
         
         if (jTextField6.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese el titulo de la pelicula");
+            JOptionPane.showMessageDialog(this, "Ingrese horas a la semana");
             ban_confirmar = false;
         } else {
             if (!miValidaciones.validarNomApe(horas_sem)) {
-                JOptionPane.showMessageDialog(this, "Titulo Pelicula invalido");
+                JOptionPane.showMessageDialog(this, "Horas a la semana invalido");
                 ban_confirmar = false;
             }
         }
@@ -378,34 +398,23 @@ public class Modificar_empleado extends javax.swing.JFrame {
         return ban_confirmar;
     }
     
-  public void LimpiarCampos() {
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField6.setText("");
-         jSiniciohoras1.setValue(0);
-        jSiniciominutos.setValue(0);
-        jSiniciominutos1.setValue(0);
-        jSiniciohoras.setValue(0);
-    }
+  
     
   public void Modificar_empleado(ObjectContainer basep) {
         asignarVariables(basep);
         if (validarCampos(basep)) {
-            Empleado Emodi = new Empleado(Ced_empleado, null, null, 0, 0, 0, 0, null, null, null);
+            Empleado Emodi = new Empleado(jTextField1.getText(), null, null, 0, 0, 0, 0, null, null, null);
             ObjectSet result = basep.get(Emodi);
             Empleado emodificar = (Empleado) result.next();
+            
+            emodificar.setArea_Empleado(jTextField3.getText());
+            emodificar.setHoras_sem(jTextField6.getText());
+            emodificar.setHora_inicio((int) jSiniciohoras1.getValue());
+            emodificar.setMin_inicio((int) jSiniciominutos1.getValue());
+            emodificar.setHora_fin((int) jSiniciohoras.getValue());
+            emodificar.setMin_fin((int) jSiniciominutos.getValue());
 
-            emodificar.setCed_empleado(Ced_empleado);
-            emodificar.setId_Empleado(Id_Empleado);
-            emodificar.setArea_Empleado(Area_Empleado);
-            emodificar.setHoras_sem(horas_sem);
-            emodificar.setHora_inicio(hora_inicio);
-            emodificar.setHora_fin(hora_fin);
-            emodificar.setMin_inicio(min_inicio);
-            emodificar.setMin_fin(min_fin);
-            emodificar.setHorario_inicio(Horario_inicio);
-            emodificar.setHorario_fin(Horario_fin);
+           
 
             basep.set(emodificar);
             JOptionPane.showMessageDialog(null, "El Empleado fue modificado exitosamente");
@@ -419,12 +428,22 @@ public class Modificar_empleado extends javax.swing.JFrame {
         basep.close();
     }
 
+    public void LimpiarCampos() {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField6.setText("");
+         jSiniciohoras1.setValue(0);
+        jSiniciominutos.setValue(0);
+        jSiniciominutos1.setValue(0);
+        jSiniciohoras.setValue(0);
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
-    private javax.swing.JButton jBguardar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBguardar3;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -432,7 +451,6 @@ public class Modificar_empleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
