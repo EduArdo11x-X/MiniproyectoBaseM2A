@@ -9,6 +9,7 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import Clases.Pelicula;
+import Clases.Validaciones;
 import javax.swing.JOptionPane;
 
 
@@ -66,15 +67,15 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel13.setText("Filtro:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, 30));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un campo:", "Ver todos", "ID", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un campo:", "Ver todos", "ID" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 170, 30));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 170, 30));
 
         Tabla.setBackground(new java.awt.Color(247, 247, 247));
         Tabla.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -109,7 +110,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 30, 30));
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 30, 30));
 
         Eliminar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         Eliminar.setForeground(new java.awt.Color(0, 0, 255));
@@ -122,7 +123,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
                 EliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, 30, 30));
+        jPanel1.add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 30, 30));
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
@@ -150,7 +151,7 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
       ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-        Buscar_peliculaID(BaseD);
+        Buscar_PeliculaID(BaseD);
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_BuscarActionPerformed
 
@@ -171,13 +172,12 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
             } else {
                 if (jComboBox1.getSelectedIndex() == 2) {
                    // deshabilitarParametros();
-                } else {
-                    if (jComboBox1.getSelectedIndex() == 3) {
-                       // habilitarParametros();
-                    }
-                }
+                } 
+                
             }
         }
+                         
+                            
                          
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -190,7 +190,9 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
-    public void Buscar_peliculaID(ObjectContainer basep) {
+    Validaciones miValidaciones = new Validaciones();
+    
+    public void Buscar_PeliculaID(ObjectContainer basep) {
 
         if (jComboBox1.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Selección invalida");
@@ -207,17 +209,12 @@ public class Eliminar_pelicula extends javax.swing.JFrame {
 
                     String IDAux = JOptionPane.showInputDialog("Ingrese el ID a consultar");
 
-                    Pelicula Ebuscar = new Pelicula(null, null, null, null, null, null, null , null, null);
+                    Pelicula Ebuscar = new Pelicula(IDAux, null, null, null, null, null, null , null, null);
 
                     ObjectSet result = basep.get(Ebuscar);
                     MostrarDatos(result);
 
-                } else {
-                    if (jComboBox1.getSelectedIndex() == 3) {
-//                        habilitarParametros();
-                       // BuscarParametros(basep);
-
-                    }
+                
                 }
             }
         }

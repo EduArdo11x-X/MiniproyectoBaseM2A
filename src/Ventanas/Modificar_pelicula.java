@@ -27,7 +27,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     
     public Modificar_pelicula() {
         initComponents();
-        jTextField2.setEnabled(false);
+        jBguardar1.setEnabled(false);
         
     }
     
@@ -44,7 +44,6 @@ public class Modificar_pelicula extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -61,25 +60,22 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         jTextField10 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jBguardar = new javax.swing.JButton();
         jTextField12 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         Buscar = new javax.swing.JButton();
+        jBguardar1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(595, 375));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel2.setText("Titulo Pelicula:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, 20));
-
-        jLabel3.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
-        jLabel3.setText("MODIFICAR");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, -1, 20));
 
         jLabel4.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel4.setText("Categoria:");
@@ -91,11 +87,11 @@ public class Modificar_pelicula extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel6.setText("Año estreno:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, -1, 40));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, 40));
 
         jLabel7.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel7.setText("Idioma:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel8.setText("Directores:");
@@ -104,24 +100,22 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel9.setText("Duración:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 20));
-
-        jTextField2.setText(" ");
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 110, -1));
 
         jComboBox1.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apto para todo publico", "Mayor de 18 años", "Bajo supervision de adultos" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elija una opcion", "Apto para todo publico", "Mayor de 18 años", "Bajo supervision de adultos" }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 110, -1));
 
         jComboBox2.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elija una opcion", "Acción", "Aventuras", "Ciencia Ficción", "Comedia", "Drama", "Fantasía", "Musical" }));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 110, -1));
 
         jComboBox3.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2021", "2022", "2023" }));
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 100, -1));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elija una opcion", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2021", "2022", "2023" }));
+        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, 130, -1));
 
         jTextField7.setText(" ");
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, 100, -1));
+        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 130, -1));
 
         jTextField8.setText(" ");
         jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 110, -1));
@@ -140,19 +134,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Copperplate", 3, 18)); // NOI18N
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar.png"))); // NOI18N
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 40, 40));
-
-        jBguardar.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jBguardar.setForeground(new java.awt.Color(0, 0, 255));
-        jBguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/girar.png"))); // NOI18N
-        jBguardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBguardarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jBguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 50, 40));
-
-        jTextField12.setText(" ");
-        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, 100, -1));
+        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 130, -1));
 
         jLabel12.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel12.setText(" Codigo Pelicula a modificar:");
@@ -160,7 +142,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Copperplate", 3, 13)); // NOI18N
         jLabel13.setText("Actores:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, -1, 20));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, -1, 20));
 
         Buscar.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         Buscar.setForeground(new java.awt.Color(0, 0, 255));
@@ -172,23 +154,33 @@ public class Modificar_pelicula extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 40, 30));
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 40, 30));
 
-        jButton1.setText("Regresar");
+        jBguardar1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jBguardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar.png"))); // NOI18N
+        jBguardar1.setText("MODIFICAR");
+        jBguardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBguardar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBguardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 150, -1));
+
+        jButton1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
+        jButton1.setText("REGRESAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,14 +190,6 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
-
-        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
-        Modificar_Pelicula(BaseD);
-        Cerrar_BD(BaseD);
-        jTextField2.setEditable(true);
-    }//GEN-LAST:event_jBguardarActionPerformed
-
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
         ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
@@ -213,10 +197,18 @@ public class Modificar_pelicula extends javax.swing.JFrame {
         Cerrar_BD(BaseD);
     }//GEN-LAST:event_BuscarActionPerformed
 
+    private void jBguardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardar1ActionPerformed
+
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Modificar_Pelicula(BaseD);
+        Cerrar_BD(BaseD);
+        jTextField2.setEditable(true);
+    }//GEN-LAST:event_jBguardar1ActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
         Inicio vsar1 = new Inicio();
-            vsar1.setVisible(true); 
+        vsar1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
     
     public void asignarVariables(ObjectContainer basep) {
@@ -232,7 +224,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     }
     public void buscar(ObjectContainer basep) {//cargardatos
 
-       
+       jBguardar1.setEnabled(false);
         String CODIGOAux;
         CODIGOAux = jTextField2.getText();
 
@@ -287,7 +279,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
                 }
                 
                   if (validarCampos(basep)) {
-                    jBguardar.setEnabled(true);
+                    jBguardar1.setEnabled(true);
                 }
                 
                 HabilitarCampos_deTexto();
@@ -400,7 +392,7 @@ public class Modificar_pelicula extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
-    private javax.swing.JButton jBguardar;
+    private javax.swing.JButton jBguardar1;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -410,7 +402,6 @@ public class Modificar_pelicula extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
