@@ -32,6 +32,14 @@ public class Validaciones {
         }
         return ban;
     }
+     public boolean validarFecha(String cadena) {
+        cadena = cadena.trim();
+        boolean ban = false;
+        if (cadena.matches("[[A-Za-z]\\s]*{3,30},[1-31]{2}")) {
+            ban = true;
+        }
+        return ban;
+    }
 
     public boolean validarid(String cadena) {
         boolean validar = cadena.matches("[[A-Z]{2}]*+\\-[[\\d]{4}]*");
