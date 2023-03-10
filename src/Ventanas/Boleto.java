@@ -5,12 +5,35 @@
  */
 package Ventanas;
 //Import Clases.Boleto;
+
+import Clases.Empleado;
+import Clases.Validaciones;
+import static Ventanas.Registrar_Empleado.Cerrar_BD;
+import static Ventanas.Registrar_Empleado.Comprobar_Empleado;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import javax.swing.JOptionPane;
+
 public class Boleto extends javax.swing.JFrame {
+    
+    String Id_boleto = "";
+    String Id_sala = "";
+    String Cedula_Cliente = "";
+    String Titulo_pelicula="";
+    String Id_empleado="";
+    String hora_ini_pelicula = "";
+    int num_asiento= 0;
+    String nombre_cine = "";
+    String Id_funcion = "";
+    String tipo_genero = "";
+    String fecha_compra = "";
+    String hora_compra = ""; 
 
     /**
      * Creates new form Boleto
      */
-    public Boleto() {
+    public Boleto(String Id_boleto1, String Id_sala1, String Cedula_Cliente1, String Titulo_pelicula1, String Id_empleado1, String hora_ini_pelicula1, int num_asiento1, String nombre_cine1, String Id_funcion1, String tipo_genero1, String fecha_compra1, String hora_compra1) {
         initComponents();
     }
 
@@ -93,7 +116,7 @@ public class Boleto extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Cédula Empleado : ");
+        jLabel4.setText("ID Empleado : ");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 254, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
@@ -168,6 +191,11 @@ public class Boleto extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
         jButton3.setText("GUARDAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, 99, -1));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/icons8-guardar-40.png"))); // NOI18N
@@ -217,7 +245,153 @@ public class Boleto extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        Crear_E(BaseD);
+        Cerrar_BD(BaseD);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+     public void asignarVariables(ObjectContainer basep) {
+        Id_boleto = boleto.getText();
+        Id_sala = salaboleto.getText();
+        Cedula_Cliente = cedclientboleto.getText();
+        Titulo_pelicula = peliculaboleto.getText();
+        Id_empleado = cedemplboleto.getText();
+        hora_ini_pelicula =horafunboleto.getText();
+        num_asiento = (Integer) jSpinner1.getValue();
+        Id_funcion = funcionidboleto.getText();
+        tipo_genero  = jComboBox2.getActionCommand();
+        fecha_compra= boletofc.getText();
+        hora_compra=boletohc.getText();
+    }
+     
+      public boolean validarCampos(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        asignarVariables(basep);
+        boolean ban_confirmar = true;
+
+        if (boleto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE EL ID DEL BOLETO");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid(Id_boleto)) {
+                JOptionPane.showMessageDialog(this, "ID INVALIDO");
+                ban_confirmar = false;
+            }
+        }
+
+        if (cedclientboleto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE LA CEDULA");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarCedula(Cedula_Cliente)) {
+                JOptionPane.showMessageDialog(this, "ID invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        if (cedemplboleto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE LA ID DEL EMPLEADO");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid(Id_empleado)) {
+                JOptionPane.showMessageDialog(this, "ID DE EMPLEADO INVALIDO");
+                ban_confirmar = false;
+            }
+        }
+        
+        if (boletofc.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE LA FECHA DE LA COMPRA");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarFecha( fecha_compra)) {
+                JOptionPane.showMessageDialog(this, "FECHA ES INVALIDA");
+                ban_confirmar = false;
+            }
+        }
+        
+        
+        if (funcionidboleto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE ID DE LA FUNCIÓN");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid( Id_funcion)) {
+                JOptionPane.showMessageDialog(this, "EL ID ES INVALIDO");
+                ban_confirmar = false;
+            }
+        }
+        
+         if (peliculaboleto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE EL NOMBRE DE LA PELICULA");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarNomApe( Titulo_pelicula)) {
+                JOptionPane.showMessageDialog(this, "EL NOMBRE DE LA PELICULA ES INVALIDO");
+                ban_confirmar = false;
+            }
+        }
+         
+         if (salaboleto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE EL ID DE LA SALA");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid( Id_sala)) {
+                JOptionPane.showMessageDialog(this, "EL ID DE LA SALA ESTA INVALIDA");
+                ban_confirmar = false;
+            }
+        }
+        
+        return ban_confirmar;
+    } 
+      
+       public void Crear_E(ObjectContainer basep) {
+        
+        
+
+             Boleto Enuevo = new Boleto(Id_boleto, Id_sala, Cedula_Cliente, Titulo_pelicula, Id_empleado, hora_ini_pelicula,num_asiento, nombre_cine,Id_funcion,tipo_genero,fecha_compra,hora_compra);
+             asignarVariables(basep);
+           if (validarCampos(basep)) {
+            if (Comprobar_Boleto(basep, Id_boleto) == 0) {
+                basep.set(Enuevo);
+                JOptionPane.showMessageDialog(null, "EL BOLETO SE GUARDO CORRECTAMENTE");
+                LimpiarCampos();
+            } else {
+
+                JOptionPane.showMessageDialog(null, "EL BOLETO YA EXISTE");
+            }
+
+            boleto.setText("");
+
+           }
+    }
+       
+        public static int Comprobar_Boleto(ObjectContainer basep, String Id_boleto) {
+
+        Boleto Ebuscar = new Boleto(Id_boleto, null, null, null, null, null, 0, null, null, null, null, null);
+
+        ObjectSet result = basep.get(Ebuscar);
+
+        return result.size();
+    }
     
+         public static void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+      
+       public void LimpiarCampos() {
+        boleto.setText("");
+        salaboleto.setText("");
+        cedclientboleto.setText("");
+        peliculaboleto.setText("");
+        cedemplboleto.setText("");
+        horafunboleto.setText("");
+        jSpinner1.setValue(0);
+        funcionidboleto.setText("");
+        boletofc.setText("");
+        boletohc.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField boleto;

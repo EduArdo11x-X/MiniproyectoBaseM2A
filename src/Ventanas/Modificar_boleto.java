@@ -5,11 +5,30 @@
  */
 package Ventanas;
 
+import Clases.Validaciones;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author HP
  */
 public class Modificar_boleto extends javax.swing.JFrame {
+    
+    String Id_boleto = "";
+    String Id_sala = "";
+    String Cedula_Cliente = "";
+    String Titulo_pelicula="";
+    String Id_empleado="";
+    String hora_ini_pelicula = "";
+    int num_asiento= 0;
+    String nombre_cine = "";
+    String Id_funcion = "";
+    String tipo_genero = "";
+    String fecha_compra = "";
+    String hora_compra = ""; 
 
     /**
      * Creates new form Modificar_boleto
@@ -45,13 +64,13 @@ public class Modificar_boleto extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
@@ -132,9 +151,6 @@ public class Modificar_boleto extends javax.swing.JFrame {
         jLabel10.setText(" NÚMERO BUTACA : ");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 142, -1));
 
-        jTextField6.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 11)); // NOI18N
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 130, -1));
-
         jLabel11.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("HORA FUNCIÓN : ");
@@ -146,6 +162,11 @@ public class Modificar_boleto extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(0, 102, 153));
         jButton2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 12)); // NOI18N
         jButton2.setText("Modificar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar.png"))); // NOI18N
@@ -163,6 +184,7 @@ public class Modificar_boleto extends javax.swing.JFrame {
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/deshacer.png"))); // NOI18N
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, -1, 20));
+        jPanel2.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 130, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 610, 330));
 
@@ -193,7 +215,128 @@ public class Modificar_boleto extends javax.swing.JFrame {
         mbol.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        //ObjectContainer BaseD = Db4o.openFile(Inicio.direccionBD);
+        //Crear_E(BaseD);
+        //Cerrar_BD(BaseD);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+     public void asignarVariables(ObjectContainer basep) {
+        Id_boleto = jTextField1.getText();
+        Id_sala = jTextField5.getText();
+        Cedula_Cliente = jTextField2.getText();
+        Titulo_pelicula = jTextField4.getText();
+        hora_ini_pelicula =jTextField7.getText();
+        num_asiento = (Integer)jSpinner1.getValue();
+        Id_funcion = jTextField3.getText();
+        tipo_genero  = jComboBox2.getActionCommand();
+    }
+     
+     public boolean validarCampos(ObjectContainer basep) {
+        Validaciones miValidaciones = new Validaciones();
+        asignarVariables(basep);
+        boolean ban_confirmar = true;
+
+        if (jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE EL ID DEL BOLETO");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid(Id_boleto)) {
+                JOptionPane.showMessageDialog(this, "ID INVALIDO");
+                ban_confirmar = false;
+            }
+        }
+
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE LA CEDULA");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarCedula(Cedula_Cliente)) {
+                JOptionPane.showMessageDialog(this, "ID invalido");
+                ban_confirmar = false;
+            }
+        }
+        
+        
+        if (jTextField3.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE ID DE LA FUNCIÓN");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid( Id_funcion)) {
+                JOptionPane.showMessageDialog(this, "EL ID ES INVALIDO");
+                ban_confirmar = false;
+            }
+        }
+        
+         if (jTextField4.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE EL NOMBRE DE LA PELICULA");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarNomApe( Titulo_pelicula)) {
+                JOptionPane.showMessageDialog(this, "EL NOMBRE DE LA PELICULA ES INVALIDO");
+                ban_confirmar = false;
+            }
+        }
+         
+         if (jTextField5.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "INGRESE EL ID DE LA SALA");
+            ban_confirmar = false;
+        } else {
+            if (!miValidaciones.validarid( Id_sala)) {
+                JOptionPane.showMessageDialog(this, "EL ID DE LA SALA ESTA INVALIDA");
+                ban_confirmar = false;
+            }
+        }
+        
+        return ban_confirmar;
+    } 
+     
+     public void Crear_E(ObjectContainer basep) {
+        
+        
+
+             Boleto Enuevo = new Boleto(Id_boleto, Id_sala, Cedula_Cliente, Titulo_pelicula, Id_empleado, hora_ini_pelicula,num_asiento, nombre_cine,Id_funcion,tipo_genero,fecha_compra,hora_compra);
+             asignarVariables(basep);
+           if (validarCampos(basep)) {
+            if (Comprobar_Boleto(basep, Id_boleto) == 0) {
+                basep.set(Enuevo);
+                JOptionPane.showMessageDialog(null, "EL BOLETO SE GUARDO CORRECTAMENTE");
+                LimpiarCampos();
+            } else {
+
+                JOptionPane.showMessageDialog(null, "EL BOLETO YA EXISTE");
+            }
+
+            jTextField1.setText("");
+
+           }
+    }
+       
+        public static int Comprobar_Boleto(ObjectContainer basep, String Id_boleto) {
+
+        Boleto Ebuscar = new Boleto(Id_boleto, null, null, null, null, null, 0, null, null, null, null, null);
+
+        ObjectSet result = basep.get(Ebuscar);
+
+        return result.size();
+    }
     
+         public static void Cerrar_BD(ObjectContainer basep) {
+
+        basep.close();
+    }
+      
+       public void LimpiarCampos() {
+        jTextField1.setText("");
+        jTextField5.setText("");
+        jTextField2.setText("");
+        jTextField4.setText("");
+        jTextField7.setText("");
+        jTextField3.setText("");
+        jSpinner1.setValue(0);
+        jComboBox2.setActionCommand(tipo_genero);
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -216,12 +359,12 @@ public class Modificar_boleto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

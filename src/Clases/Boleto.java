@@ -16,15 +16,15 @@ public class Boleto {
     private String Cedula_Cliente;
     private String Titulo_pelicula;
     private String Id_empleado;
-    private double hora_ini_pelicula;
+    private String hora_ini_pelicula;
     private int num_asiento;
     private String nombre_cine;
     private String Id_funcion;
     private String tipo_genero;
     private String fecha_compra;
-    private double hora_compra;
+    private String hora_compra;
 
-    public Boleto(String Id_boleto, String Id_sala, String Cedula_Cliente, String Titulo_pelicula, String Id_empleado, double hora_ini_pelicula, int num_asiento, String nombre_cine, String Id_funcion, String tipo_genero, String fecha_compra, double hora_compra) {
+    public Boleto(String Id_boleto, String Id_sala, String Cedula_Cliente, String Titulo_pelicula, String Id_empleado, String hora_ini_pelicula, int num_asiento, String nombre_cine, String Id_funcion, String tipo_genero, String fecha_compra, String hora_compra) {
         this.Id_boleto = Id_boleto;
         this.Id_sala = Id_sala;
         this.Cedula_Cliente = Cedula_Cliente;
@@ -117,14 +117,14 @@ public class Boleto {
     /**
      * @return the hora_ini_pelicula
      */
-    public double getHora_ini_pelicula() {
+    public String getHora_ini_pelicula() {
         return hora_ini_pelicula;
     }
 
     /**
      * @param hora_ini_pelicula the hora_ini_pelicula to set
      */
-    public void setHora_ini_pelicula(double hora_ini_pelicula) {
+    public void setHora_ini_pelicula(String hora_ini_pelicula) {
         this.hora_ini_pelicula = hora_ini_pelicula;
     }
 
@@ -201,14 +201,14 @@ public class Boleto {
     /**
      * @return the hora_compra
      */
-    public double getHora_compra() {
+    public String getHora_compra() {
         return hora_compra;
     }
 
     /**
      * @param hora_compra the hora_compra to set
      */
-    public void setHora_compra(double hora_compra) {
+    public void setHora_compra(String hora_compra) {
         this.hora_compra = hora_compra;
     }
 
